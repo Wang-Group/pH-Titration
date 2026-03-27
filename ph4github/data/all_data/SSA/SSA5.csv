@@ -1,0 +1,3 @@
+step,reagent,recommended_volume,actual_volume,pH_before,pH_after,pH_change,neutralization_factor
+1,base,7.210000038146973,5.0,0.85,1.74,0.89,1.2589254117941688
+2,base,4.769999980926514,4.769999980926514,1.74,4.23,2.49,1.2589254117941688
