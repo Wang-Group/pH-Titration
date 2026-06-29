@@ -1,0 +1,89 @@
+===== PAGE 1 =====
+A peer review of:
+Bayesian Inference and Reinforcement Learning for Autonomous pH Adjustment in Diverse 
+Chemical Systems
+Overview
+The authors present a policy-based pH control system for batch chemistry. Their approach is 
+interesting in how it generates a powerful but slow controller which can then be distilled into a 
+lightweight but still accurate model—as evinced by demonstrations in three diverse, pH-
+adjustment experimental campaigns. Given that the use of Bayesian inference and 
+reinforcement learning is well-precedented in the context of process control, the clarity of the 
+manuscript’s impact would be improved by clarifying the unique contributions of this clever 
+approach. Please see the below for some comments to improve the clarity of the work.
+Major Comments
+1. The claim that “this work establishes a general strategy for transforming pH adjustment 
+from empirical trial-and-error into a structured and learnable chemical decision process” 
+feels tenuous as the manuscript currently stands. While the Bayesian policy can learn from 
+theory/simulation, the imitation and RL policies are fundamentally based in empirical trial-
+and-error. 
+a. Other than using cleverly simulated data and Bayesian inference to create a 
+template for an RL algorithm, how does this work stand out from other, prior RL-
+based pH adjustment approaches?  For example, Hermansson and Syafiie have, in 
+follow-up work to reference 11, demonstrated joint, continuous pH–liquid level 
+control using Bayesian and RL approaches (cf. “Bayesian-ANN controller for pH-
+control”, AJPC, vol. 2, no. 1, pp. 1–6, Dec. 2023 and “Model-free learning control of 
+neutralization processes using reinforcement learning”, Eng Appl of Artif Intell, vol. 
+20, issue 6, pp. 767–782, Sept. 2007)
+b. Furthermore, in the introduction, the lack of interpretability is named as a key 
+drawback of RL approaches. How does this approach provide interpretability in 
+practice? Are ~8 experiments sufficient to determine how many species are present 
+in a buffer and their pKa values?
+c. What advantages does the Bayesian policy provide compared to training a neural 
+network directly on simulated data (in theory or in practice)?
+2. In the introduction to this manuscript, the study appears to be purely theoretical. The 
+authors may wish to clarify and highlight that physical experiments were performed. This 
+would help reflect the manuscript’s impact.
+3. The authors highlight the computational costs of the Bayesian Inference approach; 
+however, without a comparison (even if qualitative), it is difficult for the reader to 
+appreciate the necessity or contribution of the distilled reinforcement learning policy. How 
+do the prediction times of these approaches compare to the 20-second mixing + sensor 
+analysis times implemented in the experiments?
+4. Based on Figure 2, the Human appears to be more consistent and to use the fewest 
+experiments on average. Is this performance coincidence from the small sample size?
+
+===== PAGE 2 =====
+a. Furthermore, the Human protocol appears somewhat PID-/rule-like. (E.g., “if off by > 
+2pH units, use 2 mL”, “Use roughly half the previous aliquot after crossing the 
+setpoint”, “when close to the setpoint, switch to O(100 uL) aliquots”). Have the 
+authors considered testing an expert-rule baseline as a way to virtually benchmark 
+performance over a wide range of simulated buffer systems?
+Figures
+5. Figure 1, panel a: What is the black box occluding all but one curve meant to represent?
+6. Figure 2:
+a. The format of the x-axes is not obvious and may confuse a reader (e.g., “what is the 
+significance of steps 5 and 8 that they get labeled?”). After further inspection, it 
+appears to be uniform spacing at 5 steps and the final step is labeled. Perhaps 
+reducing the major step size to 2 or 3 so that a clear pattern can be established will 
+help in interpretation.
+b. There is an errant line coming off the top left subplot.
+c. Consistent pH axes scales (within each row) may better convey the amount of 
+overshoot and rate of convergence.
+7. To help the reader fully appreciate the experimental systems having overlapping buffering 
+zones and nontrivial pH-adjustment curves, could (theoretical) titration plots be provided 
+for the example buffered systems (e.g., those presented in Figure 2)?  These could be SI 
+figures or insets in Figure 2.
+Minor Comments
+8. There are two uses of “significantly” without quantification (Section 3 and Experiment 2). 
+Please revise the wording or provide a statistical analysis.
+a. The former could be quantified based on the information provided in Figure 1.
+9. Experiment 1. The phrase “The robotic platforms executed acid or base additions in 50 μL 
+increments” may be ambiguous: cf. The platform dispenses either 50 μL of acid or base at 
+each step. While this is easily resolved by looking at the figures, it may be helpful to revise 
+the wording to reference “resolution” instead of “increments”.
+10. Experiments 3 and 4. Please clarify which policy is used. (I would assume it is the 
+reinforcement learning 
+11. For the training and experiments, can the input volume ranges be provided? Based on 
+inspecting the code, it appears that most are bound [100 uL – 10 mL], but it is difficult to 
+ascertain.
+12. That the code is a single ~7000-line document may hinder the reproduction and utility of 
+the work.
+13. The current GitHub ReadMe is a template file. The readme should explain the project, the 
+general structure (how items are organized), version requirements for Python and any 
+imported modules (this can instead be done in a separate “requirements.txt” file), and 
+general instructions for how to run the code for those interested in replicating the results.
+14. In the equations that use commas, adding a space after each comma would improve 
+legibility.
+
+===== PAGE 3 =====
+15. In the SI, some symbols do not render in my PDF viewer, check with the Journal to ensure 
+these are printed correctly. In particular, the paragraph before Table S1.

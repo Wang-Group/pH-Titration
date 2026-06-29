@@ -1,0 +1,10 @@
+{
+  "success_rate": 76.1667,
+  "avg_success_steps": 23.7046,
+  "std_success_steps": 10.816,
+  "overshoot_rate": 29.876,
+  "total_experiments": 3000,
+  "successful_experiments": 2285,
+  "total_steps": 89915,
+  "total_overshoots": 26863
+}
