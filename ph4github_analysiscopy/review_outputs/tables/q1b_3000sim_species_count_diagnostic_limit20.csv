@@ -1,0 +1,7 @@
+﻿acid_type,stage,experiments,mean_unused_slot_mole_fraction,median_unused_slot_mole_fraction,unused_slot_fraction_lt_0p1_pct,unused_slot_fraction_lt_0p2_pct
+diprotic,final,7,0.3493,0.3832,0.0,0.0
+diprotic,initial,7,0.3536,0.3829,0.0,0.0
+diprotic,up_to_8_steps,7,0.3541,0.3832,0.0,0.0
+monoprotic,final,5,0.605,0.5448,0.0,0.0
+monoprotic,initial,5,0.531,0.5396,0.0,0.0
+monoprotic,up_to_8_steps,5,0.6056,0.5448,0.0,0.0

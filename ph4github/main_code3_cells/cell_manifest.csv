@@ -1,0 +1,35 @@
+raw_notebook_cell_index,code_cell_export_index,output_file,first_nonempty_line
+1,1,cell_01_bayesianfinal.py,#bayesianfinal
+2,2,cell_02_import_numpy_as_np.py,import numpy as np 
+3,3,cell_03_generate_data.py,# Generate data
+4,4,cell_04_import_numpy_as_np.py,import numpy as np
+5,5,cell_05_train_a_discrete_regression_model.py,# Train a discrete regression model
+6,6,cell_06_import_torch.py,import torch
+7,7,cell_07_test_a_discrete_regression_model_on_the_test_set.py,# Test a discrete regression model on the test set
+8,8,cell_08_import_torch.py,import torch
+9,9,cell_09_reinforcement_currently_in_use.py,# Reinforcement currently in use
+10,10,cell_10_import_torch.py,import torch
+11,11,cell_11_save_while_training.py,# Save while training
+12,12,cell_12_import_torch.py,import torch
+13,13,cell_13_reinforcement_learning_experiments.py,# Reinforcement learning experiments
+14,14,cell_14_import_torch.py,import torch
+15,15,cell_15_do_the_same_experiment_online.py,# Do the same experiment online
+16,16,cell_16_import_torch.py,import torch
+17,17,cell_17_evaluate_the_model_before_reinforcement.py,# Evaluate the model before reinforcement
+18,18,cell_18_import_torch.py,import torch
+19,19,cell_19_evaluate_bayesian_final.py,# Evaluate Bayesian final
+20,20,cell_20_import_ast.py,import ast
+21,21,cell_21_bayesian_multi_log.py,# Bayesian multi-log
+22,22,cell_22_import_numpy_as_np.py,import numpy as np
+23,23,cell_23_shap_analysis.py,# Shap analysis
+24,24,cell_24_import_torch.py,import torch
+25,25,cell_25_shap_analysis_error_takes_the_absolute_value.py,"# Shap analysis, error takes the absolute value"
+26,26,cell_26_import_torch.py,import torch
+27,27,cell_27_correlation_analysis.py,# correlation analysis
+28,28,cell_28_import_torch.py,import torch
+29,29,cell_29_correlation_analysis_error_takes_the_absolute_va.py,"# Correlation analysis, error takes the absolute value"
+30,30,cell_30_import_torch.py,import torch
+31,31,cell_31_ablation_experiment.py,# ablation experiment
+32,32,cell_32_import_torch.py,import torch
+33,33,cell_33_test_pid.py,# Test pid
+34,34,cell_34_from_future_import_annotations.py,from __future__ import annotations

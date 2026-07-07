@@ -1,0 +1,67 @@
+[
+  {
+    "controller": "Expert rule",
+    "episodes": 20,
+    "total_decisions": 552,
+    "mean_decision_ms": 0.00745018115942029,
+    "median_decision_ms": 0.0047,
+    "p95_decision_ms": 0.010944999999999993,
+    "mean_episode_controller_ms": 0.205625,
+    "median_episode_controller_ms": 0.16025,
+    "decision_fraction_of_20s": 2.35e-07,
+    "episode_fraction_of_20s": 8.0125e-06,
+    "times_20s_longer_than_decision": 4255319.14893617
+  },
+  {
+    "controller": "Adaptive PID",
+    "episodes": 20,
+    "total_decisions": 588,
+    "mean_decision_ms": 0.008002721088435374,
+    "median_decision_ms": 0.0049,
+    "p95_decision_ms": 0.013529999999999995,
+    "mean_episode_controller_ms": 0.23528,
+    "median_episode_controller_ms": 0.18159999999999998,
+    "decision_fraction_of_20s": 2.45e-07,
+    "episode_fraction_of_20s": 9.08e-06,
+    "times_20s_longer_than_decision": 4081632.6530612246
+  },
+  {
+    "controller": "Imitation learning",
+    "episodes": 20,
+    "total_decisions": 242,
+    "mean_decision_ms": 14.885235537190082,
+    "median_decision_ms": 8.31475,
+    "p95_decision_ms": 47.294115,
+    "mean_episode_controller_ms": 180.11135000000002,
+    "median_episode_controller_ms": 143.87225,
+    "decision_fraction_of_20s": 0.0004157375,
+    "episode_fraction_of_20s": 0.0071936125,
+    "times_20s_longer_than_decision": 2405.363961634445
+  },
+  {
+    "controller": "Reinforcement learning",
+    "episodes": 20,
+    "total_decisions": 174,
+    "mean_decision_ms": 13.408905172413792,
+    "median_decision_ms": 13.4443,
+    "p95_decision_ms": 32.602365,
+    "mean_episode_controller_ms": 116.65747499999999,
+    "median_episode_controller_ms": 129.38064999999997,
+    "decision_fraction_of_20s": 0.000672215,
+    "episode_fraction_of_20s": 0.006469032499999998,
+    "times_20s_longer_than_decision": 1487.6192884716943
+  },
+  {
+    "controller": "Bayesian (1000 particles)",
+    "episodes": 20,
+    "total_decisions": 151,
+    "mean_decision_ms": 150.39793509933776,
+    "median_decision_ms": 100.4938,
+    "p95_decision_ms": 425.88865,
+    "mean_episode_controller_ms": 1135.50441,
+    "median_episode_controller_ms": 889.72655,
+    "decision_fraction_of_20s": 0.00502469,
+    "episode_fraction_of_20s": 0.0444863275,
+    "times_20s_longer_than_decision": 199.01725280564574
+  }
+]

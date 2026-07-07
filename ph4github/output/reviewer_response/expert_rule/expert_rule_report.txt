@@ -1,0 +1,96 @@
+Expert-rule titration baseline report
+============================================================
+Rule set: bucketed aliquots by pH error until the setpoint is bracketed, then bisection in net titrant volume, with small aliquots near the setpoint.
+
+Experiment ID: 1 | Acid type: triprotic | Target pH: 3.74
+  Final pH: 3.65 | Success: Yes | Steps: 45 | Overshoots: 0
+  Added volumes: base 5.660 mL, acid 0.000 mL | Decision time: 0.015800 ms/step
+------------------------------------------------------------
+Experiment ID: 2 | Acid type: monoprotic | Target pH: 6.93
+  Final pH: 6.89 | Success: Yes | Steps: 11 | Overshoots: 2
+  Added volumes: base 11.720 mL, acid 0.750 mL | Decision time: 0.011709 ms/step
+------------------------------------------------------------
+Experiment ID: 3 | Acid type: monoprotic | Target pH: 9.97
+  Final pH: 10.06 | Success: Yes | Steps: 12 | Overshoots: 7
+  Added volumes: base 13.010 mL, acid 1.980 mL | Decision time: 0.010083 ms/step
+------------------------------------------------------------
+Experiment ID: 4 | Acid type: triprotic | Target pH: 7.37
+  Final pH: 7.28 | Success: Yes | Steps: 44 | Overshoots: 0
+  Added volumes: base 26.700 mL, acid 0.000 mL | Decision time: 0.008225 ms/step
+------------------------------------------------------------
+Experiment ID: 5 | Acid type: monoprotic | Target pH: 2.56
+  Final pH: 2.64 | Success: Yes | Steps: 1 | Overshoots: 0
+  Added volumes: base 0.000 mL, acid 0.200 mL | Decision time: 0.009500 ms/step
+------------------------------------------------------------
+Experiment ID: 6 | Acid type: monoprotic | Target pH: 3.29
+  Final pH: 3.20 | Success: Yes | Steps: 37 | Overshoots: 0
+  Added volumes: base 6.690 mL, acid 0.000 mL | Decision time: 0.011862 ms/step
+------------------------------------------------------------
+Experiment ID: 7 | Acid type: triprotic | Target pH: 9.44
+  Final pH: 9.46 | Success: Yes | Steps: 16 | Overshoots: 1
+  Added volumes: base 33.500 mL, acid 0.500 mL | Decision time: 0.009962 ms/step
+------------------------------------------------------------
+Experiment ID: 8 | Acid type: diprotic | Target pH: 3.99
+  Final pH: 3.90 | Success: Yes | Steps: 40 | Overshoots: 0
+  Added volumes: base 11.300 mL, acid 0.000 mL | Decision time: 0.007848 ms/step
+------------------------------------------------------------
+Experiment ID: 9 | Acid type: diprotic | Target pH: 8.02
+  Final pH: 8.08 | Success: Yes | Steps: 15 | Overshoots: 3
+  Added volumes: base 22.190 mL, acid 0.250 mL | Decision time: 0.010993 ms/step
+------------------------------------------------------------
+Experiment ID: 10 | Acid type: triprotic | Target pH: 10.72
+  Final pH: 10.74 | Success: Yes | Steps: 16 | Overshoots: 3
+  Added volumes: base 34.250 mL, acid 1.000 mL | Decision time: 0.017025 ms/step
+------------------------------------------------------------
+Experiment ID: 11 | Acid type: diprotic | Target pH: 5.21
+  Final pH: 5.11 | Success: Yes | Steps: 20 | Overshoots: 0
+  Added volumes: base 11.390 mL, acid 0.000 mL | Decision time: 0.024150 ms/step
+------------------------------------------------------------
+Experiment ID: 12 | Acid type: triprotic | Target pH: 3.97
+  Final pH: 3.88 | Success: Yes | Steps: 28 | Overshoots: 0
+  Added volumes: base 12.110 mL, acid 0.000 mL | Decision time: 0.012732 ms/step
+------------------------------------------------------------
+Experiment ID: 13 | Acid type: diprotic | Target pH: 7.09
+  Final pH: 6.99 | Success: Yes | Steps: 40 | Overshoots: 0
+  Added volumes: base 17.480 mL, acid 0.000 mL | Decision time: 0.007640 ms/step
+------------------------------------------------------------
+Experiment ID: 14 | Acid type: triprotic | Target pH: 2.00
+  Final pH: 1.91 | Success: Yes | Steps: 32 | Overshoots: 0
+  Added volumes: base 1.780 mL, acid 0.000 mL | Decision time: 0.011941 ms/step
+------------------------------------------------------------
+Experiment ID: 15 | Acid type: diprotic | Target pH: 10.99
+  Final pH: 11.05 | Success: Yes | Steps: 11 | Overshoots: 1
+  Added volumes: base 23.500 mL, acid 1.100 mL | Decision time: 0.009027 ms/step
+------------------------------------------------------------
+Experiment ID: 16 | Acid type: monoprotic | Target pH: 3.34
+  Final pH: 3.24 | Success: Yes | Steps: 21 | Overshoots: 0
+  Added volumes: base 2.840 mL, acid 0.000 mL | Decision time: 0.943143 ms/step
+------------------------------------------------------------
+Experiment ID: 17 | Acid type: triprotic | Target pH: 5.78
+  Final pH: 5.69 | Success: Yes | Steps: 44 | Overshoots: 0
+  Added volumes: base 24.540 mL, acid 0.000 mL | Decision time: 0.011805 ms/step
+------------------------------------------------------------
+Experiment ID: 18 | Acid type: diprotic | Target pH: 6.71
+  Final pH: 6.61 | Success: Yes | Steps: 32 | Overshoots: 0
+  Added volumes: base 20.150 mL, acid 0.000 mL | Decision time: 0.013619 ms/step
+------------------------------------------------------------
+Experiment ID: 19 | Acid type: triprotic | Target pH: 3.32
+  Final pH: 3.22 | Success: Yes | Steps: 37 | Overshoots: 0
+  Added volumes: base 7.130 mL, acid 0.000 mL | Decision time: 0.014476 ms/step
+------------------------------------------------------------
+Experiment ID: 20 | Acid type: diprotic | Target pH: 8.46
+  Final pH: 8.22 | Success: No | Steps: 50 | Overshoots: 34
+  Added volumes: base 23.650 mL, acid 1.660 mL | Decision time: 0.029510 ms/step
+------------------------------------------------------------
+
+Summary statistics
+------------------------------------------------------------
+Total experiments: 20
+Successful experiments: 19
+Success rate: 95.00%
+Successful steps: 26.42 +/- 13.68
+Total steps: 552
+Total overshoots: 51
+Overshoot rate: 9.24%
+Mean controller decision time: 0.059552 ms
+============================================================

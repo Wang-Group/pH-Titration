@@ -1,0 +1,42 @@
+{
+  "mixture_1": {
+    "title": "Mixture 1",
+    "description": "0.05 M pHBA 6 mL + 0.05 M TPA 6 mL",
+    "model_basis": "solubility-limited effective dissolved concentrations for pHBA and TPA; nominal concentrations for acetic acid and SSA",
+    "initial_pH": 3.1447612761544885,
+    "target_crossing_ml": 2.1112786923135087,
+    "slope_at_target_dpH_per_mL": 7.568465591394995,
+    "max_pH_on_grid": 12.618974060136889,
+    "min_pH_on_grid": 1.8441246021812536
+  },
+  "mixture_2": {
+    "title": "Mixture 2",
+    "description": "0.05 M pHBA 6 mL + 0.10 M acetic acid 6 mL",
+    "model_basis": "solubility-limited effective dissolved concentrations for pHBA and TPA; nominal concentrations for acetic acid and SSA",
+    "initial_pH": 2.932337310491665,
+    "target_crossing_ml": 7.773588746055657,
+    "slope_at_target_dpH_per_mL": 1.1469393110632191,
+    "max_pH_on_grid": 12.305515860657028,
+    "min_pH_on_grid": 1.842586672311676
+  },
+  "mixture_3": {
+    "title": "Mixture 3",
+    "description": "0.05 M pHBA 6 mL + 14.7 mM SSA 6 mL",
+    "model_basis": "solubility-limited effective dissolved concentrations for pHBA and TPA; nominal concentrations for acetic acid and SSA",
+    "initial_pH": 2.0313907081699005,
+    "target_crossing_ml": 3.8629039289235787,
+    "slope_at_target_dpH_per_mL": 7.354725893653073,
+    "max_pH_on_grid": 12.511387934894028,
+    "min_pH_on_grid": 1.6689219009084328
+  },
+  "mixture_4": {
+    "title": "Mixture 4",
+    "description": "0.05 M TPA 6 mL + 0.10 M acetic acid 6 mL",
+    "model_basis": "solubility-limited effective dissolved concentrations for pHBA and TPA; nominal concentrations for acetic acid and SSA",
+    "initial_pH": 3.031453468182759,
+    "target_crossing_ml": 5.6852359289274785,
+    "slope_at_target_dpH_per_mL": 1.4700927315827226,
+    "max_pH_on_grid": 12.552310070835276,
+    "min_pH_on_grid": 1.8434974599746243
+  }
+}
