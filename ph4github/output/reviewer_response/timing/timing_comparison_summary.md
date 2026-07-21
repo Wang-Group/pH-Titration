@@ -9,8 +9,8 @@
 
 | Controller | Median decision (ms) | Mean decision (ms) | P95 decision (ms) | Median episode controller time (ms) | 20 s / median decision |
 |---|---:|---:|---:|---:|---:|
-| Expert rule | 0.004700 | 0.007450 | 0.010945 | 0.160250 | 4255319.1 |
-| Adaptive PID | 0.004900 | 0.008003 | 0.013530 | 0.181600 | 4081632.7 |
-| Imitation learning | 8.314750 | 14.885236 | 47.294115 | 143.872250 | 2405.4 |
-| Reinforcement learning | 13.444300 | 13.408905 | 32.602365 | 129.380650 | 1487.6 |
-| Bayesian (1000 particles) | 100.493800 | 150.397935 | 425.888650 | 889.726550 | 199.0 |
+| Adaptive PID | 0.003300 | 0.009151 | 0.007800 | 0.115450 | 6060606.1 |
+| Expert rule | 0.003300 | 0.006443 | 0.006900 | 0.087150 | 6060606.1 |
+| Reinforcement learning | 1.197650 | 7.927879 | 44.202680 | 93.984350 | 16699.4 |
+| Imitation learning | 1.234400 | 7.047621 | 30.544795 | 89.475650 | 16202.2 |
+| Bayesian (1000 particles) | 45.078400 | 63.306510 | 167.708750 | 402.965150 | 443.7 |

@@ -180,8 +180,8 @@ def plot_curves(
 
 def main() -> None:
     # Representative literature/database values used for qualitative visualization.
-    # pHBA: pKa1 ~ 4.54, phenolic pKa2 ~ 9.3
-    # TPA: pKa1 ~ 3.54, pKa2 ~ 4.34
+    # pHBA: pKa1 = 4.54, phenolic pKa2 = 9.32
+    # TPA: pKa1 = 3.54, pKa2 = 4.46
     # Acetic acid: pKa ~ 4.76
     # SSA: sulfonic group treated as strongly acidic (pKa ~ -2.8), carboxyl ~ 2.49, phenol ~ 11.5
     #
@@ -195,40 +195,52 @@ def main() -> None:
         MixtureDefinition(
             key="mixture_1",
             title="Mixture 1",
-            description="0.05 M pHBA 6 mL + 0.05 M TPA 6 mL",
+            description=(
+                "pHBA saturated-solution clear supernatant (6 mL)\n"
+                "+ TPA saturated-solution clear supernatant (6 mL)"
+            ),
             initial_volume_ml=12.0,
             components=(
-                AcidComponent("pHBA", PHBA_EFFECTIVE_CONC * 0.006, (4.54, 9.30)),
-                AcidComponent("TPA", TPA_EFFECTIVE_CONC * 0.006, (3.54, 4.34)),
+                AcidComponent("pHBA", PHBA_EFFECTIVE_CONC * 0.006, (4.54, 9.32)),
+                AcidComponent("TPA", TPA_EFFECTIVE_CONC * 0.006, (3.54, 4.46)),
             ),
         ),
         MixtureDefinition(
             key="mixture_2",
             title="Mixture 2",
-            description="0.05 M pHBA 6 mL + 0.10 M acetic acid 6 mL",
+            description=(
+                "pHBA saturated-solution clear supernatant (6 mL)\n"
+                "+ 0.10 M acetic acid (6 mL)"
+            ),
             initial_volume_ml=12.0,
             components=(
-                AcidComponent("pHBA", PHBA_EFFECTIVE_CONC * 0.006, (4.54, 9.30)),
+                AcidComponent("pHBA", PHBA_EFFECTIVE_CONC * 0.006, (4.54, 9.32)),
                 AcidComponent("Acetic acid", 0.10 * 0.006, (4.76,)),
             ),
         ),
         MixtureDefinition(
             key="mixture_3",
             title="Mixture 3",
-            description="0.05 M pHBA 6 mL + 14.7 mM SSA 6 mL",
+            description=(
+                "pHBA saturated-solution clear supernatant (6 mL)\n"
+                "+ 14.7 mM SSA (6 mL)"
+            ),
             initial_volume_ml=12.0,
             components=(
-                AcidComponent("pHBA", PHBA_EFFECTIVE_CONC * 0.006, (4.54, 9.30)),
+                AcidComponent("pHBA", PHBA_EFFECTIVE_CONC * 0.006, (4.54, 9.32)),
                 AcidComponent("SSA", 0.0147 * 0.006, (-2.80, 2.49, 11.50)),
             ),
         ),
         MixtureDefinition(
             key="mixture_4",
             title="Mixture 4",
-            description="0.05 M TPA 6 mL + 0.10 M acetic acid 6 mL",
+            description=(
+                "TPA saturated-solution clear supernatant (6 mL)\n"
+                "+ 0.10 M acetic acid (6 mL)"
+            ),
             initial_volume_ml=12.0,
             components=(
-                AcidComponent("TPA", TPA_EFFECTIVE_CONC * 0.006, (3.54, 4.34)),
+                AcidComponent("TPA", TPA_EFFECTIVE_CONC * 0.006, (3.54, 4.46)),
                 AcidComponent("Acetic acid", 0.10 * 0.006, (4.76,)),
             ),
         ),
