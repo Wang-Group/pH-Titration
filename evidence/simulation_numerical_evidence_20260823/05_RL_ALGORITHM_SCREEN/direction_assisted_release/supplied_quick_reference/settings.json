@@ -1,0 +1,31 @@
+{
+  "algorithms": [
+    "ppo",
+    "a2c",
+    "reinforce"
+  ],
+  "seeds": [
+    101
+  ],
+  "train_steps": 50,
+  "training_pool_size": 20,
+  "eval_tasks": 10,
+  "eval_interval": 25,
+  "learning_rate": 0.0001,
+  "gamma": 0.99,
+  "ppo_batch_steps": 2048,
+  "ppo_epochs": 4,
+  "imitation_weights": "E:\\GitHub\\zsyEP\\zsyEP\\zsyEP\\rl_direction_assisted_comparison_20260807\\models\\imitation.pth",
+  "output_dir": "E:\\GitHub\\zsyEP\\zsyEP\\zsyEP\\rl_direction_assisted_comparison_20260807\\results_quick",
+  "device": "cpu",
+  "no_resume": false,
+  "resume": true,
+  "protocol_id": "direction_assisted_volume_only_v1",
+  "policy_action": "1000 volume classes from 0.01 to 10.00 mL",
+  "external_direction_rule": "base if measured_ph < target_ph else acid",
+  "titrant_concentration_m": 0.1,
+  "overshoot_action_mask": false,
+  "automatic_titrant_switching": false,
+  "random_actor_seed_offset": 9000000,
+  "torch_version": "2.12.1+cpu"
+}

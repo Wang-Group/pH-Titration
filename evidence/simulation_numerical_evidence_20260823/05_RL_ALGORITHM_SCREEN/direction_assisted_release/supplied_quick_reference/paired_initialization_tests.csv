@@ -1,0 +1,4 @@
+algorithm,paired_tasks,imitation_success_only,random_success_only,task_level_mcnemar_p,seed_success_difference_random_minus_imitation_pp_mean,seed_success_difference_sd,seed_difference_bootstrap_95ci_low,seed_difference_bootstrap_95ci_high,seed_sign_flip_p,task_level_mcnemar_holm_p
+a2c,10,8,0,0.0078125,-80.0,0.0,-80.0,-80.0,1.0,0.0234375
+ppo,10,8,0,0.0078125,-80.0,0.0,-80.0,-80.0,1.0,0.0234375
+reinforce,10,8,0,0.0078125,-80.0,0.0,-80.0,-80.0,1.0,0.0234375

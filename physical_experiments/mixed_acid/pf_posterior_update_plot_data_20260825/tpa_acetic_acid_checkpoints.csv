@@ -1,0 +1,4 @@
+mixture,system,checkpoint,measured_ph,cumulative_base_ml,cumulative_acid_ml,net_naoh_equivalent_ml
+4,TPA + acetic acid,0,2.84,0.0,0.0,0.0
+4,TPA + acetic acid,1,5.3,5.0,0.0,5.0
+4,TPA + acetic acid,2,6.09,6.271317829457365,0.0,6.271317829457365

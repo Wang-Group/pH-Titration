@@ -1,0 +1,188 @@
+{
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "tasks_per_seed": 1000,
+  "regimes": [
+    "nominal",
+    "close_pka",
+    "wide_concentration",
+    "observation_noise_0p01",
+    "observation_noise_0p03",
+    "observation_noise_0p05",
+    "observation_noise_0p10",
+    "episode_bias_0p10",
+    "random_walk_drift_0p01",
+    "response_fraction_0p60",
+    "response_fraction_0p70",
+    "actuator_log_sd_0p10",
+    "titrant_scale_0p90",
+    "titrant_scale_1p10",
+    "combined_unseen"
+  ],
+  "device": "cpu",
+  "ppo_backend": "numpy",
+  "workers": 24,
+  "methods": [
+    "new_pf",
+    "new_ppo"
+  ],
+  "ppo_checkpoint": "C:\\Users\\ZSY\\Desktop\\new_pf_remaining_analyses_package_20260814_final_v2\\new_pf_remaining_analyses_package_20260814_final\\controllers_release\\models\\ppo_seed_303.pth",
+  "ppo_numpy_checkpoint": "C:\\Users\\ZSY\\Desktop\\new_pf_remaining_analyses_package_20260814_final_v2\\new_pf_remaining_analyses_package_20260814_final\\controllers_release\\models\\ppo_seed_303_numpy.npz",
+  "regime_definitions": {
+    "nominal": {
+      "name": "nominal",
+      "distribution": "nominal",
+      "observation_noise_sd": 0.0,
+      "episode_bias_sd": 0.0,
+      "drift_increment_sd": 0.0,
+      "response_fraction": 1.0,
+      "actuator_log_sd": 0.0,
+      "titrant_scale": 1.0
+    },
+    "close_pka": {
+      "name": "close_pka",
+      "distribution": "close_pka",
+      "observation_noise_sd": 0.0,
+      "episode_bias_sd": 0.0,
+      "drift_increment_sd": 0.0,
+      "response_fraction": 1.0,
+      "actuator_log_sd": 0.0,
+      "titrant_scale": 1.0
+    },
+    "wide_concentration": {
+      "name": "wide_concentration",
+      "distribution": "wide_concentration",
+      "observation_noise_sd": 0.0,
+      "episode_bias_sd": 0.0,
+      "drift_increment_sd": 0.0,
+      "response_fraction": 1.0,
+      "actuator_log_sd": 0.0,
+      "titrant_scale": 1.0
+    },
+    "observation_noise_0p01": {
+      "name": "observation_noise_0p01",
+      "distribution": "nominal",
+      "observation_noise_sd": 0.01,
+      "episode_bias_sd": 0.0,
+      "drift_increment_sd": 0.0,
+      "response_fraction": 1.0,
+      "actuator_log_sd": 0.0,
+      "titrant_scale": 1.0
+    },
+    "observation_noise_0p03": {
+      "name": "observation_noise_0p03",
+      "distribution": "nominal",
+      "observation_noise_sd": 0.03,
+      "episode_bias_sd": 0.0,
+      "drift_increment_sd": 0.0,
+      "response_fraction": 1.0,
+      "actuator_log_sd": 0.0,
+      "titrant_scale": 1.0
+    },
+    "observation_noise_0p05": {
+      "name": "observation_noise_0p05",
+      "distribution": "nominal",
+      "observation_noise_sd": 0.05,
+      "episode_bias_sd": 0.0,
+      "drift_increment_sd": 0.0,
+      "response_fraction": 1.0,
+      "actuator_log_sd": 0.0,
+      "titrant_scale": 1.0
+    },
+    "observation_noise_0p10": {
+      "name": "observation_noise_0p10",
+      "distribution": "nominal",
+      "observation_noise_sd": 0.1,
+      "episode_bias_sd": 0.0,
+      "drift_increment_sd": 0.0,
+      "response_fraction": 1.0,
+      "actuator_log_sd": 0.0,
+      "titrant_scale": 1.0
+    },
+    "episode_bias_0p10": {
+      "name": "episode_bias_0p10",
+      "distribution": "nominal",
+      "observation_noise_sd": 0.0,
+      "episode_bias_sd": 0.1,
+      "drift_increment_sd": 0.0,
+      "response_fraction": 1.0,
+      "actuator_log_sd": 0.0,
+      "titrant_scale": 1.0
+    },
+    "random_walk_drift_0p01": {
+      "name": "random_walk_drift_0p01",
+      "distribution": "nominal",
+      "observation_noise_sd": 0.0,
+      "episode_bias_sd": 0.0,
+      "drift_increment_sd": 0.01,
+      "response_fraction": 1.0,
+      "actuator_log_sd": 0.0,
+      "titrant_scale": 1.0
+    },
+    "response_fraction_0p60": {
+      "name": "response_fraction_0p60",
+      "distribution": "nominal",
+      "observation_noise_sd": 0.0,
+      "episode_bias_sd": 0.0,
+      "drift_increment_sd": 0.0,
+      "response_fraction": 0.6,
+      "actuator_log_sd": 0.0,
+      "titrant_scale": 1.0
+    },
+    "response_fraction_0p70": {
+      "name": "response_fraction_0p70",
+      "distribution": "nominal",
+      "observation_noise_sd": 0.0,
+      "episode_bias_sd": 0.0,
+      "drift_increment_sd": 0.0,
+      "response_fraction": 0.7,
+      "actuator_log_sd": 0.0,
+      "titrant_scale": 1.0
+    },
+    "actuator_log_sd_0p10": {
+      "name": "actuator_log_sd_0p10",
+      "distribution": "nominal",
+      "observation_noise_sd": 0.0,
+      "episode_bias_sd": 0.0,
+      "drift_increment_sd": 0.0,
+      "response_fraction": 1.0,
+      "actuator_log_sd": 0.1,
+      "titrant_scale": 1.0
+    },
+    "titrant_scale_0p90": {
+      "name": "titrant_scale_0p90",
+      "distribution": "nominal",
+      "observation_noise_sd": 0.0,
+      "episode_bias_sd": 0.0,
+      "drift_increment_sd": 0.0,
+      "response_fraction": 1.0,
+      "actuator_log_sd": 0.0,
+      "titrant_scale": 0.9
+    },
+    "titrant_scale_1p10": {
+      "name": "titrant_scale_1p10",
+      "distribution": "nominal",
+      "observation_noise_sd": 0.0,
+      "episode_bias_sd": 0.0,
+      "drift_increment_sd": 0.0,
+      "response_fraction": 1.0,
+      "actuator_log_sd": 0.0,
+      "titrant_scale": 1.1
+    },
+    "combined_unseen": {
+      "name": "combined_unseen",
+      "distribution": "nominal",
+      "observation_noise_sd": 0.05,
+      "episode_bias_sd": 0.03,
+      "drift_increment_sd": 0.005,
+      "response_fraction": 0.7,
+      "actuator_log_sd": 0.1,
+      "titrant_scale": 0.9
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "protocol_id": "direction_assisted_volume_only_v1",
+  "condition_count": 30,
+  "task_row_count": 30000,
+  "learning_curve_row_count": 180,
+  "expected_task_rows": 30000,
+  "maximum_expected_learning_curve_rows": 180,
+  "external_direction_rule": "base if measured_ph < target_ph else acid",
+  "policy_action": "1000 volume classes from 0.01 to 10.00 mL",
+  "overshoot_action_mask": false,
+  "automatic_titrant_switching": false
+}

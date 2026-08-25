@@ -1,0 +1,35 @@
+{
+  "benchmark_seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "tasks_per_seed": 3000,
+  "methods": [
+    "prespecified_pid",
+    "simple_rule",
+    "tuned_pid"
+  ],
+  "workers": 4,
+  "prespecified_pid": {
+    "kp": 0.32,
+    "ki": 0.012,
+    "kd": 0.08,
+    "integral_limit": 12.0,
+    "overshoot_decay": 0.1,
+    "minimum_output_ml": 0.01,
+    "maximum_output_ml": 3.0
+  },
+  "tuned_pid": {
+    "integral_limit": 12.1288501933482,
+    "kp": 0.05562080517794354,
+    "ki": 0.04648796930754446,
+    "maximum_output_ml": 3.0,
+    "minimum_output_ml": 0.01,
+    "overshoot_decay": 0.4438216570663303,
+    "kd": 0.01702327100762626
+  },
+  "neural_results_included": true
+}

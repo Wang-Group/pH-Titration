@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "created_utc": "2026-08-25T15:16:45.818234+00:00",
+  "file": "physical_experiments_20260825.zip",
+  "sha256": "b3017cb7417a1eb6ed7f92b1e109bd8d90f290ae07aa655a5adca722d5ab500b",
+  "bytes": 362118,
+  "archive_entries": 21,
+  "includes_physical_control_notebook": false,
+  "directories": [
+    "casein",
+    "cu_ssa",
+    "mixed_acid",
+    "wastewater"
+  ]
+}

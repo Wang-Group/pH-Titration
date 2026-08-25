@@ -1,0 +1,20 @@
+{
+  "benchmark_seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "tasks_per_seed": 1,
+  "particles_reused_for_pf": 1000,
+  "neural_protocol": "direction_plus_persistent_post_overshoot_cap",
+  "overshoot_cap_enabled": true,
+  "sensor_resolution_ph": 0.01,
+  "action_volume_range_ml": [
+    0.01,
+    10.0
+  ],
+  "imitation_checkpoint_sha256": "71ae0176252d55c2a30b5d69afc6033ee1b0f4ac045e05b689ae7031c488adcc",
+  "ppo_checkpoint_sha256": "bafd85f896945245f4a2275764ee74cfb458aae78cbe91f5c17396c24fd22f1c"
+}

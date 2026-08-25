@@ -1,0 +1,52 @@
+{
+  "protocol": "complete_study_standard_v1",
+  "protocol_family": "pH-control",
+  "protocol_version": "2026.08",
+  "protocol_profile": "training_environment_strict",
+  "teacher_datasets": [
+    {
+      "file": "datasets/train_teacher_dataset.npz",
+      "source": "bayesian_external_rule_ablation_20260811/complete_study_standard_v1/01_teacher_data/train_teacher_dataset.npz",
+      "sha256": "3C063B2ECEA890307F2BADB3954116AF980D11976957B086A99D03365E474942"
+    },
+    {
+      "file": "datasets/validation_teacher_dataset.npz",
+      "source": "bayesian_external_rule_ablation_20260811/complete_study_standard_v1/01_teacher_data/validation_teacher_dataset.npz",
+      "sha256": "5EC5181E267C6560744040D951138EBEAD0E5C881EDFBD6F5638FDDB62D98716"
+    }
+  ],
+  "imitation_checkpoint": {
+    "file": "checkpoints/imitation_best.pth",
+    "training_seed": 22,
+    "selected_epoch": 30,
+    "sha256": "71AE0176252D55C2A30B5D69AFC6033EE1B0F4AC045E05B689AE7031C488ADCC"
+  },
+  "principal_ppo_checkpoints": [
+    {
+      "seed": 101,
+      "file": "checkpoints/principal_ppo_seed_101.pth",
+      "sha256": "9FEDCAFA84F4D3F8969BFAE486A200A4AB8147D6AF4E9A427F8C41E998B0CAF3"
+    },
+    {
+      "seed": 202,
+      "file": "checkpoints/principal_ppo_seed_202.pth",
+      "sha256": "B4E9864280F5902456CB0E4DACFDD24C7EE2FA1C4DF0A28B2377273319F9DF0C"
+    },
+    {
+      "seed": 303,
+      "file": "checkpoints/principal_ppo_seed_303.pth",
+      "sha256": "4004D7A09768FC5AC3F448523F53CB22210ED919CA7E713F13D9AA693CC19DE5"
+    },
+    {
+      "seed": 404,
+      "file": "checkpoints/principal_ppo_seed_404.pth",
+      "sha256": "D7AEF675E54121A7CB88FB6B7225B457D6609B2C142ED29CAB641D34CF6A8264"
+    },
+    {
+      "seed": 555,
+      "file": "checkpoints/principal_ppo_seed_555.pth",
+      "sha256": "098B65D844AD0B06F0A960520CEA7E672739D9ABCD30B2F1E931920561AF3EC7"
+    }
+  ],
+  "note": "These five principal-protocol checkpoints are the five independently seeded PPO runs used in the stability analysis. Seed 303 has the same actor tensors as the validation-selected deployment checkpoint; protocol-metadata annotation can change the serialized file hash without changing the actor hash."
+}

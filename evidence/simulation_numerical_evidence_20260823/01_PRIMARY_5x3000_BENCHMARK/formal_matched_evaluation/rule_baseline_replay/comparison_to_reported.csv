@@ -1,0 +1,10 @@
+method,metric,observed_mean,observed_sample_sd,reported_mean,observed_minus_reported,status
+simple_rule,success_rate_percent,77.28,0.4086563348340485,77.28,0.0,matches_rounded_reported_value
+simple_rule,successful_steps_mean,16.111345970976874,0.32746403733624996,16.11,0.0013459709768746109,matches_rounded_reported_value
+simple_rule,final_abs_error_mean,0.11061467247185384,0.004729424112872664,0.1106,1.4672471853841018e-05,matches_rounded_reported_value
+prespecified_pid,success_rate_percent,84.59333333333333,0.6808491430232996,84.59,0.0033333333333303017,matches_rounded_reported_value
+prespecified_pid,successful_steps_mean,17.14398254509369,0.2778459156429653,17.14,0.003982545093688117,matches_rounded_reported_value
+prespecified_pid,final_abs_error_mean,0.22142239877687014,0.010800849504545431,0.2214,2.2398776870130588e-05,matches_rounded_reported_value
+tuned_pid,success_rate_percent,92.44,0.5818552702825304,92.44,0.0,matches_rounded_reported_value
+tuned_pid,successful_steps_mean,14.747293644978052,0.19536542861010456,14.75,-0.002706355021947715,matches_rounded_reported_value
+tuned_pid,final_abs_error_mean,0.15041957401413186,0.014078288225966646,0.1504,1.9574014131856776e-05,matches_rounded_reported_value

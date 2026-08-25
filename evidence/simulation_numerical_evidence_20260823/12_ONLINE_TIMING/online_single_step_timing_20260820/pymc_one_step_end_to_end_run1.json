@@ -1,0 +1,64 @@
+{
+  "status": "COMPLETE",
+  "definition": "One fresh variable-K update after the first post-dose pH observation, followed by a posterior-equilibrium next-dose calculation.",
+  "task": {
+    "seed": 101,
+    "task_id": 20,
+    "acid_type": "triprotic",
+    "pka_values": [
+      2.2693933123777192,
+      5.802645916531911,
+      7.565777877425873
+    ],
+    "initial_ph": 1.67,
+    "target_ph": 7.96,
+    "initial_volume_ml": 11.0,
+    "analyte_conc_m": 0.10772881597032398
+  },
+  "observation_step": 1,
+  "draws_per_k": 300,
+  "chains": 1,
+  "K_values": [
+    1,
+    2,
+    3
+  ],
+  "pymc_sample_smc_sum_seconds": 82.34792959998595,
+  "fresh_fit_outer_wall_seconds": 84.91324760000862,
+  "posterior_to_dose_seconds": 0.002784199998131953,
+  "fresh_update_to_dose_wall_seconds": 84.91603180000675,
+  "selected_k": 3,
+  "pair_probabilities": [
+    0.20136475070926144,
+    0.31172911497020117,
+    0.4869061343205374
+  ],
+  "posterior_concentration_m": 0.14307786039744547,
+  "posterior_pka": [
+    2.890156659174387,
+    4.704958058748846,
+    7.0368436249384985
+  ],
+  "direction": "base",
+  "recommended_volume_ml": 0.01,
+  "timing_scope": {
+    "included": [
+      "construction of three fresh PyMC models",
+      "SMC sampling for K=1,2,3",
+      "marginal-likelihood comparison",
+      "posterior extraction",
+      "posterior-equilibrium dose root solve and 0.01 mL quantization"
+    ],
+    "excluded": [
+      "Python startup",
+      "module import",
+      "file I/O"
+    ]
+  },
+  "environment": {
+    "platform": "Windows-10-10.0.26100-SP0",
+    "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "python_executable": "C:\\Users\\ZSY\\Desktop\\FDTD\\joint_parameter_bayesian_processed_20260811\\.venv\\Scripts\\python.exe",
+    "numpy": "2.2.6"
+  }
+}

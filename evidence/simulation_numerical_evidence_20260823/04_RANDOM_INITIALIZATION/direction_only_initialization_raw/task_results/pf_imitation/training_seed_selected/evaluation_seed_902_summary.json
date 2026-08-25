@@ -1,0 +1,16 @@
+{
+  "method": "pf_imitation",
+  "method_label": "PF-distilled imitation",
+  "training_seed": "selected",
+  "evaluation_seed": 902,
+  "tasks": 3000,
+  "success_rate_percent": 87.86666666666667,
+  "strict_success_rate_percent": 34.66666666666667,
+  "severe_failure_rate_percent": 3.5999999999999996,
+  "false_stop_rate_percent": 2.966666666666667,
+  "successful_steps_mean": 8.144916540212444,
+  "steps_mean": 12.247,
+  "overshoots_mean": 3.793,
+  "total_volume_mean_ml": 7.920046666666667,
+  "final_abs_error_mean": 0.12342343819830646
+}

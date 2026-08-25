@@ -1,0 +1,107 @@
+﻿[
+    {
+        "name":  "ppo_seed101",
+        "pid":  32748,
+        "output":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed101",
+        "stdout":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed101.log",
+        "stderr":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed101.err"
+    },
+    {
+        "name":  "ppo_seed202",
+        "pid":  13492,
+        "output":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed202",
+        "stdout":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed202.log",
+        "stderr":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed202.err"
+    },
+    {
+        "name":  "ppo_seed303",
+        "pid":  30968,
+        "output":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed303",
+        "stdout":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed303.log",
+        "stderr":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed303.err"
+    },
+    {
+        "name":  "ppo_seed404",
+        "pid":  11892,
+        "output":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed404",
+        "stdout":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed404.log",
+        "stderr":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed404.err"
+    },
+    {
+        "name":  "ppo_seed555",
+        "pid":  28332,
+        "output":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed555",
+        "stdout":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed555.log",
+        "stderr":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed555.err"
+    },
+    {
+        "name":  "a2c_seed101",
+        "pid":  27760,
+        "output":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed101",
+        "stdout":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed101.log",
+        "stderr":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed101.err"
+    },
+    {
+        "name":  "a2c_seed202",
+        "pid":  19096,
+        "output":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed202",
+        "stdout":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed202.log",
+        "stderr":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed202.err"
+    },
+    {
+        "name":  "a2c_seed303",
+        "pid":  5164,
+        "output":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed303",
+        "stdout":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed303.log",
+        "stderr":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed303.err"
+    },
+    {
+        "name":  "a2c_seed404",
+        "pid":  31796,
+        "output":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed404",
+        "stdout":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed404.log",
+        "stderr":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed404.err"
+    },
+    {
+        "name":  "a2c_seed555",
+        "pid":  22532,
+        "output":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed555",
+        "stdout":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed555.log",
+        "stderr":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed555.err"
+    },
+    {
+        "name":  "reinforce_seed101",
+        "pid":  20664,
+        "output":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed101",
+        "stdout":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed101.log",
+        "stderr":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed101.err"
+    },
+    {
+        "name":  "reinforce_seed202",
+        "pid":  5992,
+        "output":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed202",
+        "stdout":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed202.log",
+        "stderr":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed202.err"
+    },
+    {
+        "name":  "reinforce_seed303",
+        "pid":  30384,
+        "output":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed303",
+        "stdout":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed303.log",
+        "stderr":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed303.err"
+    },
+    {
+        "name":  "reinforce_seed404",
+        "pid":  1688,
+        "output":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed404",
+        "stdout":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed404.log",
+        "stderr":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed404.err"
+    },
+    {
+        "name":  "reinforce_seed555",
+        "pid":  27320,
+        "output":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed555",
+        "stdout":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed555.log",
+        "stderr":  "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed555.err"
+    }
+]

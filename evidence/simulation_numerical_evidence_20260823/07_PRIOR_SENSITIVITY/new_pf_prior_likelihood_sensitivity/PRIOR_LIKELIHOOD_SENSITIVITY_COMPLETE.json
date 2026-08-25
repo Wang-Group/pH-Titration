@@ -1,0 +1,145 @@
+{
+  "scenarios": [
+    {
+      "name": "nominal",
+      "pka_low": 1.5,
+      "pka_high": 9.0,
+      "concentration_low_m": 0.02,
+      "concentration_high_m": 0.3,
+      "likelihood_scale_ph": 0.2,
+      "pair_count_prior": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ]
+    },
+    {
+      "name": "pka_prior_narrow",
+      "pka_low": 2.5,
+      "pka_high": 7.5,
+      "concentration_low_m": 0.02,
+      "concentration_high_m": 0.3,
+      "likelihood_scale_ph": 0.2,
+      "pair_count_prior": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ]
+    },
+    {
+      "name": "pka_prior_wide",
+      "pka_low": 0.5,
+      "pka_high": 11.0,
+      "concentration_low_m": 0.02,
+      "concentration_high_m": 0.3,
+      "likelihood_scale_ph": 0.2,
+      "pair_count_prior": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ]
+    },
+    {
+      "name": "concentration_prior_narrow",
+      "pka_low": 1.5,
+      "pka_high": 9.0,
+      "concentration_low_m": 0.05,
+      "concentration_high_m": 0.18,
+      "likelihood_scale_ph": 0.2,
+      "pair_count_prior": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ]
+    },
+    {
+      "name": "concentration_prior_wide",
+      "pka_low": 1.5,
+      "pka_high": 9.0,
+      "concentration_low_m": 0.005,
+      "concentration_high_m": 0.5,
+      "likelihood_scale_ph": 0.2,
+      "pair_count_prior": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ]
+    },
+    {
+      "name": "likelihood_scale_0p05",
+      "pka_low": 1.5,
+      "pka_high": 9.0,
+      "concentration_low_m": 0.02,
+      "concentration_high_m": 0.3,
+      "likelihood_scale_ph": 0.05,
+      "pair_count_prior": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ]
+    },
+    {
+      "name": "likelihood_scale_0p10",
+      "pka_low": 1.5,
+      "pka_high": 9.0,
+      "concentration_low_m": 0.02,
+      "concentration_high_m": 0.3,
+      "likelihood_scale_ph": 0.1,
+      "pair_count_prior": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ]
+    },
+    {
+      "name": "likelihood_scale_0p40",
+      "pka_low": 1.5,
+      "pka_high": 9.0,
+      "concentration_low_m": 0.02,
+      "concentration_high_m": 0.3,
+      "likelihood_scale_ph": 0.4,
+      "pair_count_prior": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ]
+    },
+    {
+      "name": "pair_count_prior_favors_k1",
+      "pka_low": 1.5,
+      "pka_high": 9.0,
+      "concentration_low_m": 0.02,
+      "concentration_high_m": 0.3,
+      "likelihood_scale_ph": 0.2,
+      "pair_count_prior": [
+        0.6,
+        0.25,
+        0.15
+      ]
+    },
+    {
+      "name": "pair_count_prior_favors_k3",
+      "pka_low": 1.5,
+      "pka_high": 9.0,
+      "concentration_low_m": 0.02,
+      "concentration_high_m": 0.3,
+      "likelihood_scale_ph": 0.2,
+      "pair_count_prior": [
+        0.15,
+        0.25,
+        0.6
+      ]
+    }
+  ],
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "tasks_per_seed": 300,
+  "particles": 1000,
+  "workers": 8,
+  "note": "Scenarios are sequential within each task; tasks run in isolated workers and module constants are restored after every episode."
+}

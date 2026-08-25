@@ -1,0 +1,35 @@
+Cu(II)-SSA Job analysis reproduction
+====================================
+
+Dilution correction: A_corr = A_raw * V_final / 11.02
+Physical pump range checked: 0.01-10.00 mL per dosing command.
+Largest logged Cu-SSA dose: 6.25 mL.
+Reported-fit convention: Cu-rich fit includes (0, 0); SSA-rich fit includes (1, 0).
+The X = 0.500 observation is included in both fitted branches.
+
+Observed maximum X_SSA: 0.500000
+Cu-rich slope/intercept/R2: 0.814177511, 0.049392696, 0.936839383
+SSA-rich slope/intercept/R2: -0.795075941, 0.840559456, 0.952207930
+Fitted intersection X_SSA: 0.491635895
+Intersection response A_fit: 0.449671585
+Equimolar corrected response: 0.401126017
+Dissociated fraction alpha: 0.107957828
+Final equimolar component concentration: 0.003890346 mol L^-1
+K_app: 19673.829404 L mol^-1
+pK_ex = log10(K_app): 4.293888901
+Difference from literature pK_ex = 3.295: 0.998888901
+
+Fit-convention sensitivity:
+Synthetic endpoints included; X=0.500 included in both branches (reported)
+  X_intersection=0.491635895; A_fit=0.449671585; R2_left=0.936839; R2_right=0.952208; K_app=19673.829; pK_ex=4.293889
+Measured points only; X=0.500 included in both branches
+  X_intersection=0.491200209; A_fit=0.433854245; R2_left=0.934327; R2_right=0.961267; K_app=41762.982; pK_ex=4.620792
+Measured points only; X=0.500 excluded from both branches
+  X_intersection=0.484205926; A_fit=0.469596917; R2_left=0.980717; R2_right=0.981456; K_app=10327.752; pK_ex=4.014006
+Synthetic endpoints included; X=0.500 excluded from both branches
+  X_intersection=0.486360653; A_fit=0.491585016; R2_left=0.973546; R2_right=0.971223; K_app=6194.235; pK_ex=3.791988
+
+Document audit:
+The manuscript, SI, and response values are reproduced by the reported-fit convention above.
+The documents should explicitly state that the theoretical zero-response endpoints were included.
+The 1:1 composition conclusion is stable, but K_app is sensitive to the branch-fit convention.

@@ -1,0 +1,4 @@
+benchmark_seed,method,acid_type,difficulty,direction,pka_family,task_seed,task_id,true_pair_count,true_success,strict_success,severe_failure,measured_success,false_stop,steps,overshoots,overshoot_threshold_activations,initial_ph,target_ph,true_concentration_m,total_volume_ml,final_abs_error,final_true_ph,final_measured_ph,overshoot_cap_events,overshoot_cap_applied_steps,overshoot_cap_final_ml,acid_added_ml,base_added_ml,stop_reason
+555,pf_teacher,triprotic,near,acid,separated,1000555,1,3,1,1,0,1,0,3,1,1,5.258,4.769,0.05312122109092176,4.13,0.04845817565774446,4.720541824342256,4.72,1,,,,,
+555,imitation,triprotic,near,acid,separated,1000555,1,3,0,0,0,0,0,50,0,,5.258,4.769,0.05312122109092176,1.500000000000001,0.17721611416384064,4.946216114163841,4.95,0,0,,1.500000000000001,0.0,max_steps
+555,ppo,triprotic,near,acid,separated,1000555,1,3,1,0,0,1,0,1,0,,5.258,4.769,0.05312122109092176,2.06,0.05963880329822757,4.828638803298228,4.83,0,0,,2.06,0.0,measured_success

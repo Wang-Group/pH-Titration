@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "created_utc": "2026-08-25T15:16:28.138601+00:00",
+  "simulation_only": true,
+  "protocol_family": "pH-control",
+  "protocol_version": "2026.08",
+  "standard_imitation_validation_tasks": 500,
+  "standard_ppo_validation_tasks": 500,
+  "primary_task_manifests": {
+    "101": 3000,
+    "202": 3000,
+    "303": 3000,
+    "404": 3000,
+    "555": 3000
+  },
+  "primary_unique_tasks": 15000,
+  "primary_result_rows": 45000,
+  "required_method_rows": {
+    "pf_teacher": 15000,
+    "imitation": 15000,
+    "ppo": 15000
+  },
+  "rule_baseline_replay_rows": 45000,
+  "primary_audit_status": "PASS",
+  "ppo_stability_common_test_tasks": 1000,
+  "ppo_stability_task_level_rows": 5000,
+  "ppo_stability_audit_status": "PASS",
+  "manifest_entries": 897,
+  "forbidden_documents_included": false
+}

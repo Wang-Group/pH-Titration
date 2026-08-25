@@ -1,0 +1,37 @@
+{
+  "mode": "rewards",
+  "imitation_weights": "models/imitation.pth",
+  "algorithms": [
+    "reinforce",
+    "a2c",
+    "ppo"
+  ],
+  "reward_algorithm": "reinforce",
+  "reward_variants": [
+    "full",
+    "step_penalty_minus_0p005",
+    "no_dense",
+    "no_overshoot",
+    "no_volume_shaping",
+    "no_terminal",
+    "simple_progress"
+  ],
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "train_steps": 25000,
+  "training_pool_size": 5000,
+  "eval_tasks": 1000,
+  "eval_interval": 5000,
+  "learning_rate": 0.0001,
+  "gamma": 0.99,
+  "ppo_batch_steps": 2048,
+  "ppo_epochs": 4,
+  "device": "cpu",
+  "workers": 8,
+  "output_dir": "results_full/rl_rewards"
+}

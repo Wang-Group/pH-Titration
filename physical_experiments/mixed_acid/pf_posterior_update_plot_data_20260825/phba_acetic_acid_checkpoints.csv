@@ -1,0 +1,6 @@
+mixture,system,checkpoint,measured_ph,cumulative_base_ml,cumulative_acid_ml,net_naoh_equivalent_ml
+2,pHBA + acetic acid,0,2.72,0.0,0.0,0.0
+2,pHBA + acetic acid,1,4.82,5.0,0.0,5.0
+2,pHBA + acetic acid,2,5.77,7.612403100775194,0.0,7.612403100775194
+2,pHBA + acetic acid,3,6.28,8.333333333333334,0.0,8.333333333333334
+2,pHBA + acetic acid,4,6.02,8.333333333333334,0.3484848484848485,7.9767441860465125

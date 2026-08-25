@@ -1,7 +1,23 @@
-# pH-control code release
+# pH-control code and data release
 
-This directory is the installable deployment and training-source subset. The
-controllers are importable as packages:
+This repository exposes the controller source, training workflows, numerical
+evidence, and physical-experiment data used for the revised manuscript. The
+source tree is directly inspectable and installable; reviewers do not need to
+unpack an archive before running the verification commands.
+
+## Repository layout
+
+| Path | Contents |
+|---|---|
+| `controllers/` | Deployable PF and PPO controller APIs and selected model weights |
+| `training/` | Teacher generation, imitation learning, and PPO training source |
+| `scripts/` | Verification, audit, table-generation, and training entry points |
+| `tests/` | Release-contract unit tests |
+| `evidence/` | Locked simulation tasks, task-level outcomes, analyses, and source snapshots |
+| `physical_experiments/` | Mixed-acid, wastewater, casein, and Cu–SSA experimental data |
+| `release_archives/` | Downloadable snapshots of the simulation and physical-data releases |
+
+The controllers are importable as packages:
 
 ```powershell
 python -m pip install -e .
@@ -12,9 +28,35 @@ python -m controllers.controller_package_self_test
 python -m unittest discover -s tests -v
 ```
 
-`ph_control_reproducibility_release_20260825_completed.zip` is the current simulation
-release. Historical controller-only archives are not part of this release;
-use the source package and evidence included here.
+The downloadable snapshots can be rebuilt from the visible repository tree:
+
+```powershell
+python scripts/build_reproducibility_release.py
+python scripts/build_physical_data_archive.py
+```
+
+Downloadable snapshots are provided as
+`release_archives/ph_control_reproducibility_release_20260825.zip` and
+`release_archives/physical_experiments_20260825.zip`. The unpacked repository
+tree is the preferred review interface.
+
+## Training entry points
+
+The training-only pipeline has three explicitly separated profiles:
+
+```powershell
+# Short technical execution check; not a publication reproduction
+python scripts/train_pipeline.py --profile smoke --output-dir runs/smoke
+
+# Release-scale workflow used for publication-oriented checkpoint selection
+python scripts/train_pipeline.py --profile standard --output-dir runs/standard
+```
+
+The `smoke` profile uses intentionally small task counts to test that the
+pipeline executes. It must not be used to reproduce or support manuscript
+results. The `standard` profile uses 500 closed-loop validation tasks for
+imitation checkpoint selection and 500 validation tasks for PPO checkpoint
+selection. There is no intermediate 300-task publication profile.
 
 The public controller API is `controllers.RobustPFController`,
 `controllers.PPOVolumeController`, and
@@ -42,8 +84,9 @@ deployment API do not use identical endpoint operators:
 
 Controller `status()` dictionaries and newly written training checkpoints
 include the applicable protocol family, version, profile, stopping rule, cap
-setting, and dose limits. The `standard` training profile uses 500 PPO
-validation tasks, matching the released checkpoint-selection run.
+setting, and dose limits. The `standard` training profile uses 500 closed-loop
+validation tasks for imitation checkpoint selection and 500 PPO validation
+tasks, matching the released publication workflow.
 
 ## Checkpoint provenance
 

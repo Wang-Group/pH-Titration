@@ -1,0 +1,31 @@
+{
+  "status": "smoke_check_from_locked_manifests",
+  "task_dir": "C:\\Users\\ZSY\\Desktop\\\u4e00\u6b65\u4e4b\u9065\\code\\evidence\\simulation_numerical_evidence_20260823\\01_PRIMARY_5x3000_BENCHMARK\\formal_matched_evaluation\\tasks",
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "limit_per_seed": 10,
+  "success_tolerance": 0.1,
+  "stop_operator": "<",
+  "environment": "training.control_environment.ControlEnvironment",
+  "simple_rule": "approach-and-damp buckets with net-volume bisection",
+  "prespecified_pid": {
+    "kp": 0.32,
+    "ki": 0.012,
+    "kd": 0.08,
+    "integral_limit": 12.0,
+    "overshoot_decay": 0.1
+  },
+  "tuned_pid": {
+    "kp": 0.055621,
+    "ki": 0.046488,
+    "kd": 0.017023,
+    "integral_limit": 12.12885,
+    "overshoot_decay": 0.443822
+  },
+  "source_note": "This directory is a 10-task smoke check; the full reported baseline output is stored in rule_baseline_replay."
+}

@@ -1,0 +1,73 @@
+{
+  "status": "COMPLETE",
+  "built_local_time": "2026-08-20 16:40:04 +0800",
+  "pymc_fresh_repeat_summary": {
+    "repetitions": 3,
+    "mean_seconds": 61.3297846000011,
+    "sd_seconds": 23.47113854334122,
+    "median_seconds": 61.09784830000717,
+    "minimum_seconds": 37.97547369998938,
+    "maximum_seconds": 84.91603180000675,
+    "values_seconds": [
+      84.91603180000675,
+      61.09784830000717,
+      37.97547369998938
+    ]
+  },
+  "pymc_complete_trajectory_median_seconds": 777.3122878999984,
+  "pf_1000_particle_reference": {
+    "particle_count": "1000",
+    "cases": "15",
+    "update_posteriors_ms_mean": "25.014600000000005",
+    "update_posteriors_ms_median": "24.900566666666666",
+    "update_posteriors_ms_sd": "4.600945612261041",
+    "update_posteriors_ms_p95": "31.760936666666666",
+    "select_best_action_ms_mean": "5.77874",
+    "select_best_action_ms_median": "1.98522",
+    "select_best_action_ms_sd": "14.773079184181368",
+    "select_best_action_ms_p95": "19.757802499999944",
+    "decision_cycle_ms_mean": "31.074955555555555",
+    "decision_cycle_ms_median": "27.995033333333335",
+    "decision_cycle_ms_sd": "15.822539813991428",
+    "decision_cycle_ms_p95": "48.219063333333274"
+  },
+  "neural_observation_to_action": {
+    "PF-distilled imitation": {
+      "method": "PF-distilled imitation",
+      "timing_scope": "new pH observation to next action",
+      "repetitions": "30000",
+      "mean_ms": "0.12991207666666668",
+      "sd_ms": "0.056628805825384446",
+      "median_ms": "0.1072",
+      "p05_ms": "0.0948",
+      "p95_ms": "0.22170499999999993",
+      "p99_ms": "0.3726129999999979",
+      "minimum_ms": "0.0879",
+      "maximum_ms": "1.3487",
+      "one_time_checkpoint_load_ms": "7.2705",
+      "checkpoint_file_sha256": "71ae0176252d55c2a30b5d69afc6033ee1b0f4ac045e05b689ae7031c488adcc",
+      "actor_tensor_sha256": "74415a08a9b5bb0f712c6db40a1ccaacb0d02c27e624fcc6c29ab65b15c7d813"
+    },
+    "PPO from PF imitation": {
+      "method": "PPO from PF imitation",
+      "timing_scope": "new pH observation to next action",
+      "repetitions": "30000",
+      "mean_ms": "0.12787711",
+      "sd_ms": "0.05397017214193967",
+      "median_ms": "0.1078",
+      "p05_ms": "0.0972",
+      "p95_ms": "0.2136",
+      "p99_ms": "0.3435",
+      "minimum_ms": "0.0902",
+      "maximum_ms": "2.8979",
+      "one_time_checkpoint_load_ms": "3.5426",
+      "checkpoint_file_sha256": "bafd85f896945245f4a2275764ee74cfb458aae78cbe91f5c17396c24fd22f1c",
+      "actor_tensor_sha256": "8c2ccdbc7879d1d54b151eeccb76ed3d354e58ace23e8052f6619d57369214fb"
+    }
+  },
+  "source_files": [
+    "C:\\Users\\ZSY\\Desktop\\FDTD\\submission_numerical_evidence_20260819\\02_SI\\particle_count_timing\\extended_timing_summary_15cases.csv",
+    "C:\\Users\\ZSY\\Desktop\\FDTD\\submission_numerical_evidence_20260819\\02_SI\\pymc_comparison\\pymc_pf_summary.csv"
+  ],
+  "important_interpretation": "The prior 777.3 s value is complete-trajectory inference, not single-step latency."
+}

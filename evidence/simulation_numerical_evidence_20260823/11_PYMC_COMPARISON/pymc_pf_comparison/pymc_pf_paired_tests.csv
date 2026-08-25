@@ -1,0 +1,16 @@
+pf_method,pymc_method,metric,matched_tasks,a_success_b_fail,a_fail_b_success,discordant,p_value_exact_two_sided,holm_p_within_metric,pf_median,pymc_median,paired_difference_pymc_minus_pf_median,fraction_pymc_lower_percent,wilcoxon_p_two_sided
+pf_pka_only_k3,pymc_pka_only_k3,pair_count_correct,15,0,0,0,1.0,1.0,,,,,
+pf_pka_only_k3,pymc_pka_only_k3,concentration_relative_error_percent,15,,,,,0.29739042772003693,56.2148406298997,56.2148406298997,-1.4210854715202004e-14,53.333333333333336,0.09913014257334564
+pf_pka_only_k3,pymc_pka_only_k3,pka_penalized_mae,15,,,,,1.0,2.1178018684594164,2.1519058462571237,-0.009993482430271872,60.0,0.67877197265625
+pf_pka_only_k3,pymc_pka_only_k3,local_rmse_0p10ml_ph,15,,,,,1.0,0.09085490086255517,0.09085490086299294,1.8706530693357593e-06,40.0,0.846923828125
+pf_pka_only_k3,pymc_pka_only_k3,full_curve_rmse_0_33ml_ph,15,,,,,1.0,2.79972565867358,2.659345529480283,0.022793093628297623,33.33333333333333,0.45428466796875
+pf_pka_conc_k3,pymc_pka_conc_k3,pair_count_correct,15,0,0,0,1.0,1.0,,,,,
+pf_pka_conc_k3,pymc_pka_conc_k3,concentration_relative_error_percent,15,,,,,0.77880859375,24.04075446268209,22.70736106190529,-0.00655784557584127,66.66666666666666,0.389404296875
+pf_pka_conc_k3,pymc_pka_conc_k3,pka_penalized_mae,15,,,,,1.0,1.2577567448876283,1.3045241956093596,-0.0028859041776536642,53.333333333333336,0.93408203125
+pf_pka_conc_k3,pymc_pka_conc_k3,local_rmse_0p10ml_ph,15,,,,,1.0,0.039416010529782074,0.023688262638975936,2.1035471620170845e-05,46.666666666666664,0.638671875
+pf_pka_conc_k3,pymc_pka_conc_k3,full_curve_rmse_0_33ml_ph,15,,,,,1.0,0.5987208611752871,0.4296978638806345,-0.02116395331350257,53.333333333333336,0.97796630859375
+pf_pka_conc_variable_k,pymc_pka_conc_variable_k,pair_count_correct,15,1,2,3,1.0,1.0,,,,,
+pf_pka_conc_variable_k,pymc_pka_conc_variable_k,concentration_relative_error_percent,15,,,,,0.77880859375,4.315987444645462,8.462884689955409,-0.0018292474340834777,53.333333333333336,0.45428466796875
+pf_pka_conc_variable_k,pymc_pka_conc_variable_k,pka_penalized_mae,15,,,,,1.0,1.105519487556432,1.0563433761989036,-0.021582903749111537,53.333333333333336,0.7197265625
+pf_pka_conc_variable_k,pymc_pka_conc_variable_k,local_rmse_0p10ml_ph,15,,,,,1.0,0.02394965660150823,0.014426144869042784,8.368563604639612e-05,46.666666666666664,0.638671875
+pf_pka_conc_variable_k,pymc_pka_conc_variable_k,full_curve_rmse_0_33ml_ph,15,,,,,1.0,0.1677182381529373,0.26960556749176534,-0.029811956852458882,66.66666666666666,0.48870849609375

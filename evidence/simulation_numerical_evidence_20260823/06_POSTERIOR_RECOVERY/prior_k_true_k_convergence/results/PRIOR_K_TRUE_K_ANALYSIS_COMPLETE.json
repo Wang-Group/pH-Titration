@@ -1,0 +1,9 @@
+{
+  "status": "complete",
+  "source_rows": 58500,
+  "task_prior_combinations": 4500,
+  "category_examples": 9,
+  "wrong_to_correct_examples": 6,
+  "posterior_draws_per_task_step": 200,
+  "curve_grid_points": 161
+}

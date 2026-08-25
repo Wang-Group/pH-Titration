@@ -1,2 +1,7 @@
-release_extracted.zip filter=lfs diff=lfs merge=lfs -text
-physical_experiments.zip filter=lfs diff=lfs merge=lfs -text
+release_archives/*.zip filter=lfs diff=lfs merge=lfs -text
+controllers/models/*.pth filter=lfs diff=lfs merge=lfs -text
+controllers/models/*.npz filter=lfs diff=lfs merge=lfs -text
+evidence/**/*.pth filter=lfs diff=lfs merge=lfs -text
+evidence/**/*.npz filter=lfs diff=lfs merge=lfs -text
+evidence/simulation_numerical_evidence_20260823/06_POSTERIOR_RECOVERY/prior_k_true_k_convergence/raw_data/all_prior_k_posterior_rows.csv filter=lfs diff=lfs merge=lfs -text
+evidence/simulation_numerical_evidence_20260823/12_ONLINE_TIMING/online_single_step_timing_20260820/neural_single_step_raw.csv filter=lfs diff=lfs merge=lfs -text

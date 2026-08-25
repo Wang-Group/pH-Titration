@@ -1,0 +1,14 @@
+{
+  "python": "3.11.9",
+  "executable": "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_bayesian_fixed3000_confirmatory_20260724\\rl_bayesian_fixed3000_confirmatory_20260724\\.venv\\Scripts\\python.exe",
+  "platform": "Windows-10-10.0.26100-SP0",
+  "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0+cpu"
+  },
+  "required_files": 55,
+  "missing_files": [],
+  "status": "PASS",
+  "problems": []
+}

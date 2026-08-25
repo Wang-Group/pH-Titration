@@ -1,0 +1,5 @@
+mixture,system,checkpoint,measured_ph,cumulative_base_ml,cumulative_acid_ml,net_naoh_equivalent_ml
+3,pHBA + SSA,0,1.86,0.0,0.0,0.0
+3,pHBA + SSA,1,8.86,5.0,0.0,5.0
+3,pHBA + SSA,2,4.44,5.0,2.43939393939394,2.5038759689922476
+3,pHBA + SSA,3,6.09,6.248062015503876,2.43939393939394,3.751937984496124

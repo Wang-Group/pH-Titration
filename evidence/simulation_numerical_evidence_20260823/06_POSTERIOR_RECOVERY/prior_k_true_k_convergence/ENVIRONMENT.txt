@@ -1,0 +1,9 @@
+Recorded analysis environment
+Date: 2026-08-14
+OS: Windows
+Python: 3.11.9
+NumPy: 2.4.6
+SciPy: 1.17.1
+Matplotlib: 3.11.1
+
+The source files in this package passed Python byte-code compilation in this environment.

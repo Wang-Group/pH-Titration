@@ -1,0 +1,16 @@
+{
+  "method": "ppo_from_random",
+  "method_label": "PPO from random actor",
+  "training_seed": 202,
+  "evaluation_seed": 903,
+  "tasks": 3000,
+  "success_rate_percent": 78.56666666666666,
+  "strict_success_rate_percent": 36.13333333333333,
+  "severe_failure_rate_percent": 16.066666666666666,
+  "false_stop_rate_percent": 0.7666666666666666,
+  "successful_steps_mean": 8.537123462028001,
+  "steps_mean": 13.963666666666667,
+  "overshoots_mean": 9.527333333333333,
+  "total_volume_mean_ml": 19.590283333333332,
+  "final_abs_error_mean": 0.3606387898328074
+}

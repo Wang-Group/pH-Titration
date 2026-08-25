@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "condition_count": 30,
+  "task_row_count": 30000,
+  "learning_curve_row_count": 180,
+  "model_count": 30,
+  "log_file_count": 34,
+  "nonempty_error_logs": []
+}

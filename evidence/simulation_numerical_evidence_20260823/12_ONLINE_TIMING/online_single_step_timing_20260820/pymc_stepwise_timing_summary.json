@@ -1,0 +1,47 @@
+{
+  "method": "PyMC variable-K SMC plus posterior-equilibrium dose solve",
+  "representative_task": {
+    "seed": 101,
+    "task_id": 20,
+    "acid_type": "triprotic",
+    "post_dose_observations": 8
+  },
+  "historical_complete_trajectory_inference_median_seconds_15_tasks": 777.3122878999984,
+  "stepwise_smc_sampling_seconds": {
+    "minimum": 29.146947100001853,
+    "median": 272.6339913999982,
+    "maximum": 366.60630500000116,
+    "values": [
+      29.146947100001853,
+      113.58317770000212,
+      151.90273039999738,
+      225.8564047999971,
+      319.4115779999993,
+      351.3052585999976,
+      366.1541133999999,
+      366.60630500000116
+    ]
+  },
+  "lower_bound_update_to_dose_seconds": {
+    "minimum": 29.149300300001855,
+    "median": 272.7580867499982,
+    "maximum": 366.7320658000012,
+    "values": [
+      29.149300300001855,
+      113.58552625000212,
+      152.01458379999738,
+      225.98032484999712,
+      319.5358486499993,
+      351.4330664499976,
+      366.2770633999999,
+      366.7320658000012
+    ]
+  },
+  "important_limit": "The SMC shard timer covers pm.sample_smc for K=1,2,3. It excludes PyMC model construction and file I/O. Adding the measured posterior-to-dose solve therefore gives a lower bound, not a full end-to-end online latency.",
+  "environment": {
+    "platform": "Windows-10-10.0.26100-SP0",
+    "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "python_executable": "C:\\Users\\ZSY\\Desktop\\FDTD\\joint_parameter_bayesian_processed_20260811\\.venv\\Scripts\\python.exe",
+    "numpy": "2.2.6"
+  }
+}
