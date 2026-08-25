@@ -1,0 +1,4 @@
+# Versions recorded in the verification environment on 2026-08-25.
+# Select the appropriate PyTorch wheel/index for the target CPU or CUDA setup.
+numpy==2.4.6
+torch==2.13.0
