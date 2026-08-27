@@ -21,3 +21,9 @@ manifests, five task-level locked-test outcome files, combined evaluation
 tables, and run completion metadata. Seed 303 has the same actor tensors as
 the validation-selected deployment checkpoint, although the serialized files
 are stored separately.
+
+The local PPO step-cost sensitivity materials are in
+`15_PPO_STEP_COST_TUNING`. The reported range is `0` to `0.01` (`0`,
+`0.0025`, `0.005`, and `0.01`). The block deliberately retains both the
+original validation-selected `0.005` checkpoint and an independently
+retrained `0.005` checkpoint so that training stochasticity is visible.

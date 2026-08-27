@@ -13,7 +13,7 @@ dimensionless.
 | `mixed_acid/` | Sequential pH-adjustment logs, independently measured titration curves, and PF posterior-plot data |
 | `wastewater/` | Sequential pH-adjustment logs for the PF and validation-selected PPO experiments |
 | `casein/` | Sequential pH-adjustment logs and separated-product dry masses for PF and PID runs |
-| `cu_ssa/` | Sequential pH-adjustment logs, Job-method composition data, UV–Vis spectra, and the Job-analysis reproduction script |
+| `cu_ssa/` | Sequential pH-adjustment logs, mixture-composition inputs, UV–Vis spectra, and the concentration-aware 400 nm analysis and plotting script |
 
 The common pH-adjustment tables identify the experiment, chemical system, run
 and sample labels, controller or operator, sequential point, experimental
@@ -24,9 +24,10 @@ delivered dose.
 Run the Cu–SSA analysis from the repository root with:
 
 ```powershell
-python physical_experiments/cu_ssa/reproduce_job_analysis.py
+python physical_experiments/cu_ssa/plot_400nm_analysis.py
 ```
 
 The physical-control notebook is not part of this release. The CSV files are
 the released experimental records; the Cu–SSA directory additionally contains
-the analysis script needed to reproduce the reported continuous-variation fit.
+the analysis script needed to reproduce the reported concentration-aware 400 nm
+fit and the corresponding publication figure.

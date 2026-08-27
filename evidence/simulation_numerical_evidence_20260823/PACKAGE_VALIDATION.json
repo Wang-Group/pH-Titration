@@ -25,6 +25,18 @@
   "ppo_stability_common_test_tasks": 1000,
   "ppo_stability_task_level_rows": 5000,
   "ppo_stability_audit_status": "PASS",
-  "manifest_entries": 897,
-  "forbidden_documents_included": false
+  "manifest_entries": 1076,
+  "forbidden_documents_included": false,
+  "ppo_step_cost_screen": {
+    "reported_coefficients": [
+      0.0,
+      0.0025,
+      0.005,
+      0.01
+    ],
+    "retraining_runs": 4,
+    "locked_benchmark_sets": 5,
+    "tasks_per_benchmark_set": 3000,
+    "status": "PASS"
+  }
 }

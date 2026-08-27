@@ -20,6 +20,7 @@ from controllers.particle_inference import FixedKParticleFilter, PKA_CLIP_HIGH, 
 from controllers.chemistry_model import SolutionState
 from training.task_distribution import generate_tasks
 from training.models import load_actor_checkpoint
+from training.train_ppo import reward_value
 from scripts.train_pipeline import PROFILES
 
 
@@ -129,6 +130,18 @@ class ReleaseContractTests(unittest.TestCase):
     def test_smoke_profile_is_explicitly_separate(self) -> None:
         self.assertIn("smoke", PROFILES)
         self.assertNotIn("quick", PROFILES)
+
+    def test_ppo_step_cost_is_configurable_with_0p005_default(self) -> None:
+        arguments = (5.0, 4.8, 6.0, 1.0, False, False, False, False)
+        default_reward = reward_value(*arguments)
+        explicit_default = reward_value(*arguments, step_cost=0.005)
+        higher_cost = reward_value(*arguments, step_cost=0.01)
+        no_step_cost = reward_value(*arguments, reward_variant="no_step_cost")
+        self.assertAlmostEqual(default_reward, explicit_default)
+        self.assertAlmostEqual(default_reward - higher_cost, 0.005)
+        self.assertAlmostEqual(no_step_cost - default_reward, 0.005)
+        with self.assertRaises(ValueError):
+            reward_value(*arguments, step_cost=-0.001)
 
     def test_controller_status_identifies_protocol_profile(self) -> None:
         controller = NumpyPPOVolumeController(

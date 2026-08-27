@@ -1,0 +1,47 @@
+{
+  "label": "step_cost_0p005",
+  "training_seed": 303,
+  "benchmark_seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "tasks_per_seed": 3000,
+  "tasks_total": 15000,
+  "checkpoint": "evidence/simulation_numerical_evidence_20260823/15_PPO_STEP_COST_TUNING/step_cost_0p005/seed_303/best_ppo.pth",
+  "checkpoint_sha256": "94da3c44ad7a9d57d8dc12e619ccaa2339252b2bd335971ddd9f893307172971",
+  "checkpoint_metadata": {
+    "seed": 303,
+    "environment_steps": 60000,
+    "validation": {
+      "tasks": 500,
+      "success_rate_percent": 90.8,
+      "severe_failure_rate_percent": 3.2,
+      "false_stop_rate_percent": 0.8,
+      "successful_steps_mean": 6.226872246696035,
+      "steps_mean": 9.802,
+      "overshoots_mean": 3.632,
+      "total_volume_mean_ml": 8.4078,
+      "final_abs_error_mean": 0.12527001370236496
+    },
+    "source": "ppo",
+    "reward_variant": "full",
+    "step_cost": 0.005,
+    "protocol": {
+      "protocol_family": "pH-control",
+      "protocol_version": "2026.08",
+      "protocol_profile": "training_environment_strict",
+      "observed_ph_resolution": 0.01,
+      "controller_stop_operator": "<",
+      "controller_stop_tolerance_ph": 0.1,
+      "reported_success_source": "final_unrounded_equilibrium_ph",
+      "reported_success_operator": "<",
+      "reported_success_tolerance_ph": 0.1,
+      "max_steps": 50,
+      "max_total_dose_ml": 50.0,
+      "persistent_overshoot_cap": "disabled_in_training_environment"
+    }
+  }
+}

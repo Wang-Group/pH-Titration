@@ -1,0 +1,30 @@
+{
+  "study_id": "ppo_step_cost_tuning_full_5x3000",
+  "training_seed": 303,
+  "benchmark_seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "tasks_per_seed": 3000,
+  "networks": [
+    "original_full",
+    "step_cost_0",
+    "step_cost_0p0025",
+    "step_cost_0p005",
+    "step_cost_0p01"
+  ],
+  "tasks_total_per_network": 15000,
+  "selection_data": "500-task validation set from tuning study",
+  "benchmark_used_for_selection": false,
+  "formal_evaluation_stop_operator": "<=",
+  "formal_evaluation_tolerance_ph": 0.1,
+  "persistent_post_overshoot_cap": true,
+  "reported_step_cost_range": [
+    0.0,
+    0.01
+  ],
+  "interpretation": "The original and repeated 0.005 checkpoints are separate stochastic training outcomes."
+}

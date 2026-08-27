@@ -36,6 +36,17 @@ class PPOBatch:
     advantages: list[float]
 
 
+REWARD_VARIANTS = (
+    "full",
+    "no_progress",
+    "no_step_cost",
+    "no_volume_cost",
+    "no_overshoot_penalty",
+    "no_terminal_success",
+    "no_terminal_failure",
+)
+
+
 def write_csv(path: Path, rows):
     rows = list(rows)
     if not rows:
@@ -53,22 +64,56 @@ def write_csv(path: Path, rows):
         writer.writerows(rows)
 
 
-def reward_value(previous_ph, current_ph, target_ph, volume_ml, crossed, done, success, strict):
+def reward_value(
+    previous_ph,
+    current_ph,
+    target_ph,
+    volume_ml,
+    crossed,
+    done,
+    success,
+    strict,
+    reward_variant="full",
+    step_cost=0.005,
+):
+    if reward_variant not in REWARD_VARIANTS:
+        raise ValueError(f"Unknown reward variant: {reward_variant}")
+    if not math.isfinite(step_cost) or step_cost < 0.0:
+        raise ValueError(f"step_cost must be a finite non-negative number: {step_cost}")
     previous_error = abs(previous_ph - target_ph)
     current_error = abs(current_ph - target_ph)
     progress = float(np.clip(previous_error - current_error, -2.0, 2.0))
-    reward = 0.50 * progress - 0.005 - 0.002 * (volume_ml / 10.0)
-    if crossed and current_error > 0.10:
+    reward = 0.0 if reward_variant == "no_progress" else 0.50 * progress
+    if reward_variant != "no_step_cost":
+        reward -= step_cost
+    if reward_variant != "no_volume_cost":
+        reward -= 0.002 * (volume_ml / 10.0)
+    if (
+        reward_variant != "no_overshoot_penalty"
+        and crossed
+        and current_error > 0.10
+    ):
         reward -= 0.10 * min(1.0, current_error)
     if done:
         if success:
-            reward += 4.0 + (0.5 if strict else 0.0)
-        else:
+            if reward_variant != "no_terminal_success":
+                reward += 4.0 + (0.5 if strict else 0.0)
+        elif reward_variant != "no_terminal_failure":
             reward -= 1.0 + min(2.0, current_error)
     return float(reward)
 
 
-def rollout_episode(model, normalizer, task, device, rng, gamma, gae_lambda):
+def rollout_episode(
+    model,
+    normalizer,
+    task,
+    device,
+    rng,
+    gamma,
+    gae_lambda,
+    reward_variant="full",
+    step_cost=0.005,
+):
     env = ControlEnvironment(task, rng, sample_training_domain(rng))
     states = []
     actions = []
@@ -99,6 +144,8 @@ def rollout_episode(model, normalizer, task, device, rng, gamma, gae_lambda):
             env.done,
             success,
             strict,
+            reward_variant,
+            step_cost,
         )
         states.append(state)
         actions.append(action)
@@ -219,7 +266,14 @@ def train_seed(seed, imitation_path, args, output_dir):
         best_path,
         model,
         normalizer,
-        {"seed": seed, "environment_steps": 0, "validation": initial_summary, "source": "imitation_start"},
+        {
+            "seed": seed,
+            "environment_steps": 0,
+            "validation": initial_summary,
+            "source": "imitation_start",
+            "reward_variant": args.reward_variant,
+            "step_cost": args.step_cost,
+        },
     )
 
     rng = np.random.default_rng(seed + 810_000)
@@ -230,7 +284,17 @@ def train_seed(seed, imitation_path, args, output_dir):
     start_time = time.perf_counter()
     while interactions < args.train_interactions:
         task = train_tasks[int(rng.integers(0, len(train_tasks)))]
-        episode = rollout_episode(model, normalizer, task, device, rng, args.gamma, args.gae_lambda)
+        episode = rollout_episode(
+            model,
+            normalizer,
+            task,
+            device,
+            rng,
+            args.gamma,
+            args.gae_lambda,
+            args.reward_variant,
+            args.step_cost,
+        )
         states, actions, log_probs, returns, advantages, _ = episode
         batch.states.extend(states)
         batch.actions.extend(actions)
@@ -273,7 +337,14 @@ def train_seed(seed, imitation_path, args, output_dir):
                     best_path,
                     model,
                     normalizer,
-                    {"seed": seed, "environment_steps": interactions, "validation": summary, "source": "ppo"},
+                    {
+                        "seed": seed,
+                        "environment_steps": interactions,
+                        "validation": summary,
+                        "source": "ppo",
+                        "reward_variant": args.reward_variant,
+                        "step_cost": args.step_cost,
+                    },
                 )
             print(
                 f"PPO seed {seed}: {interactions} interactions, "
@@ -319,13 +390,22 @@ def train_seed(seed, imitation_path, args, output_dir):
                 best_path,
                 model,
                 normalizer,
-                {"seed": seed, "environment_steps": interactions, "validation": summary, "source": "ppo_final_batch"},
+                {
+                    "seed": seed,
+                    "environment_steps": interactions,
+                    "validation": summary,
+                    "source": "ppo_final_batch",
+                    "reward_variant": args.reward_variant,
+                    "step_cost": args.step_cost,
+                },
             )
 
     checkpoint = torch.load(best_path, map_location=device, weights_only=False)
     model.load_state_dict(checkpoint["model_state_dict"], strict=True)
     payload = {
         "training_seed": seed,
+        "reward_variant": args.reward_variant,
+        "step_cost": args.step_cost,
         "elapsed_seconds": time.perf_counter() - start_time,
         "train_interactions": interactions,
         "best_checkpoint": str(best_path),
@@ -367,6 +447,8 @@ def main():
     parser.add_argument("--gae-lambda", type=float, default=0.95)
     parser.add_argument("--clip-ratio", type=float, default=0.20)
     parser.add_argument("--entropy-coefficient", type=float, default=0.005)
+    parser.add_argument("--reward-variant", choices=REWARD_VARIANTS, default="full")
+    parser.add_argument("--step-cost", type=float, default=0.005)
     parser.add_argument("--device", default="cpu")
     parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()

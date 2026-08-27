@@ -1,6 +1,34 @@
-# Robust PF teacher -> imitation -> PPO
+# Secondary PPO stability screen (common held-out evaluation)
 
-The PF teacher, selected imitation checkpoint, and 5 independently trained PPO checkpoints were evaluated on locked tasks.
+This archived screen is retained for transparency. It is separate from the
+current primary five-training-seed x five-benchmark analysis reported in the
+manuscript. In this screen, the PF teacher, selected PF-distilled imitation
+checkpoint, and five independently trained PPO checkpoints were evaluated on
+the same locked tasks within each suite.
+
+## Nominal locked-set comparison
+
+On the common nominal locked set of 1,000 tasks, the directly comparable
+success rates were:
+
+| Controller | Checkpoints/runs | Success (%) |
+|---|---:|---:|
+| PF-distilled imitation policy | 1 | 89.10 |
+| PPO stability-screen checkpoints | 5 | 89.54 +/- 2.23 |
+| PF teacher | 1 | 95.10 |
+
+For PPO, `89.54 +/- 2.23%` is the mean +/- sample standard deviation across
+the five independently trained checkpoints. The imitation and PF-teacher
+values each come from one frozen controller evaluated on the same 1,000-task
+manifest, so no between-training-seed standard deviation applies to those two
+rows.
+
+These three values may be compared within this secondary common-task screen.
+They must not be pooled with, substituted for, or interpreted as a replication
+of the primary `91.79 +/- 1.53%` result, which uses five PPO training seeds
+crossed with five locked benchmark sets of 3,000 tasks each.
+
+## Complete archived screen
 
 | Suite | Method | Runs | Success (%) | Strict (%) | Severe failure (%) | Successful steps | Final error |
 |---|---|---:|---:|---:|---:|---:|---:|
@@ -14,5 +42,12 @@ The PF teacher, selected imitation checkpoint, and 5 independently trained PPO c
 | wide_concentration | ppo | 5 | 86.67 +/- 2.24 | 36.27 +/- 3.04 | 5.33 +/- 1.13 | 7.39 +/- 0.76 | 0.1754 +/- 0.0295 |
 | wide_concentration | teacher | 1 | 93.33 | 46.00 | 1.67 | 5.53 | 0.0744 |
 
-PPO checkpoints were selected only from independent validation tasks. The locked test tasks were evaluated after checkpoint selection.
-Task-level results and paired tests are provided in the accompanying CSV files.
+PPO checkpoints were selected only from independent validation tasks. The
+locked test tasks were evaluated after checkpoint selection. Task-level
+results and paired tests are provided in the accompanying CSV files:
+
+- `aggregate_summary.csv`: aggregate controller metrics by suite.
+- `per_run_summary.csv`: individual PPO-checkpoint results.
+- `all_task_results.csv`: task-level outcomes for all evaluated controllers.
+- `paired_method_tests.csv`: paired statistical comparisons.
+- `../common_locked_test_tasks.jsonl`: the common 1,000-task nominal manifest.

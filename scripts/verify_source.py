@@ -105,6 +105,11 @@ def main() -> int:
         evidence_root / "10_PARTICLE_SCALING" / "particle_scaling_summary" / "summary.csv",
         evidence_root / "11_PYMC_COMPARISON" / "pymc_pf_comparison" / "pymc_pf_summary.csv",
         evidence_root / "12_ONLINE_TIMING" / "online_single_step_timing_20260820" / "FINAL_SINGLE_STEP_TIMING_SUMMARY.csv",
+        evidence_root / "15_PPO_STEP_COST_TUNING" / "README.md",
+        evidence_root / "15_PPO_STEP_COST_TUNING" / "RUN_CONFIG.json",
+        evidence_root / "15_PPO_STEP_COST_TUNING" / "candidate_validation_summary.csv",
+        evidence_root / "15_PPO_STEP_COST_TUNING" / "evaluation_full_5x3000" / "RESULT_SUMMARY.md",
+        evidence_root / "15_PPO_STEP_COST_TUNING" / "evaluation_full_5x3000" / "benchmark_seed_mean_sd_summary.csv",
         evidence_root / "01_PRIMARY_5x3000_BENCHMARK" / "formal_matched_evaluation" / "rule_baseline_replay" / "aggregate_summary.csv",
         evidence_root / "01_PRIMARY_5x3000_BENCHMARK" / "formal_matched_evaluation" / "rule_baseline_replay" / "REPLAY_PROVENANCE.json",
         root / "scripts" / "replay_primary_rule_baselines.py",
@@ -113,6 +118,8 @@ def main() -> int:
         root / "scripts" / "generate_publication_tables.py",
         root / "scripts" / "sanitize_checkpoint_metadata.py",
         root / "scripts" / "audit_ppo_stability.py",
+        root / "scripts" / "run_ppo_step_cost_tuning.py",
+        root / "scripts" / "evaluate_ppo_step_cost_tuning_full_benchmark.py",
         root / "tests" / "test_release_contracts.py",
     ]
     formal_root = evidence_root / "01_PRIMARY_5x3000_BENCHMARK" / "formal_matched_evaluation"
@@ -129,6 +136,22 @@ def main() -> int:
         required_files.append(stability_root / "runs" / f"seed_{seed}" / "training_tasks.jsonl")
         required_files.append(stability_root / "runs" / f"seed_{seed}" / "validation_tasks.jsonl")
         required_files.append(stability_root / "runs" / f"seed_{seed}" / "locked_test_results.csv")
+    step_cost_root = evidence_root / "15_PPO_STEP_COST_TUNING"
+    step_cost_labels = ("step_cost_0", "step_cost_0p0025", "step_cost_0p005", "step_cost_0p01")
+    for label in step_cost_labels:
+        required_files.append(step_cost_root / label / "seed_303" / "best_ppo.pth")
+        required_files.append(step_cost_root / label / "seed_303" / "COMPLETE.json")
+        required_files.append(step_cost_root / label / "seed_303" / "training_tasks.jsonl")
+        required_files.append(step_cost_root / label / "seed_303" / "validation_tasks.jsonl")
+    for label in ("original_full", *step_cost_labels):
+        for seed in primary_seeds:
+            required_files.append(
+                step_cost_root
+                / "evaluation_full_5x3000"
+                / "tasks"
+                / label
+                / f"benchmark_seed_{seed}_task_results.csv"
+            )
     missing = [str(path.relative_to(root)) for path in required_files if not path.is_file()]
     if missing:
         raise SystemExit("Missing evidence files:\n" + "\n".join(missing))
@@ -136,6 +159,43 @@ def main() -> int:
     index_path = evidence_root / "00_INDEX_AND_PROTOCOLS" / "SIMULATION_STUDY_INDEX.csv"
     if index_path.stat().st_size < 100:
         raise SystemExit("Simulation study index is unexpectedly empty.")
+
+    # The local PPO step-cost screen reports 0 through 0.01. The independently
+    # retrained 0.005 checkpoint remains distinct from the original selected
+    # 0.005 checkpoint so stochastic training variation is visible.
+    step_cost_config = json.loads((step_cost_root / "RUN_CONFIG.json").read_text(encoding="utf-8"))
+    if step_cost_config.get("candidate_step_costs") != [0.0, 0.0025, 0.005, 0.01]:
+        raise SystemExit("PPO step-cost screen must report exactly 0 through 0.01")
+    expected_step_cost_success = {
+        "original_full": (93.94666666666667, 0.6291970191354129),
+        "step_cost_0": (89.17333333333333, 0.5106640556939307),
+        "step_cost_0p0025": (88.66, 0.43614472623456374),
+        "step_cost_0p005": (91.86, 0.5614465444031349),
+        "step_cost_0p01": (89.17333333333333, 0.5106640556939307),
+    }
+    summary_path = step_cost_root / "evaluation_full_5x3000" / "benchmark_seed_mean_sd_summary.csv"
+    with summary_path.open("r", encoding="utf-8-sig", newline="") as handle:
+        step_cost_summary = {row["label"]: row for row in csv.DictReader(handle)}
+    if set(step_cost_summary) != set(expected_step_cost_success):
+        raise SystemExit("PPO step-cost summary contains an unexpected network")
+    for label, expected in expected_step_cost_success.items():
+        row = step_cost_summary[label]
+        observed = (
+            float(row["success_rate_percent_mean_across_benchmark_seeds"]),
+            float(row["success_rate_percent_sd_across_benchmark_seeds"]),
+        )
+        if any(abs(a - b) > 1e-9 for a, b in zip(observed, expected)):
+            raise SystemExit(f"PPO step-cost summary mismatch for {label}: {observed}")
+    for label in step_cost_labels:
+        if count_jsonl(step_cost_root / label / "seed_303" / "training_tasks.jsonl") != 5000:
+            raise SystemExit(f"PPO step-cost training manifest mismatch: {label}")
+        if count_jsonl(step_cost_root / label / "seed_303" / "validation_tasks.jsonl") != 500:
+            raise SystemExit(f"PPO step-cost validation manifest mismatch: {label}")
+    for label in expected_step_cost_success:
+        for seed in primary_seeds:
+            path = step_cost_root / "evaluation_full_5x3000" / "tasks" / label / f"benchmark_seed_{seed}_task_results.csv"
+            if count_data_rows(path) != 3000:
+                raise SystemExit(f"PPO step-cost locked result count mismatch: {label}, seed {seed}")
 
     # The locked primary benchmark is task-level data: 5 x 3,000 unique rows,
     # with one result row per method for each matched task.

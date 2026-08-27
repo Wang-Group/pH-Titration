@@ -52,6 +52,10 @@ python scripts/train_pipeline.py --profile smoke --output-dir runs/smoke
 python scripts/train_pipeline.py --profile standard --output-dir runs/standard
 ```
 
+`training/train_ppo.py` keeps the publication reward as its default
+(`--step-cost 0.005`) and also exposes `--step-cost` for the archived local
+sensitivity screen.
+
 The `smoke` profile uses intentionally small task counts to test that the
 pipeline executes. It must not be used to reproduce or support manuscript
 results. The `standard` profile uses 500 closed-loop validation tasks for
@@ -172,6 +176,7 @@ release block:
 | `11_PYMC_COMPARISON` | PyMC/PF comparison |
 | `12_ONLINE_TIMING` | Single-step PyMC and neural timing |
 | `13_SOURCE_ARCHIVES` | Analysis source grouped by protocol |
+| `15_PPO_STEP_COST_TUNING` | Local PPO step-cost sensitivity from 0 to 0.01, including the independent 0.005 retraining |
 
 The evidence directory also contains the study index and statistical-unit
 definitions under `00_INDEX_AND_PROTOCOLS`. Results from different blocks are
@@ -208,11 +213,24 @@ are the independent stability-screen models used for the `89.54 +/- 2.23%`
 held-out result. Seed 303 has the same actor tensors as the validation-selected
 deployment checkpoint; the stability block records its role as one of five
 independently seeded training runs.
+The [secondary stability-screen summary](evidence/simulation_numerical_evidence_20260823/03_PPO_TRAINING_STABILITY/evaluation/RESULT_SUMMARY.md)
+documents the common 1,000-task comparison of the PF-distilled imitation policy
+(`89.10%`), the five PPO checkpoints (`89.54 +/- 2.23%`), and the PF teacher
+(`95.10%`). This archived comparison is not the current primary
+five-training-seed x five-benchmark analysis (`91.79 +/- 1.53%`).
 The same block includes the common 1,000-task manifest, each seed's training
 and validation manifests, task-level locked-test outcomes, per-run completion
 metadata, and the combined task-level evaluation table. Run
 `python scripts/audit_ppo_stability.py` to validate those materials and
 recompute the five-seed mean and sample SD.
+
+The [PPO step-cost sensitivity block](evidence/simulation_numerical_evidence_20260823/15_PPO_STEP_COST_TUNING/README.md)
+reports coefficients `0`, `0.0025`, `0.005`, and `0.01`. The independently
+retrained `0.005` checkpoint achieved `91.86 +/- 0.56%` across the five locked
+benchmark sets, whereas the original independently validation-selected PPO,
+also trained with `0.005`, achieved `93.95 +/- 0.63%`. Both are retained to
+make the stochastic training dependence explicit. This is a one-retraining-run
+per coefficient sensitivity screen, not a causal hyperparameter comparison.
 
 The archive also includes the PID tuning source and selected parameters,
 paired statistical tests, posterior-recovery and prior-sensitivity source,
