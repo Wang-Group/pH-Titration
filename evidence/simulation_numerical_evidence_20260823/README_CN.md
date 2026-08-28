@@ -27,3 +27,10 @@ The local PPO step-cost sensitivity materials are in
 `0.0025`, `0.005`, and `0.01`). The block deliberately retains both the
 original validation-selected `0.005` checkpoint and an independently
 retrained `0.005` checkpoint so that training stochasticity is visible.
+
+The current publication timing comparison is in
+`16_MATCHED_TIMING_RECOVERY_100TASKS`. PyMC, PF at three particle counts,
+imitation, and PPO were evaluated on the same 100 locked cases and the same
+first post-dose pH input. Blocks `10`, `11`, and `12` retain earlier timing and
+inference protocols for provenance; their values must not be substituted for
+the current matched comparison.

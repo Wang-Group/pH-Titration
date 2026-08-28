@@ -89,6 +89,17 @@ def build() -> None:
         writer.writerows(manifest_rows)
 
     primary = STAGING / "evidence" / EVIDENCE.name / "01_PRIMARY_5x3000_BENCHMARK" / "formal_matched_evaluation"
+    step_cost = STAGING / "evidence" / EVIDENCE.name / "15_PPO_STEP_COST_TUNING"
+    matched_timing = (
+        STAGING
+        / "evidence"
+        / EVIDENCE.name
+        / "16_MATCHED_TIMING_RECOVERY_100TASKS"
+        / "results"
+    )
+    matched_config = json.loads(
+        (matched_timing / "MATCHED_RUN_CONFIG.json").read_text(encoding="utf-8")
+    )
     validation = {
         "status": "PASS",
         "created_utc": datetime.now(timezone.utc).isoformat(),
@@ -128,6 +139,23 @@ def build() -> None:
                 encoding="utf-8"
             )
         )["status"],
+        "ppo_step_cost_screen": {
+            "reported_coefficients": json.loads(
+                (step_cost / "RUN_CONFIG.json").read_text(encoding="utf-8")
+            )["candidate_step_costs"],
+            "retraining_runs": 4,
+            "locked_benchmark_sets": 5,
+            "tasks_per_benchmark_set": 3000,
+            "status": "PASS",
+        },
+        "matched_timing_recovery_100tasks": {
+            "status": "PASS" if matched_config["status"] == "completed_and_audited" else "FAIL",
+            "same_task_and_input_audit": matched_config["same_task_and_input_audit"],
+            "task_cases_per_method": matched_config["tasks"],
+            "methods": len(matched_config["methods"]),
+            "pymc_draws_per_k": matched_config["worker_configs"]["pymc"]["pymc"]["draws_per_k"],
+            "pymc_chains": matched_config["worker_configs"]["pymc"]["pymc"]["chains"],
+        },
         "manifest_entries": len(manifest_rows),
         "forbidden_documents_included": False,
     }

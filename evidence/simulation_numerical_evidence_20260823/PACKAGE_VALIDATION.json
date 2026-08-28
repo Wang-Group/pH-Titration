@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "created_utc": "2026-08-25T15:16:28.138601+00:00",
+  "created_utc": "2026-08-28T14:27:06.221346+00:00",
   "simulation_only": true,
   "protocol_family": "pH-control",
   "protocol_version": "2026.08",
@@ -25,7 +25,7 @@
   "ppo_stability_common_test_tasks": 1000,
   "ppo_stability_task_level_rows": 5000,
   "ppo_stability_audit_status": "PASS",
-  "manifest_entries": 1076,
+  "manifest_entries": 1115,
   "forbidden_documents_included": false,
   "ppo_step_cost_screen": {
     "reported_coefficients": [
@@ -38,5 +38,13 @@
     "locked_benchmark_sets": 5,
     "tasks_per_benchmark_set": 3000,
     "status": "PASS"
+  },
+  "matched_timing_recovery_100tasks": {
+    "status": "PASS",
+    "same_task_and_input_audit": true,
+    "task_cases_per_method": 100,
+    "methods": 6,
+    "pymc_draws_per_k": 300,
+    "pymc_chains": 1
   }
 }

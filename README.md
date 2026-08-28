@@ -173,22 +173,26 @@ release block:
 | `08_SENSOR_STRESS` | Sensor nonideality stress tests |
 | `09_PF_RULE_ABLATIONS` | PF rule/reward/dose ablations |
 | `10_PARTICLE_SCALING` | Particle-count timing and scaling |
-| `11_PYMC_COMPARISON` | PyMC/PF comparison |
-| `12_ONLINE_TIMING` | Single-step PyMC and neural timing |
+| `11_PYMC_COMPARISON` | Earlier 15-task PyMC/PF comparison retained for provenance |
+| `12_ONLINE_TIMING` | Earlier separate PyMC and neural timing protocols retained for provenance |
 | `13_SOURCE_ARCHIVES` | Analysis source grouped by protocol |
 | `15_PPO_STEP_COST_TUNING` | Local PPO step-cost sensitivity from 0 to 0.01, including the independent 0.005 retraining |
+| `16_MATCHED_TIMING_RECOVERY_100TASKS` | Current matched 100-task PyMC/PF/neural timing and one-observation recovery benchmark |
 
 The evidence directory also contains the study index and statistical-unit
 definitions under `00_INDEX_AND_PROTOCOLS`. Results from different blocks are
 kept separate because their task generators, sample sizes, action interfaces,
 training budgets, and timing definitions differ.
 
-Timing values must be read with their protocol labels. The 65.31 ms PF value is
-the median per-step result from the 100-task particle-scaling benchmark, whereas
-the 59.33 ms PF and 0.141 ms PPO values in the sensor-stress block are means
-from a separate five-seed stress-timing protocol. The 0.1299 ms imitation and
-0.1279 ms PPO values are means over 30,000 direct neural timing trials. These
-values are not interchangeable measurements of one experiment.
+Timing values must be read with their protocol labels. The current publication
+comparison is the matched 100-task benchmark in
+[`16_MATCHED_TIMING_RECOVERY_100TASKS`](evidence/simulation_numerical_evidence_20260823/16_MATCHED_TIMING_RECOVERY_100TASKS/PROTOCOL_AND_RESULTS.md).
+It used the same post-dose observation for every method and produced median
+observation-to-action times of 14,407.376 ms for variable-K PyMC, 22.996 ms for
+the 1,000-particle PF, 101.451 ms for the 10,000-particle PF, 900.935 ms for the
+100,000-particle PF, 0.15495 ms for imitation, and 0.15390 ms for PPO. The older
+timing protocols in blocks 10-12 and the sensor-stress block remain available
+for provenance but are not interchangeable with this matched comparison.
 
 ## Reproducibility status
 
@@ -200,6 +204,14 @@ source/checkpoints, posterior and sensor-stress analyses, particle-scaling
 timing, PyMC timing, and neural-policy timing. The teacher, imitation, and PPO
 training source is retained in block `02` separately from the deployable
 controller API.
+
+The current PyMC timing and one-observation posterior comparison is archived in
+block `16` with task-level raw outputs, run configurations, paired tests, and
+the exact worker, launcher, and finalizer scripts. The timed interval is the
+computational path from a new rounded pH observation to the returned next
+action. It excludes liquid delivery, mixing, electrode stabilization, and pH
+acquisition and therefore must not be described as timing collected during a
+physical experiment.
 
 The embedded `controllers/models/ppo_seed_303.pth` is the validation-selected
 deployment checkpoint. Its metadata describes a 500-task validation run; the
@@ -234,10 +246,11 @@ per coefficient sensitivity screen, not a causal hyperparameter comparison.
 
 The archive also includes the PID tuning source and selected parameters,
 paired statistical tests, posterior-recovery and prior-sensitivity source,
-sensor-stress source/results, particle-scaling timing, PyMC timing, and neural
-single-step timing. Run `python scripts/verify_source.py` to compile the
-package and verify these required files, the 5 x 3,000 manifests, the 15,000
-matched task keys, and all teacher/imitation/principal-PPO hashes.
+sensor-stress source/results, historical timing protocols, and the current
+matched 100-task PyMC/PF/neural timing benchmark. Run
+`python scripts/verify_source.py` to compile the package and verify these
+required files, the 5 x 3,000 manifests, the 15,000 matched task keys, and all
+teacher/imitation/principal-PPO hashes.
 
 The released rule/PID outputs can be checked with
 `python scripts/replay_primary_rule_baselines.py`. This command validates the

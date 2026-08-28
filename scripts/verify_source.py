@@ -58,6 +58,8 @@ def main() -> int:
     importlib.import_module("training.task_distribution")
 
     evidence_root = root / "evidence" / "simulation_numerical_evidence_20260823"
+    matched_timing_root = evidence_root / "16_MATCHED_TIMING_RECOVERY_100TASKS"
+    matched_timing_results = matched_timing_root / "results"
     required_files = [
         root / "README.md",
         root / "pyproject.toml",
@@ -65,6 +67,8 @@ def main() -> int:
         root / "controllers" / "__init__.py",
         root / "training" / "__init__.py",
         evidence_root / "README_CN.md",
+        evidence_root / "FILE_MANIFEST_SHA256.csv",
+        evidence_root / "PACKAGE_VALIDATION.json",
         evidence_root / "00_INDEX_AND_PROTOCOLS" / "SIMULATION_STUDY_INDEX.csv",
         evidence_root / "00_INDEX_AND_PROTOCOLS" / "CURRENT_SIMULATION_CLAIMS.csv",
         evidence_root / "13_SOURCE_ARCHIVES" / "README_CN.md",
@@ -105,6 +109,13 @@ def main() -> int:
         evidence_root / "10_PARTICLE_SCALING" / "particle_scaling_summary" / "summary.csv",
         evidence_root / "11_PYMC_COMPARISON" / "pymc_pf_comparison" / "pymc_pf_summary.csv",
         evidence_root / "12_ONLINE_TIMING" / "online_single_step_timing_20260820" / "FINAL_SINGLE_STEP_TIMING_SUMMARY.csv",
+        matched_timing_root / "PROTOCOL_AND_RESULTS.md",
+        matched_timing_results / "CONTROLLED_RESULT_SUMMARY.csv",
+        matched_timing_results / "CONTROLLED_RUN_CONFIG.json",
+        matched_timing_results / "MATCHED_RUN_CONFIG.json",
+        matched_timing_results / "POSTERIOR_RECOVERY_SUMMARY.csv",
+        matched_timing_results / "POSTERIOR_RECOVERY_TASK_RESULTS.csv",
+        matched_timing_results / "RESULTS_MATCHED.md",
         evidence_root / "15_PPO_STEP_COST_TUNING" / "README.md",
         evidence_root / "15_PPO_STEP_COST_TUNING" / "RUN_CONFIG.json",
         evidence_root / "15_PPO_STEP_COST_TUNING" / "candidate_validation_summary.csv",
@@ -120,6 +131,9 @@ def main() -> int:
         root / "scripts" / "audit_ppo_stability.py",
         root / "scripts" / "run_ppo_step_cost_tuning.py",
         root / "scripts" / "evaluate_ppo_step_cost_tuning_full_benchmark.py",
+        root / "scripts" / "benchmark_controlled_observation_to_action_100tasks.py",
+        root / "scripts" / "run_controlled_timing_100tasks.py",
+        root / "scripts" / "finalize_matched_timing_recovery_100tasks.py",
         root / "tests" / "test_release_contracts.py",
     ]
     formal_root = evidence_root / "01_PRIMARY_5x3000_BENCHMARK" / "formal_matched_evaluation"
@@ -152,6 +166,10 @@ def main() -> int:
                 / label
                 / f"benchmark_seed_{seed}_task_results.csv"
             )
+    for method in ("imitation", "ppo", "pf_1000", "pf_10000", "pf_100000", "pymc"):
+        required_files.append(matched_timing_results / method / "raw.csv")
+        required_files.append(matched_timing_results / method / "summary.csv")
+        required_files.append(matched_timing_results / method / "RUN_CONFIG.json")
     missing = [str(path.relative_to(root)) for path in required_files if not path.is_file()]
     if missing:
         raise SystemExit("Missing evidence files:\n" + "\n".join(missing))
@@ -159,6 +177,95 @@ def main() -> int:
     index_path = evidence_root / "00_INDEX_AND_PROTOCOLS" / "SIMULATION_STUDY_INDEX.csv"
     if index_path.stat().st_size < 100:
         raise SystemExit("Simulation study index is unexpectedly empty.")
+
+    # The current publication timing comparison uses the same 100 locked task
+    # cases and the same first post-dose observation for every method.
+    expected_timing_ms = {
+        "imitation": 0.15495,
+        "ppo": 0.15390,
+        "pf_1000": 22.99615,
+        "pf_10000": 101.45055,
+        "pf_100000": 900.93545,
+        "pymc": 14407.37565,
+    }
+    with (matched_timing_results / "CONTROLLED_RESULT_SUMMARY.csv").open(
+        "r", encoding="utf-8-sig", newline=""
+    ) as handle:
+        timing_rows = {row["method"]: row for row in csv.DictReader(handle)}
+    if set(timing_rows) != set(expected_timing_ms):
+        raise SystemExit("Matched timing summary contains an unexpected method set")
+    for method, expected in expected_timing_ms.items():
+        observed = float(timing_rows[method]["primary_median_of_task_median_wall_ms"])
+        if abs(observed - expected) > 1e-9:
+            raise SystemExit(f"Matched timing median mismatch for {method}: {observed}")
+        if count_data_rows(matched_timing_results / method / "raw.csv") != 100:
+            raise SystemExit(f"Matched timing raw row count mismatch for {method}")
+
+    matched_config = json.loads(
+        (matched_timing_results / "MATCHED_RUN_CONFIG.json").read_text(encoding="utf-8")
+    )
+    if (
+        matched_config.get("status") != "completed_and_audited"
+        or matched_config.get("same_task_and_input_audit") is not True
+        or matched_config.get("tasks") != 100
+    ):
+        raise SystemExit("Matched timing task/input audit is invalid")
+    pymc_config = matched_config.get("worker_configs", {}).get("pymc", {}).get("pymc", {})
+    if pymc_config != {"draws_per_k": 300, "chains": 1, "k_values": [1, 2, 3]}:
+        raise SystemExit(f"Matched timing PyMC configuration mismatch: {pymc_config}")
+
+    package_validation = json.loads(
+        (evidence_root / "PACKAGE_VALIDATION.json").read_text(encoding="utf-8")
+    )
+    expected_validation = {
+        "status": "PASS",
+        "same_task_and_input_audit": True,
+        "task_cases_per_method": 100,
+        "methods": 6,
+        "pymc_draws_per_k": 300,
+        "pymc_chains": 1,
+    }
+    if package_validation.get("matched_timing_recovery_100tasks") != expected_validation:
+        raise SystemExit("Package validation does not describe the matched timing block")
+
+    with (evidence_root / "FILE_MANIFEST_SHA256.csv").open(
+        "r", encoding="utf-8-sig", newline=""
+    ) as handle:
+        manifest_rows = {row["path"]: row for row in csv.DictReader(handle)}
+    if package_validation.get("manifest_entries") != len(manifest_rows):
+        raise SystemExit("Evidence manifest count does not match package validation")
+    for path in sorted(matched_timing_root.rglob("*")):
+        if not path.is_file():
+            continue
+        relative = path.relative_to(evidence_root).as_posix()
+        row = manifest_rows.get(relative)
+        if row is None:
+            raise SystemExit(f"Matched timing file is absent from evidence manifest: {relative}")
+        if int(row["bytes"]) != path.stat().st_size or row["sha256"] != sha256(path):
+            raise SystemExit(f"Matched timing manifest mismatch: {relative}")
+
+    expected_recovery = {
+        "PF": (33.0, 45.197764468185, 0.6738121046053155, 3.179720456744687),
+        "PyMC": (29.0, 47.48075227477676, 0.6342257084598905, 3.075972471302178),
+    }
+    with (matched_timing_results / "POSTERIOR_RECOVERY_SUMMARY.csv").open(
+        "r", encoding="utf-8-sig", newline=""
+    ) as handle:
+        recovery_rows = {row["method"]: row for row in csv.DictReader(handle)}
+    if set(recovery_rows) != set(expected_recovery):
+        raise SystemExit("Matched posterior-recovery summary contains an unexpected method")
+    for method, expected in expected_recovery.items():
+        row = recovery_rows[method]
+        observed = (
+            float(row["model_order_accuracy_percent"]),
+            float(row["concentration_relative_error_median_percent"]),
+            float(row["pka_matched_mae_median"]),
+            float(row["full_curve_rmse_0_33ml_median_ph"]),
+        )
+        if any(abs(a - b) > 1e-9 for a, b in zip(observed, expected)):
+            raise SystemExit(f"Matched posterior-recovery mismatch for {method}: {observed}")
+    if count_data_rows(matched_timing_results / "POSTERIOR_RECOVERY_TASK_RESULTS.csv") != 200:
+        raise SystemExit("Matched posterior-recovery task table must contain 200 rows")
 
     # The local PPO step-cost screen reports 0 through 0.01. The independently
     # retrained 0.005 checkpoint remains distinct from the original selected

@@ -1,0 +1,86 @@
+{
+  "study_id": "controlled_observation_to_action_timing_100tasks",
+  "methods": [
+    "imitation",
+    "ppo",
+    "pf_1000",
+    "pf_10000",
+    "pf_100000",
+    "pymc"
+  ],
+  "unique_task_cases": 100,
+  "repeats_per_task": 1,
+  "formal_measurements_per_method": 100,
+  "cpu_index": 2,
+  "seed": 20260828,
+  "idle_threshold_percent": 15.0,
+  "draws_per_k": 300,
+  "chains": 1,
+  "launcher_python": "C:\\Users\\ZSY\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+  "pymc_python": "C:\\Users\\ZSY\\Desktop\\FDTD\\joint_parameter_bayesian_processed_20260811\\.venv\\Scripts\\python.exe",
+  "platform": "Windows-10-10.0.26100-SP0",
+  "active_power_scheme": "not recorded by launcher",
+  "worker_sha256": "bb7600c88af01e6b130a30f39675af371aae957f1fa031b6d96ae2ac6671a133",
+  "executions": [
+    {
+      "method": "imitation",
+      "python_executable": "C:\\Users\\ZSY\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "returncode": 0,
+      "prelaunch_cpu_utilization_percent": [
+        5.1119766309639765,
+        10.449927431059503,
+        2.978515625
+      ]
+    },
+    {
+      "method": "ppo",
+      "python_executable": "C:\\Users\\ZSY\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "returncode": 0,
+      "prelaunch_cpu_utilization_percent": [
+        3.840472673559825,
+        9.452253999030535,
+        7.918879768227905
+      ]
+    },
+    {
+      "method": "pf_1000",
+      "python_executable": "C:\\Users\\ZSY\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "returncode": 0,
+      "prelaunch_cpu_utilization_percent": [
+        7.269155206286837,
+        10.799031476997579,
+        8.093869731800762
+      ]
+    },
+    {
+      "method": "pf_10000",
+      "python_executable": "C:\\Users\\ZSY\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "returncode": 0,
+      "prelaunch_cpu_utilization_percent": [
+        6.719367588932801,
+        6.109481915933523,
+        5.853658536585371
+      ]
+    },
+    {
+      "method": "pf_100000",
+      "python_executable": "C:\\Users\\ZSY\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "returncode": 0,
+      "prelaunch_cpu_utilization_percent": [
+        7.828655834564257,
+        6.706114398422091,
+        5.783132530120483
+      ]
+    },
+    {
+      "method": "pymc",
+      "python_executable": "C:\\Users\\ZSY\\Desktop\\FDTD\\joint_parameter_bayesian_processed_20260811\\.venv\\Scripts\\python.exe",
+      "returncode": 0,
+      "prelaunch_cpu_utilization_percent": [
+        12.50610649731314,
+        8.88561610211095,
+        2.7859237536656867
+      ]
+    }
+  ]
+}

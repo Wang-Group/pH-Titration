@@ -1,0 +1,761 @@
+{
+  "study_id": "matched_timing_and_posterior_recovery_100tasks_20260828",
+  "status": "completed_and_audited",
+  "same_task_and_input_audit": true,
+  "tasks": 100,
+  "timing_scope": "new rounded pH observation to next action",
+  "posterior_scope": "the posterior snapshot produced in that same timed call",
+  "curve_scope": "0-33 mL NaOH forward curve from each task's actual initial base state; baseline-subtracted at zero added volume",
+  "methods": [
+    "imitation",
+    "ppo",
+    "pf_1000",
+    "pf_10000",
+    "pf_100000",
+    "pymc"
+  ],
+  "timing_summary": [
+    {
+      "method": "imitation",
+      "unique_tasks": "100",
+      "repeats_per_task": "1",
+      "measurements": "100",
+      "primary_median_of_task_median_wall_ms": "0.15495",
+      "median_of_task_median_process_cpu_ms": "0.0",
+      "all_measurement_median_wall_ms": "0.15495",
+      "all_measurement_p05_wall_ms": "0.148485",
+      "all_measurement_p95_wall_ms": "0.23024999999999998",
+      "all_measurement_median_process_cpu_ms": "0.0"
+    },
+    {
+      "method": "ppo",
+      "unique_tasks": "100",
+      "repeats_per_task": "1",
+      "measurements": "100",
+      "primary_median_of_task_median_wall_ms": "0.15389999999999998",
+      "median_of_task_median_process_cpu_ms": "0.0",
+      "all_measurement_median_wall_ms": "0.15389999999999998",
+      "all_measurement_p05_wall_ms": "0.14838",
+      "all_measurement_p95_wall_ms": "0.2711649999999998",
+      "all_measurement_median_process_cpu_ms": "0.0"
+    },
+    {
+      "method": "pf_1000",
+      "unique_tasks": "100",
+      "repeats_per_task": "1",
+      "measurements": "100",
+      "primary_median_of_task_median_wall_ms": "22.99615",
+      "median_of_task_median_process_cpu_ms": "31.25",
+      "all_measurement_median_wall_ms": "22.99615",
+      "all_measurement_p05_wall_ms": "21.10826",
+      "all_measurement_p95_wall_ms": "55.305685000000004",
+      "all_measurement_median_process_cpu_ms": "31.25"
+    },
+    {
+      "method": "pf_10000",
+      "unique_tasks": "100",
+      "repeats_per_task": "1",
+      "measurements": "100",
+      "primary_median_of_task_median_wall_ms": "101.45054999999999",
+      "median_of_task_median_process_cpu_ms": "109.375",
+      "all_measurement_median_wall_ms": "101.45054999999999",
+      "all_measurement_p05_wall_ms": "96.79204",
+      "all_measurement_p95_wall_ms": "131.64672",
+      "all_measurement_median_process_cpu_ms": "109.375"
+    },
+    {
+      "method": "pf_100000",
+      "unique_tasks": "100",
+      "repeats_per_task": "1",
+      "measurements": "100",
+      "primary_median_of_task_median_wall_ms": "900.93545",
+      "median_of_task_median_process_cpu_ms": "890.625",
+      "all_measurement_median_wall_ms": "900.93545",
+      "all_measurement_p05_wall_ms": "867.795675",
+      "all_measurement_p95_wall_ms": "936.61518",
+      "all_measurement_median_process_cpu_ms": "890.625"
+    },
+    {
+      "method": "pymc",
+      "unique_tasks": "100",
+      "repeats_per_task": "1",
+      "measurements": "100",
+      "primary_median_of_task_median_wall_ms": "14407.37565",
+      "median_of_task_median_process_cpu_ms": "14007.8125",
+      "all_measurement_median_wall_ms": "14407.37565",
+      "all_measurement_p05_wall_ms": "12360.1902",
+      "all_measurement_p95_wall_ms": "16760.59485",
+      "all_measurement_median_process_cpu_ms": "14007.8125"
+    }
+  ],
+  "posterior_recovery_summary": [
+    {
+      "method": "PF",
+      "tasks": 100,
+      "model_order_accuracy_percent": 33.0,
+      "model_order_correct_count": 33,
+      "concentration_relative_error_median_percent": 45.197764468185,
+      "concentration_relative_error_mean_percent": 74.13495465287639,
+      "pka_matched_mae_median": 0.6738121046053155,
+      "full_curve_rmse_0_33ml_median_ph": 3.179720456744687
+    },
+    {
+      "method": "PyMC",
+      "tasks": 100,
+      "model_order_accuracy_percent": 28.999999999999996,
+      "model_order_correct_count": 29,
+      "concentration_relative_error_median_percent": 47.48075227477676,
+      "concentration_relative_error_mean_percent": 73.31084594543856,
+      "pka_matched_mae_median": 0.6342257084598905,
+      "full_curve_rmse_0_33ml_median_ph": 3.075972471302178
+    }
+  ],
+  "paired_tests": {
+    "model_order_exact_mcnemar_p": 0.557197093963623,
+    "model_order_discordant_pf_correct_pymc_fail": 15,
+    "model_order_discordant_pf_fail_pymc_correct": 11,
+    "concentration_relative_error_percent_pf_median": 45.197764468185,
+    "concentration_relative_error_percent_pymc_median": 47.48075227477676,
+    "concentration_relative_error_percent_wilcoxon_p": 0.6351513625895362,
+    "pka_matched_mae_pf_median": 0.6738121046053155,
+    "pka_matched_mae_pymc_median": 0.6342257084598905,
+    "pka_matched_mae_wilcoxon_p": 0.8960471686012128,
+    "full_curve_rmse_0_33ml_ph_pf_median": 3.179720456744687,
+    "full_curve_rmse_0_33ml_ph_pymc_median": 3.075972471302178,
+    "full_curve_rmse_0_33ml_ph_wilcoxon_p": 0.6925422804041386
+  },
+  "worker_configs": {
+    "imitation": {
+      "benchmark_seeds": [
+        101,
+        202,
+        303,
+        404,
+        555
+      ],
+      "selected_task_ids_per_seed": [
+        1,
+        159,
+        317,
+        475,
+        632,
+        790,
+        948,
+        1106,
+        1264,
+        1422,
+        1579,
+        1737,
+        1895,
+        2053,
+        2211,
+        2369,
+        2526,
+        2684,
+        2842,
+        3000
+      ],
+      "unique_tasks": 100,
+      "warmup_tasks": 5,
+      "repeats": 1,
+      "formal_protocol": true,
+      "timing_scope": "new pH observation to next action",
+      "timed_operations": "state bookkeeping, observation/posterior update, and next-action selection",
+      "excluded": [
+        "Python startup",
+        "module import",
+        "checkpoint loading",
+        "controller construction/reset",
+        "task loading",
+        "chemical transition calculation",
+        "liquid delivery",
+        "mixing",
+        "sensor acquisition",
+        "file I/O"
+      ],
+      "case_construction": "one 0.01 mL pre-dose and rounded post-dose pH for each locked task",
+      "thread_environment": {
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "BLIS_NUM_THREADS": "1"
+      },
+      "execution_controls": {
+        "requested_cpu_index": 2,
+        "affinity_applied": true,
+        "priority_applied": true,
+        "affinity_mask_hex": "0x4",
+        "priority_class": "ABOVE_NORMAL_PRIORITY_CLASS"
+      },
+      "clock": {
+        "wall": {
+          "implementation": "QueryPerformanceCounter()",
+          "monotonic": true,
+          "adjustable": false,
+          "resolution": 1e-07
+        },
+        "process_cpu": {
+          "implementation": "GetProcessTimes()",
+          "monotonic": true,
+          "adjustable": false,
+          "resolution": 1e-07
+        }
+      },
+      "environment": {
+        "platform": "Windows-10-10.0.26100-SP0",
+        "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+        "logical_cpu_count": 32,
+        "python": "3.11.9",
+        "python_executable": "C:\\Users\\ZSY\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "numpy": "2.4.6",
+        "torch": "2.13.0+cpu",
+        "torch_threads": 1
+      },
+      "checkpoint_sha256": "71ae0176252d55c2a30b5d69afc6033ee1b0f4ac045e05b689ae7031c488adcc",
+      "method": "imitation",
+      "summary": {
+        "method": "imitation",
+        "unique_tasks": 100,
+        "repeats_per_task": 1,
+        "measurements": 100,
+        "primary_median_of_task_median_wall_ms": 0.15495,
+        "median_of_task_median_process_cpu_ms": 0.0,
+        "all_measurement_median_wall_ms": 0.15495,
+        "all_measurement_p05_wall_ms": 0.148485,
+        "all_measurement_p95_wall_ms": 0.23024999999999998,
+        "all_measurement_median_process_cpu_ms": 0.0
+      }
+    },
+    "ppo": {
+      "benchmark_seeds": [
+        101,
+        202,
+        303,
+        404,
+        555
+      ],
+      "selected_task_ids_per_seed": [
+        1,
+        159,
+        317,
+        475,
+        632,
+        790,
+        948,
+        1106,
+        1264,
+        1422,
+        1579,
+        1737,
+        1895,
+        2053,
+        2211,
+        2369,
+        2526,
+        2684,
+        2842,
+        3000
+      ],
+      "unique_tasks": 100,
+      "warmup_tasks": 5,
+      "repeats": 1,
+      "formal_protocol": true,
+      "timing_scope": "new pH observation to next action",
+      "timed_operations": "state bookkeeping, observation/posterior update, and next-action selection",
+      "excluded": [
+        "Python startup",
+        "module import",
+        "checkpoint loading",
+        "controller construction/reset",
+        "task loading",
+        "chemical transition calculation",
+        "liquid delivery",
+        "mixing",
+        "sensor acquisition",
+        "file I/O"
+      ],
+      "case_construction": "one 0.01 mL pre-dose and rounded post-dose pH for each locked task",
+      "thread_environment": {
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "BLIS_NUM_THREADS": "1"
+      },
+      "execution_controls": {
+        "requested_cpu_index": 2,
+        "affinity_applied": true,
+        "priority_applied": true,
+        "affinity_mask_hex": "0x4",
+        "priority_class": "ABOVE_NORMAL_PRIORITY_CLASS"
+      },
+      "clock": {
+        "wall": {
+          "implementation": "QueryPerformanceCounter()",
+          "monotonic": true,
+          "adjustable": false,
+          "resolution": 1e-07
+        },
+        "process_cpu": {
+          "implementation": "GetProcessTimes()",
+          "monotonic": true,
+          "adjustable": false,
+          "resolution": 1e-07
+        }
+      },
+      "environment": {
+        "platform": "Windows-10-10.0.26100-SP0",
+        "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+        "logical_cpu_count": 32,
+        "python": "3.11.9",
+        "python_executable": "C:\\Users\\ZSY\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "numpy": "2.4.6",
+        "torch": "2.13.0+cpu",
+        "torch_threads": 1
+      },
+      "checkpoint_sha256": "4004d7a09768fc5ac3f448523f53cb22210ed919ca7e713f13d9aa693cc19de5",
+      "method": "ppo",
+      "summary": {
+        "method": "ppo",
+        "unique_tasks": 100,
+        "repeats_per_task": 1,
+        "measurements": 100,
+        "primary_median_of_task_median_wall_ms": 0.15389999999999998,
+        "median_of_task_median_process_cpu_ms": 0.0,
+        "all_measurement_median_wall_ms": 0.15389999999999998,
+        "all_measurement_p05_wall_ms": 0.14838,
+        "all_measurement_p95_wall_ms": 0.2711649999999998,
+        "all_measurement_median_process_cpu_ms": 0.0
+      }
+    },
+    "pf_1000": {
+      "benchmark_seeds": [
+        101,
+        202,
+        303,
+        404,
+        555
+      ],
+      "selected_task_ids_per_seed": [
+        1,
+        159,
+        317,
+        475,
+        632,
+        790,
+        948,
+        1106,
+        1264,
+        1422,
+        1579,
+        1737,
+        1895,
+        2053,
+        2211,
+        2369,
+        2526,
+        2684,
+        2842,
+        3000
+      ],
+      "unique_tasks": 100,
+      "warmup_tasks": 5,
+      "repeats": 1,
+      "formal_protocol": true,
+      "timing_scope": "new pH observation to next action",
+      "timed_operations": "state bookkeeping, observation/posterior update, and next-action selection",
+      "excluded": [
+        "Python startup",
+        "module import",
+        "checkpoint loading",
+        "controller construction/reset",
+        "task loading",
+        "chemical transition calculation",
+        "liquid delivery",
+        "mixing",
+        "sensor acquisition",
+        "file I/O"
+      ],
+      "case_construction": "one 0.01 mL pre-dose and rounded post-dose pH for each locked task",
+      "thread_environment": {
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "BLIS_NUM_THREADS": "1"
+      },
+      "execution_controls": {
+        "requested_cpu_index": 2,
+        "affinity_applied": true,
+        "priority_applied": true,
+        "affinity_mask_hex": "0x4",
+        "priority_class": "ABOVE_NORMAL_PRIORITY_CLASS"
+      },
+      "clock": {
+        "wall": {
+          "implementation": "QueryPerformanceCounter()",
+          "monotonic": true,
+          "adjustable": false,
+          "resolution": 1e-07
+        },
+        "process_cpu": {
+          "implementation": "GetProcessTimes()",
+          "monotonic": true,
+          "adjustable": false,
+          "resolution": 1e-07
+        }
+      },
+      "environment": {
+        "platform": "Windows-10-10.0.26100-SP0",
+        "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+        "logical_cpu_count": 32,
+        "python": "3.11.9",
+        "python_executable": "C:\\Users\\ZSY\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "numpy": "2.4.6",
+        "torch": "2.13.0+cpu",
+        "torch_threads": 1
+      },
+      "particle_count": 1000,
+      "method": "pf_1000",
+      "summary": {
+        "method": "pf_1000",
+        "unique_tasks": 100,
+        "repeats_per_task": 1,
+        "measurements": 100,
+        "primary_median_of_task_median_wall_ms": 22.99615,
+        "median_of_task_median_process_cpu_ms": 31.25,
+        "all_measurement_median_wall_ms": 22.99615,
+        "all_measurement_p05_wall_ms": 21.10826,
+        "all_measurement_p95_wall_ms": 55.305685000000004,
+        "all_measurement_median_process_cpu_ms": 31.25
+      }
+    },
+    "pf_10000": {
+      "benchmark_seeds": [
+        101,
+        202,
+        303,
+        404,
+        555
+      ],
+      "selected_task_ids_per_seed": [
+        1,
+        159,
+        317,
+        475,
+        632,
+        790,
+        948,
+        1106,
+        1264,
+        1422,
+        1579,
+        1737,
+        1895,
+        2053,
+        2211,
+        2369,
+        2526,
+        2684,
+        2842,
+        3000
+      ],
+      "unique_tasks": 100,
+      "warmup_tasks": 5,
+      "repeats": 1,
+      "formal_protocol": true,
+      "timing_scope": "new pH observation to next action",
+      "timed_operations": "state bookkeeping, observation/posterior update, and next-action selection",
+      "excluded": [
+        "Python startup",
+        "module import",
+        "checkpoint loading",
+        "controller construction/reset",
+        "task loading",
+        "chemical transition calculation",
+        "liquid delivery",
+        "mixing",
+        "sensor acquisition",
+        "file I/O"
+      ],
+      "case_construction": "one 0.01 mL pre-dose and rounded post-dose pH for each locked task",
+      "thread_environment": {
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "BLIS_NUM_THREADS": "1"
+      },
+      "execution_controls": {
+        "requested_cpu_index": 2,
+        "affinity_applied": true,
+        "priority_applied": true,
+        "affinity_mask_hex": "0x4",
+        "priority_class": "ABOVE_NORMAL_PRIORITY_CLASS"
+      },
+      "clock": {
+        "wall": {
+          "implementation": "QueryPerformanceCounter()",
+          "monotonic": true,
+          "adjustable": false,
+          "resolution": 1e-07
+        },
+        "process_cpu": {
+          "implementation": "GetProcessTimes()",
+          "monotonic": true,
+          "adjustable": false,
+          "resolution": 1e-07
+        }
+      },
+      "environment": {
+        "platform": "Windows-10-10.0.26100-SP0",
+        "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+        "logical_cpu_count": 32,
+        "python": "3.11.9",
+        "python_executable": "C:\\Users\\ZSY\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "numpy": "2.4.6",
+        "torch": "2.13.0+cpu",
+        "torch_threads": 1
+      },
+      "particle_count": 10000,
+      "method": "pf_10000",
+      "summary": {
+        "method": "pf_10000",
+        "unique_tasks": 100,
+        "repeats_per_task": 1,
+        "measurements": 100,
+        "primary_median_of_task_median_wall_ms": 101.45054999999999,
+        "median_of_task_median_process_cpu_ms": 109.375,
+        "all_measurement_median_wall_ms": 101.45054999999999,
+        "all_measurement_p05_wall_ms": 96.79204,
+        "all_measurement_p95_wall_ms": 131.64672,
+        "all_measurement_median_process_cpu_ms": 109.375
+      }
+    },
+    "pf_100000": {
+      "benchmark_seeds": [
+        101,
+        202,
+        303,
+        404,
+        555
+      ],
+      "selected_task_ids_per_seed": [
+        1,
+        159,
+        317,
+        475,
+        632,
+        790,
+        948,
+        1106,
+        1264,
+        1422,
+        1579,
+        1737,
+        1895,
+        2053,
+        2211,
+        2369,
+        2526,
+        2684,
+        2842,
+        3000
+      ],
+      "unique_tasks": 100,
+      "warmup_tasks": 5,
+      "repeats": 1,
+      "formal_protocol": true,
+      "timing_scope": "new pH observation to next action",
+      "timed_operations": "state bookkeeping, observation/posterior update, and next-action selection",
+      "excluded": [
+        "Python startup",
+        "module import",
+        "checkpoint loading",
+        "controller construction/reset",
+        "task loading",
+        "chemical transition calculation",
+        "liquid delivery",
+        "mixing",
+        "sensor acquisition",
+        "file I/O"
+      ],
+      "case_construction": "one 0.01 mL pre-dose and rounded post-dose pH for each locked task",
+      "thread_environment": {
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "BLIS_NUM_THREADS": "1"
+      },
+      "execution_controls": {
+        "requested_cpu_index": 2,
+        "affinity_applied": true,
+        "priority_applied": true,
+        "affinity_mask_hex": "0x4",
+        "priority_class": "ABOVE_NORMAL_PRIORITY_CLASS"
+      },
+      "clock": {
+        "wall": {
+          "implementation": "QueryPerformanceCounter()",
+          "monotonic": true,
+          "adjustable": false,
+          "resolution": 1e-07
+        },
+        "process_cpu": {
+          "implementation": "GetProcessTimes()",
+          "monotonic": true,
+          "adjustable": false,
+          "resolution": 1e-07
+        }
+      },
+      "environment": {
+        "platform": "Windows-10-10.0.26100-SP0",
+        "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+        "logical_cpu_count": 32,
+        "python": "3.11.9",
+        "python_executable": "C:\\Users\\ZSY\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "numpy": "2.4.6",
+        "torch": "2.13.0+cpu",
+        "torch_threads": 1
+      },
+      "particle_count": 100000,
+      "method": "pf_100000",
+      "summary": {
+        "method": "pf_100000",
+        "unique_tasks": 100,
+        "repeats_per_task": 1,
+        "measurements": 100,
+        "primary_median_of_task_median_wall_ms": 900.93545,
+        "median_of_task_median_process_cpu_ms": 890.625,
+        "all_measurement_median_wall_ms": 900.93545,
+        "all_measurement_p05_wall_ms": 867.795675,
+        "all_measurement_p95_wall_ms": 936.61518,
+        "all_measurement_median_process_cpu_ms": 890.625
+      }
+    },
+    "pymc": {
+      "benchmark_seeds": [
+        101,
+        202,
+        303,
+        404,
+        555
+      ],
+      "selected_task_ids_per_seed": [
+        1,
+        159,
+        317,
+        475,
+        632,
+        790,
+        948,
+        1106,
+        1264,
+        1422,
+        1579,
+        1737,
+        1895,
+        2053,
+        2211,
+        2369,
+        2526,
+        2684,
+        2842,
+        3000
+      ],
+      "unique_tasks": 100,
+      "warmup_tasks": 5,
+      "repeats": 1,
+      "formal_protocol": true,
+      "timing_scope": "new pH observation to next action",
+      "timed_operations": "state bookkeeping, observation/posterior update, and next-action selection",
+      "excluded": [
+        "Python startup",
+        "module import",
+        "checkpoint loading",
+        "controller construction/reset",
+        "task loading",
+        "chemical transition calculation",
+        "liquid delivery",
+        "mixing",
+        "sensor acquisition",
+        "file I/O"
+      ],
+      "case_construction": "one 0.01 mL pre-dose and rounded post-dose pH for each locked task",
+      "thread_environment": {
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "BLIS_NUM_THREADS": "1"
+      },
+      "execution_controls": {
+        "requested_cpu_index": 2,
+        "affinity_applied": true,
+        "priority_applied": true,
+        "affinity_mask_hex": "0x4",
+        "priority_class": "ABOVE_NORMAL_PRIORITY_CLASS"
+      },
+      "clock": {
+        "wall": {
+          "implementation": "QueryPerformanceCounter()",
+          "monotonic": true,
+          "adjustable": false,
+          "resolution": 1e-07
+        },
+        "process_cpu": {
+          "implementation": "GetProcessTimes()",
+          "monotonic": true,
+          "adjustable": false,
+          "resolution": 1e-07
+        }
+      },
+      "environment": {
+        "platform": "Windows-10-10.0.26100-SP0",
+        "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+        "logical_cpu_count": 32,
+        "python": "3.11.9",
+        "python_executable": "C:\\Users\\ZSY\\Desktop\\FDTD\\joint_parameter_bayesian_processed_20260811\\.venv\\Scripts\\python.exe",
+        "numpy": "2.2.6",
+        "pymc": "5.28.5"
+      },
+      "pymc": {
+        "draws_per_k": 300,
+        "chains": 1,
+        "k_values": [
+          1,
+          2,
+          3
+        ]
+      },
+      "method": "pymc",
+      "summary": {
+        "method": "pymc",
+        "unique_tasks": 100,
+        "repeats_per_task": 1,
+        "measurements": 100,
+        "primary_median_of_task_median_wall_ms": 14407.37565,
+        "median_of_task_median_process_cpu_ms": 14007.8125,
+        "all_measurement_median_wall_ms": 14407.37565,
+        "all_measurement_p05_wall_ms": 12360.1902,
+        "all_measurement_p95_wall_ms": 16760.59485,
+        "all_measurement_median_process_cpu_ms": 14007.8125
+      }
+    }
+  },
+  "host": {
+    "platform": "Windows-10-10.0.26100-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel"
+  },
+  "worker_sha256": "bb7600c88af01e6b130a30f39675af371aae957f1fa031b6d96ae2ac6671a133",
+  "launcher_sha256": "bbba93e8f281f45d24ff3812783b6f855d25bb297a1cfad67bccff84ec7c7478",
+  "finalizer_sha256": "f8dbd38f5e554d157e5a364a304a4dfab4d62012e8d2a5b3b503ffc847628b79"
+}

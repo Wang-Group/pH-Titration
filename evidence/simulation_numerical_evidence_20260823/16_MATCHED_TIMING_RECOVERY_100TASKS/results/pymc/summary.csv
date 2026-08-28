@@ -1,0 +1,2 @@
+method,unique_tasks,repeats_per_task,measurements,primary_median_of_task_median_wall_ms,median_of_task_median_process_cpu_ms,all_measurement_median_wall_ms,all_measurement_p05_wall_ms,all_measurement_p95_wall_ms,all_measurement_median_process_cpu_ms
+pymc,100,1,100,14407.37565,14007.8125,14407.37565,12360.1902,16760.59485,14007.8125
