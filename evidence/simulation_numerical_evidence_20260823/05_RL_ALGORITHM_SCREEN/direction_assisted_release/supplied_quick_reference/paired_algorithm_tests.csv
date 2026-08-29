@@ -1,0 +1,7 @@
+initialization,algorithm_a,algorithm_b,paired_tasks,algorithm_a_success_only,algorithm_b_success_only,task_level_mcnemar_p,seed_success_difference_b_minus_a_pp_mean,seed_success_difference_sd,seed_difference_bootstrap_95ci_low,seed_difference_bootstrap_95ci_high,seed_sign_flip_p,task_level_mcnemar_holm_p
+imitation,a2c,ppo,10,0,0,1.0,0.0,0.0,0.0,0.0,1.0,1.0
+imitation,a2c,reinforce,10,0,0,1.0,0.0,0.0,0.0,0.0,1.0,1.0
+imitation,ppo,reinforce,10,0,0,1.0,0.0,0.0,0.0,0.0,1.0,1.0
+random,a2c,ppo,10,0,0,1.0,0.0,0.0,0.0,0.0,1.0,1.0
+random,a2c,reinforce,10,0,0,1.0,0.0,0.0,0.0,0.0,1.0,1.0
+random,ppo,reinforce,10,0,0,1.0,0.0,0.0,0.0,0.0,1.0,1.0

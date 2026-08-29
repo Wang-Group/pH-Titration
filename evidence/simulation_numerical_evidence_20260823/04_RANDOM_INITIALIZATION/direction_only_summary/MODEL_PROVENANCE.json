@@ -1,0 +1,339 @@
+[
+  {
+    "method": "pf_imitation",
+    "training_seed": "selected",
+    "checkpoint": "C:\\Users\\ZSY\\Documents\\xwechat_files\\wxid_mkx0ewygqoen22_124f\\msg\\file\\2026-08\\bayesian_external_rule_ablation_20260811\\bayesian_external_rule_ablation_20260811\\results\\complete_study_standard_v1\\02_imitation\\imitation_best.pth",
+    "file_sha256": "71ae0176252d55c2a30b5d69afc6033ee1b0f4ac045e05b689ae7031c488adcc",
+    "actor_sha256": "74415a08a9b5bb0f712c6db40a1ccaacb0d02c27e624fcc6c29ab65b15c7d813",
+    "metadata": {
+      "training_seed": 22,
+      "selected_epoch": 30,
+      "selection_metrics": {
+        "seed": 22,
+        "epoch": 30,
+        "train_loss": 4.486306804056285,
+        "top1_class_accuracy_percent": 4.357994854603571,
+        "within_0p05ml_percent": 30.022608560068605,
+        "within_0p10ml_percent": 44.30498167927029,
+        "argmax_volume_mae_ml": 0.3461526467607391,
+        "expected_volume_mae_ml": 0.31527666061057147,
+        "closed_loop_tasks": 500,
+        "closed_loop_success_rate_percent": 90.0,
+        "closed_loop_strict_success_rate_percent": 36.0,
+        "closed_loop_severe_failure_rate_percent": 1.2,
+        "closed_loop_false_stop_rate_percent": 2.4,
+        "closed_loop_successful_steps_mean": 7.611111111111111,
+        "closed_loop_steps_mean": 11.062,
+        "closed_loop_overshoots_mean": 2.42,
+        "closed_loop_total_volume_mean_ml": 7.2565599999999995,
+        "closed_loop_final_abs_error_mean": 0.08741066665347688
+      },
+      "teacher": "pf_pka_conc_variable_k"
+    }
+  },
+  {
+    "method": "ppo_from_pf_imitation",
+    "training_seed": 101,
+    "checkpoint": "C:\\Users\\ZSY\\Documents\\xwechat_files\\wxid_mkx0ewygqoen22_124f\\msg\\file\\2026-08\\bayesian_external_rule_ablation_20260811\\bayesian_external_rule_ablation_20260811\\results\\complete_study_standard_v1\\03_ppo\\seed_101\\best_ppo.pth",
+    "file_sha256": "8349345169832d8f7a99f507eb8970dfbc3e8c63b432a1ffa50b9f72ab8af678",
+    "actor_sha256": "1cf2ed57408d34b78d8858285f48d66e584ade26ef952ef721352ea3198c3f4c",
+    "metadata": {
+      "seed": 101,
+      "environment_steps": 100047,
+      "validation": {
+        "tasks": 500,
+        "success_rate_percent": 89.2,
+        "strict_success_rate_percent": 36.0,
+        "severe_failure_rate_percent": 4.8,
+        "false_stop_rate_percent": 2.4,
+        "successful_steps_mean": 6.150224215246637,
+        "steps_mean": 9.898,
+        "overshoots_mean": 3.658,
+        "total_volume_mean_ml": 8.16682,
+        "final_abs_error_mean": 0.13880053883420615
+      },
+      "source": "ppo_final_batch"
+    }
+  },
+  {
+    "method": "random_actor_untrained",
+    "training_seed": 101,
+    "checkpoint": "C:\\Users\\ZSY\\Desktop\\FDTD\\direction_only_pf_imitation_ppo_random_comparison_20260817\\results\\formal_random_ppo\\seed_101\\initial_random_actor.pth",
+    "file_sha256": "ca4b068a6468471f8b1ca7486d7b3ef3af8fdd21ff1a2462d8b2d7707fe9457d",
+    "actor_sha256": "f86011dc758fb224b1f003c015aa6947ce10557e25f1448f75338b31f26d07ba",
+    "metadata": {
+      "training_seed": 101,
+      "actor_seed": 9000101,
+      "source": "explicit_random_reset_parameters",
+      "normalizer_source": "C:\\Users\\ZSY\\Documents\\xwechat_files\\wxid_mkx0ewygqoen22_124f\\msg\\file\\2026-08\\bayesian_external_rule_ablation_20260811\\bayesian_external_rule_ablation_20260811\\results\\complete_study_standard_v1\\02_imitation\\imitation_best.pth"
+    }
+  },
+  {
+    "method": "ppo_from_random",
+    "training_seed": 101,
+    "checkpoint": "C:\\Users\\ZSY\\Desktop\\FDTD\\direction_only_pf_imitation_ppo_random_comparison_20260817\\results\\formal_random_ppo\\seed_101\\best_ppo.pth",
+    "file_sha256": "b6ae80e81e2cc5434ab09423e107058660aeeb03ac2c01fd23345c9b0bbbccfa",
+    "actor_sha256": "cd825c259005a3ea6b3b5daf9386347a6e03de5f8582bc4877152ae8f97fe5a3",
+    "metadata": {
+      "seed": 101,
+      "environment_steps": 100009,
+      "validation": {
+        "tasks": 500,
+        "success_rate_percent": 77.8,
+        "strict_success_rate_percent": 40.8,
+        "severe_failure_rate_percent": 14.2,
+        "false_stop_rate_percent": 0.8,
+        "successful_steps_mean": 8.437017994858612,
+        "steps_mean": 16.97,
+        "overshoots_mean": 11.318,
+        "total_volume_mean_ml": 17.969479999999997,
+        "final_abs_error_mean": 0.36552152402063726
+      },
+      "source": "ppo"
+    }
+  },
+  {
+    "method": "ppo_from_pf_imitation",
+    "training_seed": 202,
+    "checkpoint": "C:\\Users\\ZSY\\Documents\\xwechat_files\\wxid_mkx0ewygqoen22_124f\\msg\\file\\2026-08\\bayesian_external_rule_ablation_20260811\\bayesian_external_rule_ablation_20260811\\results\\complete_study_standard_v1\\03_ppo\\seed_202\\best_ppo.pth",
+    "file_sha256": "c8453c75552955d2d41cbf98fa1794d4e40b9e12f32817f29059e8d01e2599de",
+    "actor_sha256": "a79394a7474d80803c798514003abe063f5498fb5dbf9f6f41337277b4f2bb18",
+    "metadata": {
+      "seed": 202,
+      "environment_steps": 100010,
+      "validation": {
+        "tasks": 500,
+        "success_rate_percent": 87.4,
+        "strict_success_rate_percent": 38.0,
+        "severe_failure_rate_percent": 4.6,
+        "false_stop_rate_percent": 1.0,
+        "successful_steps_mean": 6.3478260869565215,
+        "steps_mean": 11.322,
+        "overshoots_mean": 3.52,
+        "total_volume_mean_ml": 8.253779999999999,
+        "final_abs_error_mean": 0.17031432421418055
+      },
+      "source": "ppo"
+    }
+  },
+  {
+    "method": "random_actor_untrained",
+    "training_seed": 202,
+    "checkpoint": "C:\\Users\\ZSY\\Desktop\\FDTD\\direction_only_pf_imitation_ppo_random_comparison_20260817\\results\\formal_random_ppo\\seed_202\\initial_random_actor.pth",
+    "file_sha256": "7e6244c64f90bd791e1f062896af270cc53c39111777cbab021a452fc8b1226e",
+    "actor_sha256": "95d479ab3e6583f8c2f48f35bff407d55026a50f5aa4c7ec5ce8ba22ed572088",
+    "metadata": {
+      "training_seed": 202,
+      "actor_seed": 9000202,
+      "source": "explicit_random_reset_parameters",
+      "normalizer_source": "C:\\Users\\ZSY\\Documents\\xwechat_files\\wxid_mkx0ewygqoen22_124f\\msg\\file\\2026-08\\bayesian_external_rule_ablation_20260811\\bayesian_external_rule_ablation_20260811\\results\\complete_study_standard_v1\\02_imitation\\imitation_best.pth"
+    }
+  },
+  {
+    "method": "ppo_from_random",
+    "training_seed": 202,
+    "checkpoint": "C:\\Users\\ZSY\\Desktop\\FDTD\\direction_only_pf_imitation_ppo_random_comparison_20260817\\results\\formal_random_ppo\\seed_202\\best_ppo.pth",
+    "file_sha256": "6aa30a255f1b761549abdcf4f2b3a28404250e3b701054337c2c40d1453f469b",
+    "actor_sha256": "c7aae9c4eaf5fe93b4269ab942b802b751a6cebca4d2f56e836b8715c01fa332",
+    "metadata": {
+      "seed": 202,
+      "environment_steps": 80001,
+      "validation": {
+        "tasks": 500,
+        "success_rate_percent": 77.4,
+        "strict_success_rate_percent": 36.6,
+        "severe_failure_rate_percent": 16.400000000000002,
+        "false_stop_rate_percent": 1.4000000000000001,
+        "successful_steps_mean": 8.0671834625323,
+        "steps_mean": 13.754,
+        "overshoots_mean": 9.336,
+        "total_volume_mean_ml": 19.557840000000002,
+        "final_abs_error_mean": 0.3466228290430738
+      },
+      "source": "ppo"
+    }
+  },
+  {
+    "method": "ppo_from_pf_imitation",
+    "training_seed": 303,
+    "checkpoint": "C:\\Users\\ZSY\\Documents\\xwechat_files\\wxid_mkx0ewygqoen22_124f\\msg\\file\\2026-08\\bayesian_external_rule_ablation_20260811\\bayesian_external_rule_ablation_20260811\\results\\complete_study_standard_v1\\03_ppo\\seed_303\\best_ppo.pth",
+    "file_sha256": "bafd85f896945245f4a2275764ee74cfb458aae78cbe91f5c17396c24fd22f1c",
+    "actor_sha256": "8c2ccdbc7879d1d54b151eeccb76ed3d354e58ace23e8052f6619d57369214fb",
+    "metadata": {
+      "seed": 303,
+      "environment_steps": 100023,
+      "validation": {
+        "tasks": 500,
+        "success_rate_percent": 92.2,
+        "strict_success_rate_percent": 45.800000000000004,
+        "severe_failure_rate_percent": 3.5999999999999996,
+        "false_stop_rate_percent": 1.6,
+        "successful_steps_mean": 5.483731019522777,
+        "steps_mean": 8.184,
+        "overshoots_mean": 3.546,
+        "total_volume_mean_ml": 8.85234,
+        "final_abs_error_mean": 0.12368602547211065
+      },
+      "source": "ppo_final_batch"
+    }
+  },
+  {
+    "method": "random_actor_untrained",
+    "training_seed": 303,
+    "checkpoint": "C:\\Users\\ZSY\\Desktop\\FDTD\\direction_only_pf_imitation_ppo_random_comparison_20260817\\results\\formal_random_ppo\\seed_303\\initial_random_actor.pth",
+    "file_sha256": "8994bcf00c925a40f06d422c4c291c1b692aa35f3dde0cb3180ba6c9d52f2414",
+    "actor_sha256": "288563725844d287d8277986648cd6fec215a890acd9c38ffed06c24ef1757b3",
+    "metadata": {
+      "training_seed": 303,
+      "actor_seed": 9000303,
+      "source": "explicit_random_reset_parameters",
+      "normalizer_source": "C:\\Users\\ZSY\\Documents\\xwechat_files\\wxid_mkx0ewygqoen22_124f\\msg\\file\\2026-08\\bayesian_external_rule_ablation_20260811\\bayesian_external_rule_ablation_20260811\\results\\complete_study_standard_v1\\02_imitation\\imitation_best.pth"
+    }
+  },
+  {
+    "method": "ppo_from_random",
+    "training_seed": 303,
+    "checkpoint": "C:\\Users\\ZSY\\Desktop\\FDTD\\direction_only_pf_imitation_ppo_random_comparison_20260817\\results\\formal_random_ppo\\seed_303\\best_ppo.pth",
+    "file_sha256": "c09bc1b38fb068b855c09c9e59269b03f96c6724763e89b006c22db18d771328",
+    "actor_sha256": "f9ff22324ad39cecc12ffeed32df2591ef466547130aee54a25379acc3151f60",
+    "metadata": {
+      "seed": 303,
+      "environment_steps": 30000,
+      "validation": {
+        "tasks": 500,
+        "success_rate_percent": 70.19999999999999,
+        "strict_success_rate_percent": 28.799999999999997,
+        "severe_failure_rate_percent": 19.400000000000002,
+        "false_stop_rate_percent": 0.8,
+        "successful_steps_mean": 14.162393162393162,
+        "steps_mean": 21.738,
+        "overshoots_mean": 7.804,
+        "total_volume_mean_ml": 18.59268,
+        "final_abs_error_mean": 0.3977349637238365
+      },
+      "source": "ppo"
+    }
+  },
+  {
+    "method": "ppo_from_pf_imitation",
+    "training_seed": 404,
+    "checkpoint": "C:\\Users\\ZSY\\Documents\\xwechat_files\\wxid_mkx0ewygqoen22_124f\\msg\\file\\2026-08\\bayesian_external_rule_ablation_20260811\\bayesian_external_rule_ablation_20260811\\results\\complete_study_standard_v1\\03_ppo\\seed_404\\best_ppo.pth",
+    "file_sha256": "145f32a2284a2ea995bb4cb1f470951b5fbacd5217dda3594c7dec1c3ea08c5c",
+    "actor_sha256": "e96c221227d911fa8ceef5a18085dd3ac1fd2fd8b0b5fbf37e9726371479684d",
+    "metadata": {
+      "seed": 404,
+      "environment_steps": 70010,
+      "validation": {
+        "tasks": 500,
+        "success_rate_percent": 89.4,
+        "strict_success_rate_percent": 39.800000000000004,
+        "severe_failure_rate_percent": 3.8,
+        "false_stop_rate_percent": 1.7999999999999998,
+        "successful_steps_mean": 6.31096196868009,
+        "steps_mean": 10.338,
+        "overshoots_mean": 4.138,
+        "total_volume_mean_ml": 8.485019999999999,
+        "final_abs_error_mean": 0.12633934014963555
+      },
+      "source": "ppo"
+    }
+  },
+  {
+    "method": "random_actor_untrained",
+    "training_seed": 404,
+    "checkpoint": "C:\\Users\\ZSY\\Desktop\\FDTD\\direction_only_pf_imitation_ppo_random_comparison_20260817\\results\\formal_random_ppo\\seed_404\\initial_random_actor.pth",
+    "file_sha256": "42b8e13d6e890ec28908541087333a71668099adf48d25df64d96b6847b64f1b",
+    "actor_sha256": "472332242a96278c54da820fbc75459e620928b74e72b1286ac77a9c8b74239c",
+    "metadata": {
+      "training_seed": 404,
+      "actor_seed": 9000404,
+      "source": "explicit_random_reset_parameters",
+      "normalizer_source": "C:\\Users\\ZSY\\Documents\\xwechat_files\\wxid_mkx0ewygqoen22_124f\\msg\\file\\2026-08\\bayesian_external_rule_ablation_20260811\\bayesian_external_rule_ablation_20260811\\results\\complete_study_standard_v1\\02_imitation\\imitation_best.pth"
+    }
+  },
+  {
+    "method": "ppo_from_random",
+    "training_seed": 404,
+    "checkpoint": "C:\\Users\\ZSY\\Desktop\\FDTD\\direction_only_pf_imitation_ppo_random_comparison_20260817\\results\\formal_random_ppo\\seed_404\\best_ppo.pth",
+    "file_sha256": "1879eb095f7ed7e3224404f4235d87b6daf8ef73c2ec1e1dd2887c077740c59c",
+    "actor_sha256": "eae7b125e2175404c8d5907aba2adda8bf375e3099677405acf23e499bff0d28",
+    "metadata": {
+      "seed": 404,
+      "environment_steps": 60007,
+      "validation": {
+        "tasks": 500,
+        "success_rate_percent": 82.6,
+        "strict_success_rate_percent": 39.2,
+        "severe_failure_rate_percent": 9.2,
+        "false_stop_rate_percent": 2.0,
+        "successful_steps_mean": 8.939467312348668,
+        "steps_mean": 15.49,
+        "overshoots_mean": 9.976,
+        "total_volume_mean_ml": 14.909199999999998,
+        "final_abs_error_mean": 0.26274238590738225
+      },
+      "source": "ppo"
+    }
+  },
+  {
+    "method": "ppo_from_pf_imitation",
+    "training_seed": 555,
+    "checkpoint": "C:\\Users\\ZSY\\Documents\\xwechat_files\\wxid_mkx0ewygqoen22_124f\\msg\\file\\2026-08\\bayesian_external_rule_ablation_20260811\\bayesian_external_rule_ablation_20260811\\results\\complete_study_standard_v1\\03_ppo\\seed_555\\best_ppo.pth",
+    "file_sha256": "fe1bac1e8cf5a6b4ff893b2e9fed0dbd54c988a36c1f2d25b05ec3366c5cd80c",
+    "actor_sha256": "d3e3fccfb9970e6ac3803c5b83bfba54d3ca5f77a7b39e354de096a7ce3d0a2b",
+    "metadata": {
+      "seed": 555,
+      "environment_steps": 10001,
+      "validation": {
+        "tasks": 500,
+        "success_rate_percent": 89.8,
+        "strict_success_rate_percent": 33.800000000000004,
+        "severe_failure_rate_percent": 3.4000000000000004,
+        "false_stop_rate_percent": 2.4,
+        "successful_steps_mean": 7.759465478841871,
+        "steps_mean": 11.31,
+        "overshoots_mean": 3.502,
+        "total_volume_mean_ml": 7.63544,
+        "final_abs_error_mean": 0.13457994858730754
+      },
+      "source": "ppo"
+    }
+  },
+  {
+    "method": "random_actor_untrained",
+    "training_seed": 555,
+    "checkpoint": "C:\\Users\\ZSY\\Desktop\\FDTD\\direction_only_pf_imitation_ppo_random_comparison_20260817\\results\\formal_random_ppo\\seed_555\\initial_random_actor.pth",
+    "file_sha256": "579bcc4856d93f710fdae90d0bc52aba154ac0a040062bce70ffeee200982d71",
+    "actor_sha256": "f5fb81fb899748e571f84e5d8bb399d43db631dd2f06f2ef74a429dd0f45d9ce",
+    "metadata": {
+      "training_seed": 555,
+      "actor_seed": 9000555,
+      "source": "explicit_random_reset_parameters",
+      "normalizer_source": "C:\\Users\\ZSY\\Documents\\xwechat_files\\wxid_mkx0ewygqoen22_124f\\msg\\file\\2026-08\\bayesian_external_rule_ablation_20260811\\bayesian_external_rule_ablation_20260811\\results\\complete_study_standard_v1\\02_imitation\\imitation_best.pth"
+    }
+  },
+  {
+    "method": "ppo_from_random",
+    "training_seed": 555,
+    "checkpoint": "C:\\Users\\ZSY\\Desktop\\FDTD\\direction_only_pf_imitation_ppo_random_comparison_20260817\\results\\formal_random_ppo\\seed_555\\best_ppo.pth",
+    "file_sha256": "7e3e9532dc641c6559be7a84541b11cc4e39b51417e547f8b8648faac7bbb955",
+    "actor_sha256": "b9bce9ce423fe9decd3f19b2fe460ae143a2f140fce9524858285162e8f61d4b",
+    "metadata": {
+      "seed": 555,
+      "environment_steps": 50005,
+      "validation": {
+        "tasks": 500,
+        "success_rate_percent": 86.0,
+        "strict_success_rate_percent": 41.4,
+        "severe_failure_rate_percent": 8.6,
+        "false_stop_rate_percent": 2.1999999999999997,
+        "successful_steps_mean": 10.337209302325581,
+        "steps_mean": 15.016,
+        "overshoots_mean": 7.27,
+        "total_volume_mean_ml": 13.95216,
+        "final_abs_error_mean": 0.25857535001237125
+      },
+      "source": "ppo"
+    }
+  }
+]

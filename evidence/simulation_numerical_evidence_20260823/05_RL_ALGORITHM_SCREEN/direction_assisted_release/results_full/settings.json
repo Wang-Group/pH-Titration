@@ -1,0 +1,54 @@
+{
+  "protocol_id": "direction_assisted_volume_only_v1",
+  "merged_from": [
+    "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed101",
+    "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed202",
+    "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed303",
+    "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed404",
+    "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\a2c_seed555",
+    "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed101",
+    "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed202",
+    "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed303",
+    "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed404",
+    "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\ppo_seed555",
+    "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed101",
+    "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed202",
+    "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed303",
+    "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed404",
+    "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807\\results_shards\\reinforce_seed555"
+  ],
+  "algorithms": [
+    "ppo",
+    "a2c",
+    "reinforce"
+  ],
+  "initializations": [
+    "imitation",
+    "random"
+  ],
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "train_steps": 25000,
+  "training_pool_size": 5000,
+  "eval_tasks": 1000,
+  "eval_interval": 5000,
+  "learning_rate": 0.0001,
+  "gamma": 0.99,
+  "ppo_batch_steps": 2048,
+  "ppo_epochs": 4,
+  "device": "cpu",
+  "torch_threads": 1,
+  "condition_count": 30,
+  "task_row_count": 30000,
+  "curve_row_count": 180,
+  "policy_action": "1000 volume classes from 0.01 to 10.00 mL",
+  "external_direction_rule": "base if measured_ph < target_ph else acid",
+  "titrant_concentration_m": 0.1,
+  "overshoot_action_mask": false,
+  "automatic_titrant_switching": false
+}

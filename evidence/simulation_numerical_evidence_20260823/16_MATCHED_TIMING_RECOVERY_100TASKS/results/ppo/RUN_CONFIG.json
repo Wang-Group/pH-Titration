@@ -1,0 +1,103 @@
+{
+  "benchmark_seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "selected_task_ids_per_seed": [
+    1,
+    159,
+    317,
+    475,
+    632,
+    790,
+    948,
+    1106,
+    1264,
+    1422,
+    1579,
+    1737,
+    1895,
+    2053,
+    2211,
+    2369,
+    2526,
+    2684,
+    2842,
+    3000
+  ],
+  "unique_tasks": 100,
+  "warmup_tasks": 5,
+  "repeats": 1,
+  "formal_protocol": true,
+  "timing_scope": "new pH observation to next action",
+  "timed_operations": "state bookkeeping, observation/posterior update, and next-action selection",
+  "excluded": [
+    "Python startup",
+    "module import",
+    "checkpoint loading",
+    "controller construction/reset",
+    "task loading",
+    "chemical transition calculation",
+    "liquid delivery",
+    "mixing",
+    "sensor acquisition",
+    "file I/O"
+  ],
+  "case_construction": "one 0.01 mL pre-dose and rounded post-dose pH for each locked task",
+  "thread_environment": {
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "BLIS_NUM_THREADS": "1"
+  },
+  "execution_controls": {
+    "requested_cpu_index": 2,
+    "affinity_applied": true,
+    "priority_applied": true,
+    "affinity_mask_hex": "0x4",
+    "priority_class": "ABOVE_NORMAL_PRIORITY_CLASS"
+  },
+  "clock": {
+    "wall": {
+      "implementation": "QueryPerformanceCounter()",
+      "monotonic": true,
+      "adjustable": false,
+      "resolution": 1e-07
+    },
+    "process_cpu": {
+      "implementation": "GetProcessTimes()",
+      "monotonic": true,
+      "adjustable": false,
+      "resolution": 1e-07
+    }
+  },
+  "environment": {
+    "platform": "Windows-10-10.0.26100-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "logical_cpu_count": 32,
+    "python": "3.11.9",
+    "python_executable": "C:\\Users\\ZSY\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+    "numpy": "2.4.6",
+    "torch": "2.13.0+cpu",
+    "torch_threads": 1
+  },
+  "checkpoint_sha256": "4004d7a09768fc5ac3f448523f53cb22210ed919ca7e713f13d9aa693cc19de5",
+  "method": "ppo",
+  "summary": {
+    "method": "ppo",
+    "unique_tasks": 100,
+    "repeats_per_task": 1,
+    "measurements": 100,
+    "primary_median_of_task_median_wall_ms": 0.15389999999999998,
+    "median_of_task_median_process_cpu_ms": 0.0,
+    "all_measurement_median_wall_ms": 0.15389999999999998,
+    "all_measurement_p05_wall_ms": 0.14838,
+    "all_measurement_p95_wall_ms": 0.2711649999999998,
+    "all_measurement_median_process_cpu_ms": 0.0
+  }
+}

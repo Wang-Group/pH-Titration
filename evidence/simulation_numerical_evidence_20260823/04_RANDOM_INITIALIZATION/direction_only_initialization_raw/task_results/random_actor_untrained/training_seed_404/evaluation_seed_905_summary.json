@@ -1,0 +1,16 @@
+{
+  "method": "random_actor_untrained",
+  "method_label": "Untrained random actor",
+  "training_seed": 404,
+  "evaluation_seed": 905,
+  "tasks": 3000,
+  "success_rate_percent": 32.7,
+  "strict_success_rate_percent": 16.133333333333333,
+  "severe_failure_rate_percent": 43.46666666666666,
+  "false_stop_rate_percent": 0.5666666666666667,
+  "successful_steps_mean": 6.439347604485219,
+  "steps_mean": 9.031333333333333,
+  "overshoots_mean": 7.594333333333333,
+  "total_volume_mean_ml": 42.66641333333333,
+  "final_abs_error_mean": 1.184425413761492
+}

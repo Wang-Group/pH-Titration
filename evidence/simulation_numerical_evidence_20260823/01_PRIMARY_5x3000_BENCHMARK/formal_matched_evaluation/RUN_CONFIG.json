@@ -1,0 +1,34 @@
+{
+  "benchmark_seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "tasks_per_seed": 3000,
+  "protocol_family": "pH-control",
+  "protocol_version": "2026.08",
+  "protocol_profile": "formal_evaluation",
+  "controller_stop_source": "rounded_observed_ph",
+  "controller_stop_operator": "<=",
+  "controller_stop_tolerance_ph": 0.1,
+  "reported_success_source": "final_unrounded_equilibrium_ph",
+  "reported_success_operator": "<=",
+  "reported_success_tolerance_ph": 0.1,
+  "false_stop_definition": "rounded observed error <= 0.10 pH while final unrounded equilibrium error > 0.10 pH",
+  "max_steps": 50,
+  "max_total_dose_ml": 50.0,
+  "particles_reused_for_pf": 1000,
+  "neural_protocol": "direction_plus_persistent_post_overshoot_cap",
+  "overshoot_cap_enabled": true,
+  "sensor_resolution_ph": 0.01,
+  "action_volume_range_ml": [
+    0.01,
+    10.0
+  ],
+  "imitation_checkpoint_sha256": "71ae0176252d55c2a30b5d69afc6033ee1b0f4ac045e05b689ae7031c488adcc",
+  "ppo_checkpoint_sha256": "4004d7a09768fc5ac3f448523f53cb22210ed919ca7e713f13d9aa693cc19de5",
+  "ppo_checkpoint_sha256_before_protocol_metadata": "bafd85f896945245f4a2275764ee74cfb458aae78cbe91f5c17396c24fd22f1c",
+  "ppo_actor_sha256": "8c2ccdbc7879d1d54b151eeccb76ed3d354e58ace23e8052f6619d57369214fb"
+}

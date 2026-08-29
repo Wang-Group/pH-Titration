@@ -1,0 +1,16 @@
+pf_method,pymc_method,metric,independent_seeds,difference_pymc_minus_pf_mean,difference_pymc_minus_pf_seed_sd,bootstrap_95ci_low,bootstrap_95ci_high,exact_sign_flip_p_two_sided
+pf_pka_only_k3,pymc_pka_only_k3,pair_count_accuracy_percent,5,0.0,0.0,0.0,0.0,1.0
+pf_pka_only_k3,pymc_pka_only_k3,concentration_relative_error_median_percent,5,-2.149391775674303e-14,2.8479936494807084e-14,-4.281019982954604e-14,1.4210854715202005e-15,1.0
+pf_pka_only_k3,pymc_pka_only_k3,pka_matched_mae_median,5,0.06111138601257715,0.15955961693819634,-0.0320155418484652,0.20531490646589626,0.6875
+pf_pka_only_k3,pymc_pka_only_k3,local_rmse_0p10ml_median_ph,5,-0.0006206551433294537,0.0012781865202099538,-0.0017201259615463372,0.00025543159246827624,0.5
+pf_pka_only_k3,pymc_pka_only_k3,full_curve_rmse_median_ph,5,-0.04216104157484661,0.751154431658451,-0.5735500625511777,0.5770263335646009,1.0
+pf_pka_conc_k3,pymc_pka_conc_k3,pair_count_accuracy_percent,5,0.0,0.0,0.0,0.0,1.0
+pf_pka_conc_k3,pymc_pka_conc_k3,concentration_relative_error_median_percent,5,0.21016007252243654,1.6574808079023986,-1.0680511503269599,1.488371295371833,0.9375
+pf_pka_conc_k3,pymc_pka_conc_k3,pka_matched_mae_median,5,0.032094779122702685,0.14805843315327413,-0.08146362157389375,0.16150538480216484,0.6875
+pf_pka_conc_k3,pymc_pka_conc_k3,local_rmse_0p10ml_median_ph,5,-0.011690846595146227,0.033343355852812645,-0.03863400199132169,0.01288795361415863,0.5
+pf_pka_conc_k3,pymc_pka_conc_k3,full_curve_rmse_median_ph,5,-0.06293586777611175,0.17198857615808263,-0.1891706545692439,0.07116540190309381,0.4375
+pf_pka_conc_variable_k,pymc_pka_conc_variable_k,pair_count_accuracy_percent,5,6.666666666666666,27.88866755113585,-13.333333333333332,26.666666666666664,1.0
+pf_pka_conc_variable_k,pymc_pka_conc_variable_k,concentration_relative_error_median_percent,5,-5.613737898791061,20.280931897762535,-23.710948530673523,5.148440194720339,1.0
+pf_pka_conc_variable_k,pymc_pka_conc_variable_k,pka_matched_mae_median,5,0.03931748594715867,0.12059306585099963,-0.05017206109921531,0.13680320427672144,0.5625
+pf_pka_conc_variable_k,pymc_pka_conc_variable_k,local_rmse_0p10ml_median_ph,5,-0.021850809902464716,0.02065865855686092,-0.03802418231847363,-0.005677437486455797,0.125
+pf_pka_conc_variable_k,pymc_pka_conc_variable_k,full_curve_rmse_median_ph,5,0.07420762398084964,0.13275344692047242,-0.0234174716367418,0.18417534506024508,0.4375

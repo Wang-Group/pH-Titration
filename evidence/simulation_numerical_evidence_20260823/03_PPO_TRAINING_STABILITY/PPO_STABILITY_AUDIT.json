@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "protocol_family": "pH-control",
+  "protocol_version": "2026.08",
+  "training_profile": "training_environment_strict",
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "common_locked_test_tasks": 1000,
+  "success_rate_percent_by_seed": {
+    "101": 89.3,
+    "202": 88.8,
+    "303": 93.4,
+    "404": 87.8,
+    "555": 88.4
+  },
+  "success_rate_percent_mean": 89.54,
+  "success_rate_percent_sample_sd": 2.2266566866043833,
+  "checkpoints": [
+    {
+      "seed": 101,
+      "file_sha256": "9fedcafa84f4d3f8969bfae486a200a4ab8147d6af4e9a427f8c41e998b0caf3",
+      "actor_sha256": "1cf2ed57408d34b78d8858285f48d66e584ade26ef952ef721352ea3198c3f4c"
+    },
+    {
+      "seed": 202,
+      "file_sha256": "b4e9864280f5902456cb0e4dacfdd24c7ee2fa1c4df0a28b2377273319f9df0c",
+      "actor_sha256": "a79394a7474d80803c798514003abe063f5498fb5dbf9f6f41337277b4f2bb18"
+    },
+    {
+      "seed": 303,
+      "file_sha256": "4004d7a09768fc5ac3f448523f53cb22210ed919ca7e713f13d9aa693cc19de5",
+      "actor_sha256": "8c2ccdbc7879d1d54b151eeccb76ed3d354e58ace23e8052f6619d57369214fb"
+    },
+    {
+      "seed": 404,
+      "file_sha256": "d7aef675e54121a7cb88fb6b7225b457d6609b2c142ed29cab641d34cf6a8264",
+      "actor_sha256": "e96c221227d911fa8ceef5a18085dd3ac1fd2fd8b0b5fbf37e9726371479684d"
+    },
+    {
+      "seed": 555,
+      "file_sha256": "098b65d844ad0b06f0a960520cea7e672739d9abcd30b2f1e931920561af3ec7",
+      "actor_sha256": "d3e3fccfb9970e6ac3803c5b83bfba54d3ca5f77a7b39e354de096a7ce3d0a2b"
+    }
+  ]
+}

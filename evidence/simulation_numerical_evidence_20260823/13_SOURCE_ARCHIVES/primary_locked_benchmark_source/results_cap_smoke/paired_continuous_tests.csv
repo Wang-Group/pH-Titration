@@ -1,0 +1,13 @@
+comparison,metric,paired_tasks,mean_paired_difference,median_paired_difference,wilcoxon_statistic,p_value,holm_adjusted_p
+imitation_minus_pf_teacher,steps,5,26.8,30.0,0.0,0.0625,0.25
+imitation_minus_pf_teacher,overshoots,5,-0.4,0.0,0.0,0.5,0.5
+imitation_minus_pf_teacher,total_volume_ml,5,-0.6659999999999997,-0.27,1.0,0.125,0.375
+imitation_minus_pf_teacher,final_abs_error,5,0.04518469404206584,0.027533708673860957,1.0,0.125,0.375
+ppo_minus_pf_teacher,steps,5,9.0,0.0,4.5,1.0,1.0
+ppo_minus_pf_teacher,overshoots,5,-0.2,0.0,0.0,1.0,1.0
+ppo_minus_pf_teacher,total_volume_ml,5,0.13600000000000012,0.0,5.0,1.0,1.0
+ppo_minus_pf_teacher,final_abs_error,5,0.009956355634769131,0.01118062764048311,5.0,0.625,1.0
+ppo_minus_imitation,steps,5,-17.8,-25.0,1.0,0.25,0.75
+ppo_minus_imitation,overshoots,5,0.2,0.0,0.0,1.0,1.0
+ppo_minus_imitation,total_volume_ml,5,0.8019999999999996,0.5299999999999991,2.0,0.1875,0.75
+ppo_minus_imitation,final_abs_error,5,-0.03522833840729671,-0.0076085384133950384,3.0,0.3125,0.75

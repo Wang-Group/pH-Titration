@@ -1,0 +1,26 @@
+{
+  "created_utc": "2026-08-07T04:57:11.359032+00:00",
+  "original_source_directory": "C:\\Users\\ZSY\\Documents\\xwechat_files\\wxid_mkx0ewygqoen22_124f\\msg\\file\\2026-08\\rl_direction_assisted_comparison_20260807\\rl_direction_assisted_comparison_20260807",
+  "working_copy": "C:\\Users\\ZSY\\Desktop\\FDTD\\rl_direction_assisted_processed_20260807",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26100-SP0",
+  "protocol_id": "direction_assisted_volume_only_v1",
+  "control_allocation": "Neural actor selects volume; external rule selects acid/base direction.",
+  "source_snapshot_status": "PASS",
+  "source_snapshot_errors": [],
+  "full_validation_status": "PASS",
+  "quick_validation_status": "PASS",
+  "condition_count": 30,
+  "task_row_count": 30000,
+  "learning_curve_row_count": 180,
+  "model_count": 30,
+  "internal_validation_status": "PASS",
+  "code_changes": [
+    "empty trajectory and batch guards",
+    "protocol-complete resume fingerprint",
+    "correct random actor seed metadata",
+    "fixed PyTorch thread controls",
+    "bounded plot uncertainty band",
+    "parallel runner, deterministic merger, endpoint analysis, and strict validator"
+  ]
+}

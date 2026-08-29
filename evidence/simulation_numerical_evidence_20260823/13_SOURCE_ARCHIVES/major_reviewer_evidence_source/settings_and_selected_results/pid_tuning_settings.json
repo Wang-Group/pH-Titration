@@ -1,0 +1,17 @@
+{
+  "search_seed": 20260721,
+  "trials": 120,
+  "train_task_seed": 9001,
+  "train_tasks": 500,
+  "evaluation_seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "evaluation_tasks_per_seed": 3000,
+  "workers": 8,
+  "bayesian_source": "inputs/bayesian_controller.py",
+  "output_dir": "results_full/pid_tuning"
+}

@@ -1,0 +1,34 @@
+{
+  "study_id": "ppo_step_cost_tuning",
+  "candidate_step_costs": [
+    0.0,
+    0.0025,
+    0.005,
+    0.01
+  ],
+  "training_seed": 303,
+  "selection_data": "500-task validation set",
+  "locked_test_used_for_selection": false,
+  "training_protocol": {
+    "train_interactions_target": 100000,
+    "training_pool_tasks": 5000,
+    "validation_tasks": 500,
+    "evaluation_interval": 10000,
+    "ppo_batch_steps": 2048,
+    "ppo_epochs": 4,
+    "minibatch_size": 256,
+    "learning_rate": 0.0001,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_ratio": 0.2,
+    "entropy_coefficient": 0.005,
+    "reward_variant": "full"
+  },
+  "imitation_checkpoint": "evidence/simulation_numerical_evidence_20260823/02_TEACHER_AND_IMITATION/checkpoints/imitation_best.pth",
+  "reported_step_cost_range": [
+    0.0,
+    0.01
+  ],
+  "selected_step_cost_within_reported_screen": 0.005,
+  "interpretation": "One stochastic retraining run per coefficient; the repeated 0.005 run is distinct from the independently validation-selected original 0.005 PPO checkpoint."
+}

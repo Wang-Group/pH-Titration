@@ -1,0 +1,37 @@
+{
+  "protocol_version": 1,
+  "source_task_dir": "C:\\Users\\ZSY\\Desktop\\new_pf_remaining_analyses_package_20260814_final_v2\\new_pf_remaining_analyses_package_20260814_final\\results\\posterior_stepwise_0_to_12",
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "tasks_per_seed": 300,
+  "prior_k": [
+    1,
+    2,
+    3
+  ],
+  "prior_strength": 0.8,
+  "nonpreferred_prior_probability": 0.09999999999999998,
+  "particles": 1000,
+  "checkpoints": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "workers": 12,
+  "common_random_filter_particles_across_priors": true
+}

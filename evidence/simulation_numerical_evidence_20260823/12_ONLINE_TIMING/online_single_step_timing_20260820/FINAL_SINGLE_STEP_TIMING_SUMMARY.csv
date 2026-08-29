@@ -1,0 +1,6 @@
+method,measurement,repetitions_or_cases,mean_ms,sd_ms,median_ms,p95_or_range,timing_note
+PyMC variable-K SMC,fresh first-observation update to next action,3,61329.7846000011,23471.138543341218,61097.84830000717,range 37975.474-84916.032 ms,"Fresh K=1,2,3 fit, evidence comparison, posterior extraction, and dose solve; imports and file I/O excluded"
+PyMC variable-K SMC,representative 8-step sampling-plus-dose lower bound,8,240588.4724374996,130451.98561483838,272758.0867499982,range 29149.300-366732.066 ms,"Three SMC fits plus dose solve; model construction and I/O excluded, so this is a lower bound"
+"Particle filter (1,000 particles)",posterior update plus next-action selection,15,31.074955555555555,15.822539813991428,27.995033333333335,P95 48.219 ms,Existing extended 15-case direct decision-cycle benchmark
+PF-distilled imitation,new pH observation to next action,30000,0.12991207666666668,0.056628805825384446,0.1072,P95 0.2217 ms,"Observation bookkeeping, state construction/normalization, actor forward, argmax, direction and volume decoding; checkpoint load excluded"
+PPO from PF imitation,new pH observation to next action,30000,0.12787711,0.05397017214193967,0.1078,P95 0.2136 ms,"Observation bookkeeping, state construction/normalization, actor forward, argmax, direction and volume decoding; checkpoint load excluded"

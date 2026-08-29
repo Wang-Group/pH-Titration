@@ -1,0 +1,51 @@
+{
+  "label": "original_full",
+  "training_seed": 303,
+  "benchmark_seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "tasks_per_seed": 3000,
+  "tasks_total": 15000,
+  "checkpoint": "evidence/simulation_numerical_evidence_20260823/02_TEACHER_AND_IMITATION/checkpoints/principal_ppo_seed_303.pth",
+  "checkpoint_sha256": "4004d7a09768fc5ac3f448523f53cb22210ed919ca7e713f13d9aa693cc19de5",
+  "checkpoint_metadata": {
+    "seed": 303,
+    "environment_steps": 100023,
+    "validation": {
+      "tasks": 500,
+      "success_rate_percent": 92.2,
+      "severe_failure_rate_percent": 3.5999999999999996,
+      "false_stop_rate_percent": 1.6,
+      "successful_steps_mean": 5.483731019522777,
+      "steps_mean": 8.184,
+      "overshoots_mean": 3.546,
+      "total_volume_mean_ml": 8.85234,
+      "final_abs_error_mean": 0.12368602547211065
+    },
+    "source": "ppo_final_batch",
+    "protocol": {
+      "protocol_family": "pH-control",
+      "protocol_version": "2026.08",
+      "protocol_profile": "training_environment_strict",
+      "training_profile": "training_environment_strict",
+      "deployment_profile": "deployment_api_strict",
+      "formal_evaluation_profile": "formal_evaluation",
+      "observed_ph_resolution": 0.01,
+      "training_stop_operator": "<",
+      "training_success_operator": "<",
+      "training_persistent_overshoot_cap": "disabled",
+      "deployment_stop_operator": "<",
+      "success_tolerance_ph": 0.1,
+      "max_steps": 50,
+      "max_total_dose_ml": 50.0,
+      "deployment_persistent_overshoot_cap": "enabled",
+      "formal_evaluation_stop_operator": "<=",
+      "formal_evaluation_success_operator": "<=",
+      "formal_evaluation_persistent_overshoot_cap": "enabled_for_neural_policy"
+    }
+  }
+}

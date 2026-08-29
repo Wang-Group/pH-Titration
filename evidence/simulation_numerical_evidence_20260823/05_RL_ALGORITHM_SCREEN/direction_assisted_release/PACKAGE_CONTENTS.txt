@@ -1,0 +1,42 @@
+Package purpose: complete reproducible evidence for the direction-assisted RL volume-policy comparison.
+
+Top-level documents
+- ANALYSIS_CN_20260807.md: full Chinese analysis.
+- BUGFIX_AND_RUN_LOG_20260807.md: source changes and execution record.
+- EXPERIMENT_PROTOCOL.md: supplied protocol description.
+- PROVENANCE_20260807.json: machine, source, and result provenance.
+- RELEASE_VALIDATION.json: release-level completeness check.
+- SHA256SUMS.txt: hash of every file in the release.
+
+processed_source/
+- Runnable source, launchers, merge, analysis, and validation scripts.
+- Archived imitation model.
+
+original_source_snapshot/
+- Files preserved before debugging changes.
+- Includes the original model file.
+
+results_full/
+- 30 trained conditions and 30 final models.
+- 30,000 held-out task rows.
+- 180 learning-curve rows.
+- Aggregate and seed-level summaries.
+- Initialization-paired and algorithm-paired tests.
+- Training-start versus final endpoint summaries.
+- PNG and SVG figures.
+- Internal and strict validation reports.
+- Per-run configurations, completion records, learning curves, and task outputs.
+- Training and evaluation task manifests.
+
+supplied_quick_reference/
+- Author-supplied Quick output from another machine, preserved for provenance only.
+- Not used in any final analysis.
+
+logs/
+- Standard output and empty standard-error logs for all 15 full-run shards.
+- Parallel launch manifest.
+
+Interpretation guardrail
+- Neural network controls dosing volume only.
+- External rule controls acid/base direction.
+- No overshoot action mask, adaptive volume cap, or dilute-titrant switch is active.

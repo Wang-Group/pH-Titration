@@ -1,0 +1,7 @@
+﻿"run_label","sample_id","method","separated_product_dry_mass_mg"
+"PF-1","casein_12ml_experiment_1_pf","PF controller","909"
+"PID-1","casein_12ml_experiment_1_simple_pid","Simple PID","915.5"
+"PF-2","casein_12ml_experiment_2_pf","PF controller","905.8"
+"PID-2","casein_12ml_experiment_2_simple_pid","Simple PID","913.4"
+"PF-3","casein_12ml_experiment_3_pf","PF controller","882.8"
+"PID-3","casein_12ml_experiment_3_simple_pid","Simple PID","898.3"

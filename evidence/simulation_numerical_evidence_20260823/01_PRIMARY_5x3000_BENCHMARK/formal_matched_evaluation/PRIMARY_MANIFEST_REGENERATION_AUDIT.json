@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "generator": "13_SOURCE_ARCHIVES/primary_locked_benchmark_source/task_distribution.py",
+  "protocol": "seed=1,000,000+benchmark_seed; 3,000 tasks; rule_ablation_seed_<seed>",
+  "checks": [
+    {
+      "benchmark_seed": 101,
+      "tasks": 3000,
+      "expected_sha256": "e17c32fddbf41b74a756b1337d02ac449bdba707fe03f9edb004cc2ad39dcfbb",
+      "regenerated_sha256": "e17c32fddbf41b74a756b1337d02ac449bdba707fe03f9edb004cc2ad39dcfbb",
+      "match": true
+    },
+    {
+      "benchmark_seed": 202,
+      "tasks": 3000,
+      "expected_sha256": "c6a85f29c40d4afc3cf091506cbde4438cb16fbb07ac6d49a3bed229c1e84ff2",
+      "regenerated_sha256": "c6a85f29c40d4afc3cf091506cbde4438cb16fbb07ac6d49a3bed229c1e84ff2",
+      "match": true
+    },
+    {
+      "benchmark_seed": 303,
+      "tasks": 3000,
+      "expected_sha256": "439eee351e7edde606df5e1fd19900c8c4541583f59a9f77c03fc7e44c346a35",
+      "regenerated_sha256": "439eee351e7edde606df5e1fd19900c8c4541583f59a9f77c03fc7e44c346a35",
+      "match": true
+    },
+    {
+      "benchmark_seed": 404,
+      "tasks": 3000,
+      "expected_sha256": "9081dd66d582919291efa6fb4df86de1368cfbadcddf4d5bd4730cce91156e7a",
+      "regenerated_sha256": "9081dd66d582919291efa6fb4df86de1368cfbadcddf4d5bd4730cce91156e7a",
+      "match": true
+    },
+    {
+      "benchmark_seed": 555,
+      "tasks": 3000,
+      "expected_sha256": "717526d455a55967450ca4373dfe5ca5bf7b3b8b70592e6c8ac9164ada9ba790",
+      "regenerated_sha256": "717526d455a55967450ca4373dfe5ca5bf7b3b8b70592e6c8ac9164ada9ba790",
+      "match": true
+    }
+  ]
+}

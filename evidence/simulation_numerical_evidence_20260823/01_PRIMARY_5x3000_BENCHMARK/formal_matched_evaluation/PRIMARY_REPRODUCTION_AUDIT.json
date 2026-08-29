@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "audit_scope": "locked_manifest_and_task_level_results",
+  "seed_regeneration_claim": "source_archived_with_locked_manifests",
+  "seed_regeneration_note": "The locked manifests, task generator, environment, and evaluation source are archived together.",
+  "manifest_counts": {
+    "101": 3000,
+    "202": 3000,
+    "303": 3000,
+    "404": 3000,
+    "555": 3000
+  },
+  "manifest_sha256": {
+    "seed_101_tasks.jsonl": "e17c32fddbf41b74a756b1337d02ac449bdba707fe03f9edb004cc2ad39dcfbb",
+    "seed_202_tasks.jsonl": "c6a85f29c40d4afc3cf091506cbde4438cb16fbb07ac6d49a3bed229c1e84ff2",
+    "seed_303_tasks.jsonl": "439eee351e7edde606df5e1fd19900c8c4541583f59a9f77c03fc7e44c346a35",
+    "seed_404_tasks.jsonl": "9081dd66d582919291efa6fb4df86de1368cfbadcddf4d5bd4730cce91156e7a",
+    "seed_555_tasks.jsonl": "717526d455a55967450ca4373dfe5ca5bf7b3b8b70592e6c8ac9164ada9ba790"
+  },
+  "unique_tasks": 15000,
+  "primary_result_rows": 45000,
+  "primary_methods": [
+    "imitation",
+    "pf_teacher",
+    "ppo"
+  ],
+  "replay_result_rows": 45000,
+  "summaries": [
+    {
+      "method": "pf_teacher",
+      "success_percent": 95.36,
+      "success_percent_sd": 0.587556143889437,
+      "successful_steps": 4.838493382445997,
+      "successful_steps_sd": 0.08822495811135174,
+      "overshoots": 3.2947333333333333,
+      "overshoots_sd": 0.21396487250636884,
+      "final_abs_error": 0.07289691579888019,
+      "final_abs_error_sd": 0.0038667923688581905
+    },
+    {
+      "method": "imitation",
+      "success_percent": 89.17333333333333,
+      "success_percent_sd": 0.5106640556939342,
+      "successful_steps": 7.828396325814931,
+      "successful_steps_sd": 0.16388260093044069,
+      "overshoots": 2.932933333333333,
+      "overshoots_sd": 0.19207744387211223,
+      "final_abs_error": 0.09528757308793068,
+      "final_abs_error_sd": 0.004552754329849399
+    },
+    {
+      "method": "ppo",
+      "success_percent": 93.94666666666667,
+      "success_percent_sd": 0.6291970191354107,
+      "successful_steps": 5.1968789036400205,
+      "successful_steps_sd": 0.09855909882133843,
+      "overshoots": 3.0491333333333333,
+      "overshoots_sd": 0.2052695517822575,
+      "final_abs_error": 0.07850947507271246,
+      "final_abs_error_sd": 0.004549543407183074
+    },
+    {
+      "method": "simple_rule",
+      "success_percent": 77.28,
+      "success_percent_sd": 0.4086563348340485,
+      "successful_steps": 16.111345970976874,
+      "successful_steps_sd": 0.32746403733624996,
+      "overshoots": 1.9568,
+      "overshoots_sd": 0.18154041484535124,
+      "final_abs_error": 0.11061467247185384,
+      "final_abs_error_sd": 0.004729424112872664
+    },
+    {
+      "method": "prespecified_pid",
+      "success_percent": 84.59333333333333,
+      "success_percent_sd": 0.6808491430232996,
+      "successful_steps": 17.14398254509369,
+      "successful_steps_sd": 0.2778459156429653,
+      "overshoots": 4.2214,
+      "overshoots_sd": 0.06730915407448107,
+      "final_abs_error": 0.22142239877687014,
+      "final_abs_error_sd": 0.010800849504545431
+    },
+    {
+      "method": "tuned_pid",
+      "success_percent": 92.44,
+      "success_percent_sd": 0.5818552702825304,
+      "successful_steps": 14.747293644978052,
+      "successful_steps_sd": 0.19536542861010456,
+      "overshoots": 2.6414666666666666,
+      "overshoots_sd": 0.14843715467796095,
+      "final_abs_error": 0.15041957401413186,
+      "final_abs_error_sd": 0.014078288225966646
+    }
+  ],
+  "primary_results_sha256": "43f8c0f12df9e4ccf8549d5490b1931498d257645097354eaec84b2aa9ba229e"
+}

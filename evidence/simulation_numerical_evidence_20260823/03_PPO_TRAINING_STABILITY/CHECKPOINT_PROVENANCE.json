@@ -1,0 +1,48 @@
+{
+  "protocol_family": "pH-control",
+  "protocol_version": "2026.08",
+  "protocol_profile": "training_environment_strict",
+  "metadata_annotation": "Protocol metadata was added without changing actor tensors.",
+  "checkpoints": [
+    {
+      "seed": 101,
+      "checkpoint": "evidence/simulation_numerical_evidence_20260823/03_PPO_TRAINING_STABILITY/checkpoints/ppo_seed_101.pth",
+      "source_checkpoint_in_recovered_archive": "03_ppo/seed_101/best_ppo.pth",
+      "source_file_sha256_before_protocol_metadata": "8349345169832d8f7a99f507eb8970dfbc3e8c63b432a1ffa50b9f72ab8af678",
+      "released_file_sha256": "9FEDCAFA84F4D3F8969BFAE486A200A4AB8147D6AF4E9A427F8C41E998B0CAF3",
+      "actor_sha256": "1cf2ed57408d34b78d8858285f48d66e584ade26ef952ef721352ea3198c3f4c"
+    },
+    {
+      "seed": 202,
+      "checkpoint": "evidence/simulation_numerical_evidence_20260823/03_PPO_TRAINING_STABILITY/checkpoints/ppo_seed_202.pth",
+      "source_checkpoint_in_recovered_archive": "03_ppo/seed_202/best_ppo.pth",
+      "source_file_sha256_before_protocol_metadata": "c8453c75552955d2d41cbf98fa1794d4e40b9e12f32817f29059e8d01e2599de",
+      "released_file_sha256": "B4E9864280F5902456CB0E4DACFDD24C7EE2FA1C4DF0A28B2377273319F9DF0C",
+      "actor_sha256": "a79394a7474d80803c798514003abe063f5498fb5dbf9f6f41337277b4f2bb18"
+    },
+    {
+      "seed": 303,
+      "checkpoint": "evidence/simulation_numerical_evidence_20260823/03_PPO_TRAINING_STABILITY/checkpoints/ppo_seed_303.pth",
+      "source_checkpoint_in_recovered_archive": "03_ppo/seed_303/best_ppo.pth",
+      "source_file_sha256_before_protocol_metadata": "496797be6be22dacd9f7360e7980a983dca816b7bded19597c4be6beb58abd23",
+      "released_file_sha256": "4004D7A09768FC5AC3F448523F53CB22210ED919CA7E713F13D9AA693CC19DE5",
+      "actor_sha256": "8c2ccdbc7879d1d54b151eeccb76ed3d354e58ace23e8052f6619d57369214fb"
+    },
+    {
+      "seed": 404,
+      "checkpoint": "evidence/simulation_numerical_evidence_20260823/03_PPO_TRAINING_STABILITY/checkpoints/ppo_seed_404.pth",
+      "source_checkpoint_in_recovered_archive": "03_ppo/seed_404/best_ppo.pth",
+      "source_file_sha256_before_protocol_metadata": "145f32a2284a2ea995bb4cb1f470951b5fbacd5217dda3594c7dec1c3ea08c5c",
+      "released_file_sha256": "D7AEF675E54121A7CB88FB6B7225B457D6609B2C142ED29CAB641D34CF6A8264",
+      "actor_sha256": "e96c221227d911fa8ceef5a18085dd3ac1fd2fd8b0b5fbf37e9726371479684d"
+    },
+    {
+      "seed": 555,
+      "checkpoint": "evidence/simulation_numerical_evidence_20260823/03_PPO_TRAINING_STABILITY/checkpoints/ppo_seed_555.pth",
+      "source_checkpoint_in_recovered_archive": "03_ppo/seed_555/best_ppo.pth",
+      "source_file_sha256_before_protocol_metadata": "fe1bac1e8cf5a6b4ff893b2e9fed0dbd54c988a36c1f2d25b05ec3366c5cd80c",
+      "released_file_sha256": "098B65D844AD0B06F0A960520CEA7E672739D9ABCD30B2F1E931920561AF3EC7",
+      "actor_sha256": "d3e3fccfb9970e6ac3803c5b83bfba54d3ca5f77a7b39e354de096a7ce3d0a2b"
+    }
+  ]
+}

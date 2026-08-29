@@ -1,0 +1,54 @@
+{
+  "seeds": [
+    303
+  ],
+  "runs": [
+    {
+      "training_seed": 303,
+      "reward_variant": "full",
+      "step_cost": 0.0025,
+      "elapsed_seconds": 875.8368399999745,
+      "train_interactions": 100005,
+      "best_checkpoint": "evidence/simulation_numerical_evidence_20260823/15_PPO_STEP_COST_TUNING/step_cost_0p0025/seed_303/best_ppo.pth",
+      "best_checkpoint_source": "ppo_final_batch",
+      "best_environment_steps": 100005,
+      "best_validation": {
+        "tasks": 500,
+        "success_rate_percent": 89.2,
+        "severe_failure_rate_percent": 4.2,
+        "false_stop_rate_percent": 2.1999999999999997,
+        "successful_steps_mean": 6.096412556053812,
+        "steps_mean": 9.976,
+        "overshoots_mean": 2.942,
+        "total_volume_mean_ml": 8.09892,
+        "final_abs_error_mean": 0.1278045797948202
+      },
+      "actor_sha256": "f4528e1bf478893c0d162583613c77d4a12df3ddf5956523d8d798a02ae88145",
+      "imitation_metadata": {
+        "training_seed": 22,
+        "selected_epoch": 30,
+        "selection_metrics": {
+          "seed": 22,
+          "epoch": 30,
+          "train_loss": 4.486306804056285,
+          "top1_class_accuracy_percent": 4.357994854603571,
+          "within_0p05ml_percent": 30.022608560068605,
+          "within_0p10ml_percent": 44.30498167927029,
+          "argmax_volume_mae_ml": 0.3461526467607391,
+          "expected_volume_mae_ml": 0.31527666061057147,
+          "closed_loop_tasks": 500,
+          "closed_loop_success_rate_percent": 90.0,
+          "closed_loop_strict_success_rate_percent": 36.0,
+          "closed_loop_severe_failure_rate_percent": 1.2,
+          "closed_loop_false_stop_rate_percent": 2.4,
+          "closed_loop_successful_steps_mean": 7.611111111111111,
+          "closed_loop_steps_mean": 11.062,
+          "closed_loop_overshoots_mean": 2.42,
+          "closed_loop_total_volume_mean_ml": 7.2565599999999995,
+          "closed_loop_final_abs_error_mean": 0.08741066665347688
+        },
+        "teacher": "pf_pka_conc_variable_k"
+      }
+    }
+  ]
+}

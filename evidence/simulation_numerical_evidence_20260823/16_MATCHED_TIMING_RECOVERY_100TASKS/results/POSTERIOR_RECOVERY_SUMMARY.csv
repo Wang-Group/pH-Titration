@@ -1,0 +1,3 @@
+method,tasks,model_order_accuracy_percent,model_order_correct_count,concentration_relative_error_median_percent,concentration_relative_error_mean_percent,pka_matched_mae_median,full_curve_rmse_0_33ml_median_ph
+PF,100,33.0,33,45.197764468185,74.13495465287639,0.6738121046053155,3.179720456744687
+PyMC,100,28.999999999999996,29,47.48075227477676,73.31084594543856,0.6342257084598905,3.075972471302178

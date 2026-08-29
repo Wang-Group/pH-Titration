@@ -1,0 +1,5 @@
+numpy>=1.26,<2.3
+scipy>=1.13,<2
+matplotlib>=3.9,<4
+pymc>=5.18,<6
+arviz>=0.20,<1

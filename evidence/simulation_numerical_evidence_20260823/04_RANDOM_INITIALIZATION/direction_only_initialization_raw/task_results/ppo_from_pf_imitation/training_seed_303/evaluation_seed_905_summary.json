@@ -1,0 +1,16 @@
+{
+  "method": "ppo_from_pf_imitation",
+  "method_label": "PPO from PF imitation",
+  "training_seed": 303,
+  "evaluation_seed": 905,
+  "tasks": 3000,
+  "success_rate_percent": 93.13333333333334,
+  "strict_success_rate_percent": 41.4,
+  "severe_failure_rate_percent": 3.1,
+  "false_stop_rate_percent": 0.8999999999999999,
+  "successful_steps_mean": 5.653901216893343,
+  "steps_mean": 8.153333333333334,
+  "overshoots_mean": 3.3796666666666666,
+  "total_volume_mean_ml": 8.555193333333333,
+  "final_abs_error_mean": 0.1104327173224466
+}

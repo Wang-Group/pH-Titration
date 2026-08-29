@@ -1,0 +1,34 @@
+{
+  "states": 12827,
+  "tasks_with_states": 2687,
+  "direction_counts": {
+    "base": 6342,
+    "acid": 6485
+  },
+  "error_bin_counts": {
+    ">=3.00": 1019,
+    "1.00-3.00": 3145,
+    "0.30-1.00": 4756,
+    "0.10-0.30": 3907
+  },
+  "volume_bin_counts": {
+    "5.01-10.00": 618,
+    "2.01-5.00": 2922,
+    "0.51-2.00": 5341,
+    "0.11-0.50": 3290,
+    "0.01-0.10": 656
+  },
+  "perturbed_state_percent": 0.0,
+  "quality_score_mean": 0.6161284487378742,
+  "quality_score_min": 0.30112124295696835,
+  "weight_min": 0.4158508777618408,
+  "weight_max": 4.0,
+  "teacher_task_success_percent": 93.86206896551724,
+  "quality_pass_task_percent": 92.65517241379311,
+  "candidate_tasks": 2900,
+  "minimum_unique_states": 12000,
+  "initial_candidate_tasks": 500,
+  "perturb_probability": 0.0,
+  "particles": 1000,
+  "quality_control_version": 6
+}

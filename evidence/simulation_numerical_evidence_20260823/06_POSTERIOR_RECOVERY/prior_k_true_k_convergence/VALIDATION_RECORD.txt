@@ -1,0 +1,25 @@
+Validation record - 2026-08-14
+
+1. Source compilation
+   PASS: all packaged Python source files compiled under Python 3.11.9.
+
+2. Raw data
+   PASS: 58,500 rows.
+   PASS: 4,500 unique task-prior combinations.
+   PASS: every task-prior combination contains exactly 13 records (step 0-12).
+   PASS: packaged raw CSV SHA-256 matches the completed formal run source CSV.
+
+3. Analysis tables
+   PASS: prior_k_true_k_step_summary.csv has 117 rows (3 x 3 x 13).
+   PASS: prior_k_true_k_transition_summary.csv has 9 rows.
+   PASS: selected_category_examples.csv has 9 rows.
+   PASS: selected_wrong_to_correct_examples.csv has 6 rows.
+
+4. Figures
+   PASS: 19 PNG files were decoded successfully.
+   PASS: no empty image files.
+   PASS: image dimensions range from 3136-3700 px wide and 2875-4777 px high.
+
+5. Completion markers
+   PASS: raw_data/PRIOR_K_GRID_COMPLETE.json reports 4,500 combinations and 58,500 rows.
+   PASS: results/PRIOR_K_TRUE_K_ANALYSIS_COMPLETE.json reports 9 category examples and 6 wrong-to-correct examples.

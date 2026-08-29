@@ -1,0 +1,16 @@
+{
+  "method": "pf_posterior_direct",
+  "method_label": "PF posterior-direct",
+  "training_seed": 303,
+  "evaluation_seed": 903,
+  "tasks": 3000,
+  "success_rate_percent": 65.9,
+  "strict_success_rate_percent": 30.466666666666665,
+  "severe_failure_rate_percent": 23.1,
+  "false_stop_rate_percent": 1.3,
+  "successful_steps_mean": 4.59838138593829,
+  "steps_mean": 6.545333333333334,
+  "overshoots_mean": 4.4093333333333335,
+  "total_volume_mean_ml": 30.94062,
+  "final_abs_error_mean": 0.6549299957181581
+}

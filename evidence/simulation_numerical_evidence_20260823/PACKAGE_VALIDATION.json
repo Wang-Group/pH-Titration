@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "created_utc": "2026-08-29T04:10:11.223164+00:00",
+  "simulation_only": true,
+  "protocol_family": "pH-control",
+  "protocol_version": "2026.08",
+  "standard_imitation_validation_tasks": 500,
+  "standard_ppo_validation_tasks": 500,
+  "primary_task_manifests": {
+    "101": 3000,
+    "202": 3000,
+    "303": 3000,
+    "404": 3000,
+    "555": 3000
+  },
+  "primary_unique_tasks": 15000,
+  "primary_result_rows": 45000,
+  "required_method_rows": {
+    "pf_teacher": 15000,
+    "imitation": 15000,
+    "ppo": 15000
+  },
+  "rule_baseline_replay_rows": 45000,
+  "primary_audit_status": "PASS",
+  "ppo_stability_common_test_tasks": 1000,
+  "ppo_stability_task_level_rows": 5000,
+  "ppo_stability_audit_status": "PASS",
+  "manifest_entries": 1137,
+  "forbidden_documents_included": false,
+  "ppo_step_cost_screen": {
+    "reported_coefficients": [
+      0.0,
+      0.0025,
+      0.005,
+      0.01
+    ],
+    "retraining_runs": 4,
+    "locked_benchmark_sets": 5,
+    "tasks_per_benchmark_set": 3000,
+    "status": "PASS"
+  },
+  "matched_timing_recovery_100tasks": {
+    "status": "PASS",
+    "same_task_and_input_audit": true,
+    "task_cases_per_method": 100,
+    "methods": 6,
+    "pymc_draws_per_k": 300,
+    "pymc_chains": 1
+  },
+  "pf_closed_loop_timing_100tasks": {
+    "status": "PASS",
+    "task_cases_per_particle_count": 100,
+    "step_measurements": {
+      "pf_1000": 592,
+      "pf_10000": 589,
+      "pf_100000": 577
+    },
+    "success_rate_percent": {
+      "pf_1000": 97.0,
+      "pf_10000": 97.0,
+      "pf_100000": 97.0
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "status": "archived_runner_output",
+  "source_archive": "../../../13_SOURCE_ARCHIVES/historical_baseline_runner_20260817",
+  "task_manifests": "../tasks/seed_{101,202,303,404,555}_tasks.jsonl",
+  "benchmark_seeds": [101, 202, 303, 404, 555],
+  "tasks_per_seed": 3000,
+  "task_level_rows": 45000,
+  "methods": ["simple_rule", "prespecified_pid", "tuned_pid"],
+  "pid_label_normalization": "selected_pid -> tuned_pid",
+  "success_tolerance_ph": 0.1,
+  "stop_operator": "<=",
+  "source_output": "baseline_runner_results/all_baseline_task_results.csv",
+  "manifest_sha256_verified": true,
+  "reported_summary_reproduced": true
+}

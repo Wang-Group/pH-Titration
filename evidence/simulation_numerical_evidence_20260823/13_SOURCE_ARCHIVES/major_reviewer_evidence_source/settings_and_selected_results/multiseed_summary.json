@@ -1,0 +1,207 @@
+{
+  "settings": {
+    "seeds": [
+      101,
+      202,
+      303,
+      404,
+      555
+    ],
+    "tasks_per_seed": 3000,
+    "methods": [
+      "bayesian",
+      "imitation",
+      "rl",
+      "expert_rule",
+      "pid"
+    ],
+    "imitation_weights": "models/imitation.pth",
+    "rl_weights": "models/reinforcement.pth",
+    "device": "cpu",
+    "bayesian_particles": 1000,
+    "bayesian_source": "inputs/bayesian_controller.py",
+    "seed_555_csv": "inputs/experiment_summary.csv",
+    "regenerate_seed_555": false,
+    "pid_kp": 0.14481175913115246,
+    "pid_ki": 0.028079919813512363,
+    "pid_kd": 0.05902588819860966,
+    "pid_integral_limit": 20.05913621582521,
+    "pid_overshoot_decay": 0.7156891729630818,
+    "workers": 8,
+    "output_dir": "results_full/multiseed"
+  },
+  "aggregate": [
+    {
+      "method": "bayesian",
+      "seeds": 5,
+      "success_rate_percent_mean": 96.57333333333334,
+      "success_rate_percent_seed_sd": 3.156510027792647,
+      "successful_steps_mean_mean": 8.591817144723429,
+      "successful_steps_mean_seed_sd": 0.19554429362894427,
+      "overshoot_rate_percent_mean": 44.19526859831078,
+      "overshoot_rate_percent_seed_sd": 0.6732310481716242,
+      "final_abs_error_mean_mean": 0.09191999999999997,
+      "final_abs_error_mean_seed_sd": 0.07101151968362442
+    },
+    {
+      "method": "expert_rule",
+      "seeds": 5,
+      "success_rate_percent_mean": 86.30666666666666,
+      "success_rate_percent_seed_sd": 0.5569759619788128,
+      "successful_steps_mean_mean": 21.833779691434138,
+      "successful_steps_mean_seed_sd": 0.20238089824681732,
+      "overshoot_rate_percent_mean": 21.13757246040478,
+      "overshoot_rate_percent_seed_sd": 0.9944276968415243,
+      "final_abs_error_mean_mean": 0.15106199999999995,
+      "final_abs_error_mean_seed_sd": 0.005585710737627253
+    },
+    {
+      "method": "imitation",
+      "seeds": 5,
+      "success_rate_percent_mean": 94.36,
+      "success_rate_percent_seed_sd": 0.12110601416389885,
+      "successful_steps_mean_mean": 8.698122730129903,
+      "successful_steps_mean_seed_sd": 0.11363678691825022,
+      "overshoot_rate_percent_mean": 40.696005989642394,
+      "overshoot_rate_percent_seed_sd": 0.9119624844773444,
+      "final_abs_error_mean_mean": 0.06931126222564002,
+      "final_abs_error_mean_seed_sd": 0.0012198671064184432
+    },
+    {
+      "method": "pid",
+      "seeds": 5,
+      "success_rate_percent_mean": 83.58,
+      "success_rate_percent_seed_sd": 0.6986494908830216,
+      "successful_steps_mean_mean": 22.685161549914937,
+      "successful_steps_mean_seed_sd": 0.16144526955710742,
+      "overshoot_rate_percent_mean": 22.78645140186718,
+      "overshoot_rate_percent_seed_sd": 0.92551476668274,
+      "final_abs_error_mean_mean": 0.3985126666666666,
+      "final_abs_error_mean_seed_sd": 0.020765447181957518
+    },
+    {
+      "method": "rl",
+      "seeds": 5,
+      "success_rate_percent_mean": 93.99333333333334,
+      "success_rate_percent_seed_sd": 0.14605934866804574,
+      "successful_steps_mean_mean": 8.880045996063611,
+      "successful_steps_mean_seed_sd": 0.07605247129227959,
+      "overshoot_rate_percent_mean": 36.6847548107816,
+      "overshoot_rate_percent_seed_sd": 1.1059589690631957,
+      "final_abs_error_mean_mean": 0.06826185689110283,
+      "final_abs_error_mean_seed_sd": 0.000984807764160829
+    }
+  ],
+  "pooled_mcnemar": [
+    {
+      "scope": "pooled",
+      "method_a": "bayesian",
+      "method_b": "expert_rule",
+      "matched_tasks": 15000,
+      "a_success_b_fail": 1759,
+      "a_fail_b_success": 219,
+      "discordant": 1978,
+      "p_value_exact_two_sided": 2.153217100669335e-298,
+      "p_value_holm": 1.9378953906024018e-297
+    },
+    {
+      "scope": "pooled",
+      "method_a": "bayesian",
+      "method_b": "imitation",
+      "matched_tasks": 15000,
+      "a_success_b_fail": 538,
+      "a_fail_b_success": 206,
+      "discordant": 744,
+      "p_value_exact_two_sided": 4.894325178659932e-35,
+      "p_value_holm": 1.4682975535979795e-34
+    },
+    {
+      "scope": "pooled",
+      "method_a": "bayesian",
+      "method_b": "pid",
+      "matched_tasks": 15000,
+      "a_success_b_fail": 2140,
+      "a_fail_b_success": 191,
+      "discordant": 2331,
+      "p_value_exact_two_sided": 0.0,
+      "p_value_holm": 0.0
+    },
+    {
+      "scope": "pooled",
+      "method_a": "bayesian",
+      "method_b": "rl",
+      "matched_tasks": 15000,
+      "a_success_b_fail": 595,
+      "a_fail_b_success": 208,
+      "discordant": 803,
+      "p_value_exact_two_sided": 5.73011030143993e-44,
+      "p_value_holm": 2.292044120575972e-43
+    },
+    {
+      "scope": "pooled",
+      "method_a": "expert_rule",
+      "method_b": "imitation",
+      "matched_tasks": 15000,
+      "a_success_b_fail": 463,
+      "a_fail_b_success": 1671,
+      "discordant": 2134,
+      "p_value_exact_two_sided": 1.2824344095398056e-159,
+      "p_value_holm": 7.694606457238834e-159
+    },
+    {
+      "scope": "pooled",
+      "method_a": "expert_rule",
+      "method_b": "pid",
+      "matched_tasks": 15000,
+      "a_success_b_fail": 838,
+      "a_fail_b_success": 429,
+      "discordant": 1267,
+      "p_value_exact_two_sided": 6.2375756703683616e-31,
+      "p_value_holm": 1.2475151340736723e-30
+    },
+    {
+      "scope": "pooled",
+      "method_a": "expert_rule",
+      "method_b": "rl",
+      "matched_tasks": 15000,
+      "a_success_b_fail": 475,
+      "a_fail_b_success": 1628,
+      "discordant": 2103,
+      "p_value_exact_two_sided": 4.2726909622843475e-147,
+      "p_value_holm": 2.136345481142174e-146
+    },
+    {
+      "scope": "pooled",
+      "method_a": "imitation",
+      "method_b": "pid",
+      "matched_tasks": 15000,
+      "a_success_b_fail": 2065,
+      "a_fail_b_success": 448,
+      "discordant": 2513,
+      "p_value_exact_two_sided": 6.8832542346393e-247,
+      "p_value_holm": 5.50660338771144e-246
+    },
+    {
+      "scope": "pooled",
+      "method_a": "imitation",
+      "method_b": "rl",
+      "matched_tasks": 15000,
+      "a_success_b_fail": 495,
+      "a_fail_b_success": 440,
+      "discordant": 935,
+      "p_value_exact_two_sided": 0.07734175194163466,
+      "p_value_holm": 0.07734175194163466
+    },
+    {
+      "scope": "pooled",
+      "method_a": "pid",
+      "method_b": "rl",
+      "matched_tasks": 15000,
+      "a_success_b_fail": 478,
+      "a_fail_b_success": 2040,
+      "discordant": 2518,
+      "p_value_exact_two_sided": 1.5008992931829745e-228,
+      "p_value_holm": 1.0506295052280821e-227
+    }
+  ]
+}
