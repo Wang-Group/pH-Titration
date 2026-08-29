@@ -8,7 +8,7 @@ __pycache__/
 venv/
 build/
 dist/
-runs/
+/runs/
 .release_staging/
 *_unpack/
 physical_experiments/cu_ssa/job_plot_reproduced_reported_method.png
