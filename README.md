@@ -177,22 +177,30 @@ release block:
 | `12_ONLINE_TIMING` | Earlier separate PyMC and neural timing protocols retained for provenance |
 | `13_SOURCE_ARCHIVES` | Analysis source grouped by protocol |
 | `15_PPO_STEP_COST_TUNING` | Local PPO step-cost sensitivity from 0 to 0.01, including the independent 0.005 retraining |
-| `16_MATCHED_TIMING_RECOVERY_100TASKS` | Current matched 100-task PyMC/PF/neural timing and one-observation recovery benchmark |
+| `16_MATCHED_TIMING_RECOVERY_100TASKS` | Matched single-step PyMC/PF/neural timing and one-observation recovery benchmark |
+| `17_PF_CLOSED_LOOP_TIMING_100TASKS` | Current PF complete-trajectory timing and outcome benchmark on the same 100-task cohort |
 
 The evidence directory also contains the study index and statistical-unit
 definitions under `00_INDEX_AND_PROTOCOLS`. Results from different blocks are
 kept separate because their task generators, sample sizes, action interfaces,
 training budgets, and timing definitions differ.
 
-Timing values must be read with their protocol labels. The current publication
-comparison is the matched 100-task benchmark in
-[`16_MATCHED_TIMING_RECOVERY_100TASKS`](evidence/simulation_numerical_evidence_20260823/16_MATCHED_TIMING_RECOVERY_100TASKS/PROTOCOL_AND_RESULTS.md).
-It used the same post-dose observation for every method and produced median
-observation-to-action times of 14,407.376 ms for variable-K PyMC, 22.996 ms for
-the 1,000-particle PF, 101.451 ms for the 10,000-particle PF, 900.935 ms for the
-100,000-particle PF, 0.15495 ms for imitation, and 0.15390 ms for PPO. The older
-timing protocols in blocks 10-12 and the sensor-stress block remain available
-for provenance but are not interchangeable with this matched comparison.
+Timing values must be read with their protocol labels. Block
+[`16_MATCHED_TIMING_RECOVERY_100TASKS`](evidence/simulation_numerical_evidence_20260823/16_MATCHED_TIMING_RECOVERY_100TASKS/PROTOCOL_AND_RESULTS.md)
+contains the CPU-affinity-controlled single-step calls: median
+observation-to-action times were 14,407.376 ms for variable-*K* PyMC, 0.15495
+ms for imitation, and 0.15390 ms for PPO. Block
+[`17_PF_CLOSED_LOOP_TIMING_100TASKS`](evidence/simulation_numerical_evidence_20260823/17_PF_CLOSED_LOOP_TIMING_100TASKS/PROTOCOL_AND_RESULTS.md)
+contains PF outcomes and timing recorded together over complete trajectories.
+The pooled median PF times were 40.131, 93.046, and 594.127 ms per recorded
+decision cycle for 1,000, 10,000, and 100,000 particles, respectively; all
+three configurations achieved 97.0% success on the same 100-task cohort. The
+PF run used single-thread numerical settings but did not impose the CPU
+affinity used for the block-16 single-step calls. These values support a
+matched-cohort practical wall-time comparison, not an identical-call,
+fully hardware-controlled head-to-head benchmark. The older timing protocols
+in blocks 10-12 remain available for provenance and are not interchangeable
+with either current scope.
 
 ## Reproducibility status
 
@@ -212,6 +220,11 @@ computational path from a new rounded pH observation to the returned next
 action. It excludes liquid delivery, mixing, electrode stabilization, and pH
 acquisition and therefore must not be described as timing collected during a
 physical experiment.
+
+The current complete-trajectory PF timing and outcome records are archived in
+block `17`. Task-level outcomes, every recorded decision cycle, and complete
+trajectories are retained, and the derived tables can be regenerated with
+`python scripts/finalize_pf_closed_loop_timing_100tasks.py`.
 
 The embedded `controllers/models/ppo_seed_303.pth` is the validation-selected
 deployment checkpoint. Its metadata describes a 500-task validation run; the
@@ -246,8 +259,9 @@ per coefficient sensitivity screen, not a causal hyperparameter comparison.
 
 The archive also includes the PID tuning source and selected parameters,
 paired statistical tests, posterior-recovery and prior-sensitivity source,
-sensor-stress source/results, historical timing protocols, and the current
-matched 100-task PyMC/PF/neural timing benchmark. Run
+sensor-stress source/results, historical timing protocols, the matched
+single-step PyMC/PF/neural benchmark, and the current PF complete-trajectory
+timing benchmark. Run
 `python scripts/verify_source.py` to compile the package and verify these
 required files, the 5 x 3,000 manifests, the 15,000 matched task keys, and all
 teacher/imitation/principal-PPO hashes.

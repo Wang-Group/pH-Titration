@@ -60,6 +60,8 @@ def main() -> int:
     evidence_root = root / "evidence" / "simulation_numerical_evidence_20260823"
     matched_timing_root = evidence_root / "16_MATCHED_TIMING_RECOVERY_100TASKS"
     matched_timing_results = matched_timing_root / "results"
+    pf_closed_loop_root = evidence_root / "17_PF_CLOSED_LOOP_TIMING_100TASKS"
+    pf_closed_loop_results = pf_closed_loop_root / "results"
     required_files = [
         root / "README.md",
         root / "pyproject.toml",
@@ -116,6 +118,11 @@ def main() -> int:
         matched_timing_results / "POSTERIOR_RECOVERY_SUMMARY.csv",
         matched_timing_results / "POSTERIOR_RECOVERY_TASK_RESULTS.csv",
         matched_timing_results / "RESULTS_MATCHED.md",
+        pf_closed_loop_root / "PROTOCOL_AND_RESULTS.md",
+        pf_closed_loop_results / "PF_CLOSED_LOOP_OUTCOME_SUMMARY.csv",
+        pf_closed_loop_results / "PF_CLOSED_LOOP_TIMING_SUMMARY.csv",
+        pf_closed_loop_results / "PUBLICATION_TIMING_SCOPE_SUMMARY.csv",
+        pf_closed_loop_results / "RELEASE_VALIDATION.json",
         evidence_root / "15_PPO_STEP_COST_TUNING" / "README.md",
         evidence_root / "15_PPO_STEP_COST_TUNING" / "RUN_CONFIG.json",
         evidence_root / "15_PPO_STEP_COST_TUNING" / "candidate_validation_summary.csv",
@@ -134,6 +141,8 @@ def main() -> int:
         root / "scripts" / "benchmark_controlled_observation_to_action_100tasks.py",
         root / "scripts" / "run_controlled_timing_100tasks.py",
         root / "scripts" / "finalize_matched_timing_recovery_100tasks.py",
+        root / "scripts" / "benchmark_pf_first_n_step_full_stats.py",
+        root / "scripts" / "finalize_pf_closed_loop_timing_100tasks.py",
         root / "tests" / "test_release_contracts.py",
     ]
     formal_root = evidence_root / "01_PRIMARY_5x3000_BENCHMARK" / "formal_matched_evaluation"
@@ -170,6 +179,15 @@ def main() -> int:
         required_files.append(matched_timing_results / method / "raw.csv")
         required_files.append(matched_timing_results / method / "summary.csv")
         required_files.append(matched_timing_results / method / "RUN_CONFIG.json")
+    for method in ("pf_1000", "pf_10000", "pf_100000"):
+        for name in (
+            "task_results.csv",
+            "per_step_timing.csv",
+            "trajectories.jsonl",
+            "closed_loop_summary.csv",
+            "timing_first_n_summary.csv",
+        ):
+            required_files.append(pf_closed_loop_results / method / name)
     missing = [str(path.relative_to(root)) for path in required_files if not path.is_file()]
     if missing:
         raise SystemExit("Missing evidence files:\n" + "\n".join(missing))
@@ -178,8 +196,9 @@ def main() -> int:
     if index_path.stat().st_size < 100:
         raise SystemExit("Simulation study index is unexpectedly empty.")
 
-    # The current publication timing comparison uses the same 100 locked task
-    # cases and the same first post-dose observation for every method.
+    # Block 16 retains the matched single-step timing calls and the paired
+    # one-observation PF/PyMC recovery analysis. Current full-trajectory PF
+    # timing is validated separately below from block 17.
     expected_timing_ms = {
         "imitation": 0.15495,
         "ppo": 0.15390,
@@ -228,21 +247,84 @@ def main() -> int:
     if package_validation.get("matched_timing_recovery_100tasks") != expected_validation:
         raise SystemExit("Package validation does not describe the matched timing block")
 
+    expected_pf_closed_loop_validation = {
+        "status": "PASS",
+        "task_cases_per_particle_count": 100,
+        "step_measurements": {
+            "pf_1000": 592,
+            "pf_10000": 589,
+            "pf_100000": 577,
+        },
+        "success_rate_percent": {
+            "pf_1000": 97.0,
+            "pf_10000": 97.0,
+            "pf_100000": 97.0,
+        },
+    }
+    released_pf_validation = json.loads(
+        (pf_closed_loop_results / "RELEASE_VALIDATION.json").read_text(encoding="utf-8")
+    )
+    for key, expected in expected_pf_closed_loop_validation.items():
+        if released_pf_validation.get(key) != expected:
+            raise SystemExit(f"PF closed-loop validation mismatch for {key}")
+    if released_pf_validation.get("publication_timing_scope_summary_regenerated") is not True:
+        raise SystemExit("PF closed-loop publication timing audit is missing")
+    if package_validation.get("pf_closed_loop_timing_100tasks") != {
+        "status": "PASS",
+        "task_cases_per_particle_count": 100,
+        "step_measurements": {"pf_1000": 592, "pf_10000": 589, "pf_100000": 577},
+        "success_rate_percent": {"pf_1000": 97.0, "pf_10000": 97.0, "pf_100000": 97.0},
+    }:
+        raise SystemExit("Package validation does not describe the PF closed-loop timing block")
+
+    expected_pf_closed_loop = {
+        "pf_1000": (592, 40.1311, 97.0, 0.06000232336082756),
+        "pf_10000": (589, 93.0455, 97.0, 0.0640039490755104),
+        "pf_100000": (577, 594.127, 97.0, 0.05953077002847626),
+    }
+    with (pf_closed_loop_results / "PF_CLOSED_LOOP_TIMING_SUMMARY.csv").open(
+        "r", encoding="utf-8-sig", newline=""
+    ) as handle:
+        pf_timing_rows = {row["method"]: row for row in csv.DictReader(handle)}
+    with (pf_closed_loop_results / "PF_CLOSED_LOOP_OUTCOME_SUMMARY.csv").open(
+        "r", encoding="utf-8-sig", newline=""
+    ) as handle:
+        pf_outcome_rows = {row["method"]: row for row in csv.DictReader(handle)}
+    if set(pf_timing_rows) != set(expected_pf_closed_loop) or set(pf_outcome_rows) != set(
+        expected_pf_closed_loop
+    ):
+        raise SystemExit("PF closed-loop summary method set mismatch")
+    for method, (n_steps, median_ms, success, mean_error) in expected_pf_closed_loop.items():
+        timing = pf_timing_rows[method]
+        outcome = pf_outcome_rows[method]
+        observed = (
+            int(timing["n_step_measurements"]),
+            float(timing["total_decision_median_ms"]),
+            float(outcome["success_rate_percent"]),
+            float(outcome["final_abs_error_ph_mean"]),
+        )
+        expected = (n_steps, median_ms, success, mean_error)
+        if observed[0] != expected[0] or any(
+            abs(value - target) > 1e-12 for value, target in zip(observed[1:], expected[1:])
+        ):
+            raise SystemExit(f"PF closed-loop summary mismatch for {method}: {observed}")
+
     with (evidence_root / "FILE_MANIFEST_SHA256.csv").open(
         "r", encoding="utf-8-sig", newline=""
     ) as handle:
         manifest_rows = {row["path"]: row for row in csv.DictReader(handle)}
     if package_validation.get("manifest_entries") != len(manifest_rows):
         raise SystemExit("Evidence manifest count does not match package validation")
-    for path in sorted(matched_timing_root.rglob("*")):
-        if not path.is_file():
-            continue
-        relative = path.relative_to(evidence_root).as_posix()
-        row = manifest_rows.get(relative)
-        if row is None:
-            raise SystemExit(f"Matched timing file is absent from evidence manifest: {relative}")
-        if int(row["bytes"]) != path.stat().st_size or row["sha256"] != sha256(path):
-            raise SystemExit(f"Matched timing manifest mismatch: {relative}")
+    for protocol_root in (matched_timing_root, pf_closed_loop_root):
+        for path in sorted(protocol_root.rglob("*")):
+            if not path.is_file():
+                continue
+            relative = path.relative_to(evidence_root).as_posix()
+            row = manifest_rows.get(relative)
+            if row is None:
+                raise SystemExit(f"Timing file is absent from evidence manifest: {relative}")
+            if int(row["bytes"]) != path.stat().st_size or row["sha256"] != sha256(path):
+                raise SystemExit(f"Timing manifest mismatch: {relative}")
 
     expected_recovery = {
         "PF": (33.0, 45.197764468185, 0.6738121046053155, 3.179720456744687),

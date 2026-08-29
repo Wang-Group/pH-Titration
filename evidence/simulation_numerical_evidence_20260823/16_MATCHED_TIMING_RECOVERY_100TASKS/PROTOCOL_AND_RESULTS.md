@@ -1,9 +1,11 @@
 # Matched PyMC/PF timing and posterior recovery
 
-This block contains the current computational timing evidence used in the
-revised Supporting Information and response letter. It is an online-call
+This block contains the matched single-step timing benchmark and the current
+one-observation PF/PyMC posterior-recovery comparison. It is an online-call
 benchmark designed around the experimental control sequence; it is **not** a
-wall-clock measurement collected during the physical experiments.
+wall-clock measurement collected during the physical experiments. The current
+PF timing and success values measured together during complete trajectories are
+archived separately in `17_PF_CLOSED_LOOP_TIMING_100TASKS`.
 
 All six methods used the same 100 locked simulation cases, comprising 20
 prespecified task IDs from each of benchmark seeds 101, 202, 303, 404, and
@@ -37,6 +39,10 @@ draws for each candidate model order (`K = 1, 2, 3`) and one chain.
 The approximately 20 s liquid-transfer, mixing, electrode-stabilization, and
 pH-acquisition interval discussed in the response letter is experimental
 context only and is not included in these computational timings.
+
+The PF rows in this table are retained as the CPU-affinity-controlled
+single-step protocol. They must not be substituted for the current pooled
+complete-trajectory PF medians of 40.131, 93.046, and 594.127 ms in block 17.
 
 ## One-observation posterior recovery
 

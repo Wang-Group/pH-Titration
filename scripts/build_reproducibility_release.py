@@ -100,6 +100,14 @@ def build() -> None:
     matched_config = json.loads(
         (matched_timing / "MATCHED_RUN_CONFIG.json").read_text(encoding="utf-8")
     )
+    pf_closed_loop_validation = json.loads(
+        (
+            staged_evidence
+            / "17_PF_CLOSED_LOOP_TIMING_100TASKS"
+            / "results"
+            / "RELEASE_VALIDATION.json"
+        ).read_text(encoding="utf-8")
+    )
     validation = {
         "status": "PASS",
         "created_utc": datetime.now(timezone.utc).isoformat(),
@@ -155,6 +163,14 @@ def build() -> None:
             "methods": len(matched_config["methods"]),
             "pymc_draws_per_k": matched_config["worker_configs"]["pymc"]["pymc"]["draws_per_k"],
             "pymc_chains": matched_config["worker_configs"]["pymc"]["pymc"]["chains"],
+        },
+        "pf_closed_loop_timing_100tasks": {
+            "status": pf_closed_loop_validation["status"],
+            "task_cases_per_particle_count": pf_closed_loop_validation[
+                "task_cases_per_particle_count"
+            ],
+            "step_measurements": pf_closed_loop_validation["step_measurements"],
+            "success_rate_percent": pf_closed_loop_validation["success_rate_percent"],
         },
         "manifest_entries": len(manifest_rows),
         "forbidden_documents_included": False,

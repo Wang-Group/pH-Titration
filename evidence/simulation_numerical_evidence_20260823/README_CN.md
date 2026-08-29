@@ -28,9 +28,12 @@ The local PPO step-cost sensitivity materials are in
 original validation-selected `0.005` checkpoint and an independently
 retrained `0.005` checkpoint so that training stochasticity is visible.
 
-The current publication timing comparison is in
-`16_MATCHED_TIMING_RECOVERY_100TASKS`. PyMC, PF at three particle counts,
-imitation, and PPO were evaluated on the same 100 locked cases and the same
-first post-dose pH input. Blocks `10`, `11`, and `12` retain earlier timing and
-inference protocols for provenance; their values must not be substituted for
-the current matched comparison.
+The current timing evidence is split by protocol. Block
+`16_MATCHED_TIMING_RECOVERY_100TASKS` retains the matched single-step calls and
+one-observation PF/PyMC recovery comparison. Block
+`17_PF_CLOSED_LOOP_TIMING_100TASKS` contains PF success and timing measured
+together during complete trajectories on the same 100-task cohort. The PF
+full-trajectory timing pools all recorded decision cycles and did not use the
+CPU-affinity control of the block-16 single-step calls, so cross-block values
+are practical matched-cohort comparisons rather than identical-call timing.
+Blocks `10`, `11`, and `12` retain earlier protocols for provenance.
