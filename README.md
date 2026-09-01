@@ -139,6 +139,16 @@ are byte-identical to the original matched-evaluation snapshot. The archived
 generator reproduces all five manifests byte-for-byte; this is recorded in
 `01_PRIMARY_5x3000_BENCHMARK/formal_matched_evaluation/PRIMARY_MANIFEST_REGENERATION_AUDIT.json`.
 
+The historical PF runner that reproduces the reported `95.36 +/- 0.59%`
+result is under
+`13_SOURCE_ARCHIVES/formal_pf_95_36_reproduction_20260901/`. Its verifier
+checks all non-timing task-result fields against the locked PF reference and
+reports machine-dependent timing separately.
+The public `controllers.RobustPFController` is a later deployable API; it must
+not be substituted for this historical runner when reproducing the manuscript's
+primary PF benchmark or when constructing a matched posterior-to-control
+ablation.
+
 The original simple-rule and PID task-level outputs are under
 `01_PRIMARY_5x3000_BENCHMARK/formal_matched_evaluation/rule_baseline_replay/`.
 They reproduce the reported five-set means: simple rule, `77.28 +/- 0.41%`

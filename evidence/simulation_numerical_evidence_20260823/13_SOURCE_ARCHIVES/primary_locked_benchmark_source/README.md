@@ -8,3 +8,11 @@ their SHA-256 values match the original matched-evaluation snapshot.
 From this directory, `RUN_FORMAL.cmd` runs the archived evaluator against those
 locked manifests and the packaged imitation/PPO checkpoints. It writes generated
 results to `results_formal/` without modifying the locked evidence files.
+
+The evaluator pins the SHA-256 values of the packaged checkpoints. The selected
+PPO file hash corresponds to the current metadata-sanitized archive; its actor
+weights are unchanged from the validated selected policy.
+
+`NEURAL_REPRODUCTION_AUDIT_20260901.json` records a fresh five-set rerun in
+which every generated neural result and statistical table was byte-identical to
+the locked repository evidence.

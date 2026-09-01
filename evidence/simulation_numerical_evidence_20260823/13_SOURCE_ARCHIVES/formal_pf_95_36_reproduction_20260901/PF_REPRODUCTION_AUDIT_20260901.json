@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "date": "2026-09-01",
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "matplotlib": "3.11.1"
+  },
+  "run": {
+    "seeds": [101, 202, 303, 404, 555],
+    "tasks_per_seed": 3000,
+    "particles": 1000,
+    "workers": 8,
+    "evaluated_controller_trajectories": 45000
+  },
+  "hybrid_full": {
+    "success_rate_percent_mean": 95.36,
+    "success_rate_percent_sample_sd": 0.5875561438894378,
+    "successful_additions_mean": 4.838493382445997,
+    "successful_additions_sample_sd": 0.08822495811135174,
+    "seed_success_rate_percent": {
+      "101": 94.56666666666666,
+      "202": 95.33333333333334,
+      "303": 96.2,
+      "404": 95.5,
+      "555": 95.19999999999999
+    }
+  },
+  "verification": {
+    "task_manifests": "all five byte-identical by SHA-256",
+    "task_results": "all 45,000 rows matched in every non-timing field",
+    "excluded_machine_dependent_fields": [
+      "selection_time_ms_total",
+      "posterior_update_time_ms_total",
+      "controller_time_ms_per_step"
+    ],
+    "problems": []
+  },
+  "local_timing_for_reference_only": {
+    "hybrid_full_controller_time_ms_per_step_mean": 23.735318200423034,
+    "hybrid_full_controller_time_ms_per_step_sample_sd_across_seeds": 0.22149623100717727
+  }
+}

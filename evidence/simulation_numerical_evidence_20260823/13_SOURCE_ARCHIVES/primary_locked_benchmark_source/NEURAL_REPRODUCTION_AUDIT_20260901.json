@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "date": "2026-09-01",
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0+cpu"
+  },
+  "benchmark": {
+    "seeds": [101, 202, 303, 404, 555],
+    "tasks_per_seed": 3000,
+    "imitation_success_percent_mean": 89.17,
+    "ppo_success_percent_mean": 93.95
+  },
+  "checkpoint_sha256": {
+    "imitation": "71ae0176252d55c2a30b5d69afc6033ee1b0f4ac045e05b689ae7031c488adcc",
+    "ppo": "4004d7a09768fc5ac3f448523f53cb22210ed919ca7e713f13d9aa693cc19de5"
+  },
+  "comparison": {
+    "aggregate_summary.csv": "byte-identical",
+    "per_seed_summary.csv": "byte-identical",
+    "all_task_results.csv": "byte-identical",
+    "five_seed_task_result_files": "byte-identical",
+    "paired_success_tests.csv": "byte-identical",
+    "paired_continuous_tests.csv": "byte-identical"
+  },
+  "note": "The frozen neural evaluation does not run PF online. Consistency with the PF evidence is established by using the same five locked task manifests and the preserved PF reference rows in the matched evaluator."
+}

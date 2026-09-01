@@ -1,0 +1,27 @@
+{
+  "recovery_archive": {
+    "name": "pf_95_36_reproduction_package_20260901.zip",
+    "sha256": "75af655fae1f33a41f793d692e6894c4d637d2b78b9ede8c55b601b4a4e3a3d1"
+  },
+  "archive_files": {
+    "bayesian_external_rule_ablation.py": "33eb41e00291b0aa395ac1d34ab228fc4de11385533202f8c6ac28587e25ce8c",
+    "chemistry_model.py": "b1714a78a29006b29883d5aa73bde905fdf627ac4468ac7b71bd6168485516aa",
+    "control_environment.py": "b139efa948f8342d71db6de0ec055f908975cd16e306f699df494bbd67f56d34",
+    "evaluate_and_report.py": "872a432fd2bbe6c3529af2b97bbe4c241012bef4e6198028aa45bf7004e01e70",
+    "generate_teacher_dataset.py": "692ac3244f96703aeb396a74f390a0c91ca5f00bf716568d0a99f9f71046aadb",
+    "models.py": "484ecb3b332602b20c698a2f0596ddf43a3244a1ff445d7fdc1bee5cdcf31864",
+    "particle_controllers.py": "1054faf37e91e541ace7f1651cc67a03025b839b0411a61ca9a9426abdf580f4",
+    "particle_inference.py": "0ff9c745aca3779d92fe77de8d4f488adca0c51b1404c8aba13008dfdacc23a3",
+    "policy_evaluation.py": "de3dae25a5e8f17aeb37f13c090912c6ccbdab679c925ca17d9cc763d862ea2e",
+    "run_complete_study.py": "d0167aa961e32ad5218a03d7fb36598a069120f36bb216c9890e3a76cb9630a8",
+    "task_distribution.py": "2c7a5122821e6dd40942e6ee522fca7cf87f69beaa160b413972ed7e78a8d9db",
+    "train_imitation.py": "42fac7bc09a2638e98e40ff6e070fd63f44aac63a39c38793bb578a7c668292c",
+    "train_ppo.py": "d2a64b20d30b66eace3f0c948a31c0478679bc9edc9f7c05f381bda7a84454fc"
+  },
+  "completed_dependency": {
+    "path": "reference/original_bayesian_controller.py",
+    "sha256": "ddec112ba97267e87fd9f8fd802d9c1a934a1629f096b40e3e6315b79fe3cae5",
+    "source": "02_TEACHER_AND_IMITATION/robust_pf_imitation_ppo_training_source/reference/original_bayesian_controller.py",
+    "reason": "The recovery archive contained an empty reference directory even though the formal controller imports this module."
+  }
+}

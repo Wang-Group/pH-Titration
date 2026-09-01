@@ -43,7 +43,7 @@ METRICS = (
 )
 EXPECTED_CHECKPOINT_SHA256 = {
     "imitation": "71ae0176252d55c2a30b5d69afc6033ee1b0f4ac045e05b689ae7031c488adcc",
-    "ppo": "bafd85f896945245f4a2275764ee74cfb458aae78cbe91f5c17396c24fd22f1c",
+    "ppo": "4004d7a09768fc5ac3f448523f53cb22210ed919ca7e713f13d9aa693cc19de5",
 }
 
 
