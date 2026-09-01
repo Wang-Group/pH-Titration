@@ -1,0 +1,250 @@
+
+0bottomAddress here.
+Address here.
+Address here.
+† Footnotes relating to the title and/or authors should appear here. 
+Supplementary Information available: [details of any supplementary information available should be included here]. See DOI: 10.1039/x0xx00000x
+020000Address here.
+Address here.
+Address here.
+† Footnotes relating to the title and/or authors should appear here. 
+Supplementary Information available: [details of any supplementary information available should be included here]. See DOI: 10.1039/x0xx00000x
+Received 00th January 20xx,
+Accepted 00th January 20xx
+DOI: 10.1039/x0xx00000x
+
+Hybrid Bayesian Inference and Reinforcement Learning for Autonomous pH Adjustment in Diverse Chemical Systems
+ 
+Author Full Name,*a Author Full Name b and Author Full Name c 
+Abstract
+Automating pH adjustment remains a challenging task due to the nonlinear and system-specific nature of acid–base equilibria in multicomponent solutions. Here, we develop a hybrid framework that combines Bayesian inference, imitation learning, and reinforcement learning for autonomous pH adjustment in unknown chemical systems. We first apply Bayesian inference to iteratively estimate the underlying buffer properties of the solution from experimental feedback. Then, we train a neural network via imitation learning to mimic the titration behavior of the Bayesian controller. Finally, reinforcement learning is used to further optimize this policy through online exploration. We benchmark this approach in 3,000 virtual titration scenarios involving mono-, di-, and triprotic acids, achieving over 94% success in reaching target pH values with an average of 12.7 steps. Real-world experiments on a robotic platform validate the model’s performance across diverse practical conditions, achieving pH control within ±0.1 units. Our approach integrates chemical knowledge with adaptive learning, offering a versatile solution for closed-loop automation in chemical research and industry.
+Introduction
+Precise control of pH is essential in a wide range of chemical, biological, and industrial processes. From pharmaceutical formulations and wastewater treatment to synthetic chemistry and biochemical assays, achieving a target pH is a routine but labor-intensive task. Despite the simplicity of adding acid or base, the underlying chemical response of the system is highly nonlinear, especially in multicomponent or partially known mixtures. Human operators often rely on heuristics, such as gradually titrating while observing pH response, and adapt their strategy step-by-step based on how much the pH changes. If the pH barely shifts, more titrant is added; if it overshoots, the adjustment is slowed or reversed. This intuitive reasoning—refining one’s internal model through repeated feedback—closely parallels Bayesian inference and motivates our approach to automating pH control.
+Recent advances in automated platforms and machine learning have begun to transform laboratory workflows, enabling closed-loop optimization of chemical processes. However, pH adjustment poses specific challenges for automation. Traditional feedback control strategies such as proportional–integral–derivative (PID) or model predictive control often underperform when system composition is unknown or nonstationary. More recently, model-free methods like reinforcement learning (RL) have been explored in controlled pH systems, but these approaches typically require large training datasets and may generalize poorly to novel conditions.
+Here, we present a hybrid learning framework that leverages the strengths of both model-based and model-free paradigms. We begin by using Bayesian inference to learn an interpretable model of the chemical system in real time, capturing buffer characteristics from experimental feedback. We then distill this logic into a neural network via imitation learning, creating a fast and generalizable policy. Finally, we fine-tune the policy using reinforcement learning, enabling efficient adaptation to new or uncertain environments.
+By integrating chemical reasoning with learning-based optimization, our system not only replicates expert behavior but improves upon it in terms of speed and precision. We demonstrate the effectiveness of our approach across thousands of simulated titration tasks and validate it on a robotic platform performing real-world pH adjustments. This work establishes a new direction for chemical automation by combining domain knowledge, human-like control logic, and autonomous decision-making.
+19050487045Framework Overview
+
+Fig.1 The basic framework of this work starts with a Bayesian inference algorithm, forming an adaptive pH adjustment algorithm through imitation learning and reinforcement learning, and conducting a series of automated pH adjustment experiments.
+Our proposed approach is composed of four interlinked stages—Bayesian inference, imitation learning, reinforcement learning, and implementation in automated systemautomated implementation—each contributing distinct capabilities toward robust and adaptive pH adjustment in unknown systems (Figure 1).
+Bayesian Inference for Real-Time Buffer Estimation (Simulated and Experimental Systems). The control process begins with a coarse-grained model of the chemical system, where all buffering behavior is approximated using a limited set of three representative buffer pairs. At each titration step, the system performs Bayesian parameter inference to estimate the effective pKa values and molar concentrations of these buffer pairs from the observed pH response. This is achieved by sampling parameter combinations from a prior distribution over the parameters, simulating the pH response for each, and computing the likelihood based on the discrepancy between predicted and observed pH. Here, we explicitly incorporate chemical knowledge: the simulated pH values are calculated by solving the electroneutrality and mass balance equations corresponding to mixtures of weak acids and their conjugate bases. This captures the fundamental nonlinearity of acid–base equilibria, allowing the algorithm to leverage decades of chemical theory in each forward prediction. The parameter combinations are then resampled according to their likelihoods, forming a posterior distribution that is used to refine the next prediction. Despite using only three buffer pairs, this approach flexibly models a wide range of titration behaviors observed in both simulated and real-world multicomponent systems.
+Heuristic-Mimicking Control via Imitation Learning. To translate the Bayesian logic into a fast and generalizable policy, we first constructed a virtual titration environment grounded in the chemical principles of buffered systems. This simulation environment mimics realistic titration behavior by solving electroneutrality and mass balance equations for randomly sampled combinations of buffer pairs and target pH values. At each titration step, titrant volumes are selected using a rule-based controller informed by Bayesian inference, which continuously updates its estimates of buffer pKa values and concentrations based on prior observations. This process reflects expert titration behavior, combining chemical understanding with adaptive reasoning. We collected thousands of titration trajectories from this virtual environment, each consisting of state-action pairs that include the current pH, the target pH, recent pH changes, and the chosen titrant volume. These were then used to train a multilayer perceptron (MLP) neural network via imitation learning. The resulting model captures the nuanced decision-making logic of the rule-based system, such as applying large additions when far from the target and fine adjustments when nearing it. This enables rapid and generalizable pH control without explicitly re-running the Bayesian inference in real-time.
+Policy Optimization through Reinforcement Learning. While imitation learning captures expert-like behavior, it does not guarantee optimality across diverse or unforeseen conditions. We thus further optimize the neural network using reinforcement learning. A REINFORCE-style algorithm refines the policy by simulating full titration episodes in a virtual environment, guided by a custom reward function that favors accuracy, efficiency (fewer steps), and stability (no overshooting or oscillation). Through this stage, the model improves its action-selection strategy, especially in edge cases not well represented in the imitation training data.
+Integration with Robotic Execution. Finally, the trained policy is deployed on a robotic titration system equipped with precise syringe pumps and a pH sensor. At each step, the system observes the pH, predicts the next titration volume, executes the addition, and remeasures the pH. This closed-loop operation continues until the target pH is reached within a predefined margin (typically ±0.1). The control cycle typically completes within 10–15 iterations and is capable of adapting to a broad range of real and synthetic solution compositions.
+This hybrid architecture synergizes the interpretability of chemical reasoning with the flexibility of modern learning algorithms, enabling autonomous control over a classically human-intensive procedure. In the following sections, we quantitatively assess the performance of each stage using both simulated benchmarks and real experimental trials.
+Framework Implementation and Simulation Environment
+We constructed a chemically consistent simulation environment to emulate real-world titration tasks. Each episode simulates a buffered aqueous solution composed of one to three weak acids randomly selected from a pool of monoprotic, diprotic, and triprotic species, with assigned pKa values sampled from intervals of 2–4, 4–6, and 6–8, respectively. The total buffer concentration was set between 1–5 mM for each component, and the initial volume was fixed at 11 mL. The target pH for adjustment was randomly drawn from a range of 2.0 to 11.0. pH values upon titrant addition were computed based on electroneutrality and acid-base equilibrium, assuming complete mixing and temperature invariance. Each simulation proceeds by adding either acid or base incrementally, evaluating the resulting pH, and updating the system state.
+To mimic how chemists iteratively refine their understanding of a buffered system during titration, we implemented an online Bayesian inference controller that models the likely buffer composition and guides titrant selection. The core of the controller is a probabilistic model that encodes beliefs over the number of buffer components, their pKa values, and initial concentrations. At the start of each titration episode, a broad prior is defined across these parameters, reflecting empirical expectations (e.g., number of components = 1–3, pKa values between 2–10). After each titration step, the model compares the observed pH response to predictions from each candidate buffer composition and updates the posterior distribution over buffer parameters using Bayes’ theorem. The updated posterior is then used to estimate how different titrant volumes would affect the pH, forming the basis for the next decision (see Methods).
+The controller uses the following chemical-knowledgechemical-knowledge-based –based rules to determine the next volume and direction of titrant addition:
+Direction of Titration: If the current pH is lower than the target, base is added; if higher, acid is added.
+Volume Adjustment Based on Local Sensitivity: The controller evaluates the expected pH change per unit volume of titrant (∆pH/∆V) using the most probable buffer model. If ∆pH/∆V is small (indicating a strong buffering zone), a larger volume is added to make meaningful progress. If ∆pH/∆V is large (indicating weak buffering or near-equivalence points), a smaller volume is used to avoid overshooting.
+Proximity to Target: As the estimated pH approaches the target (e.g., within ±0.5 units), the controller becomes more conservative, using smaller volumes even if the buffer appears weak, to increase precision.
+Monotonicity Enforcement: If the observed pH change contradicts expectations (e.g., adding base results in pH drop), the controller reduces the volume and re-evaluates the buffer estimate to avoid missteps due to model mismatch.
+Step Cap and Termination: If the target pH is reached within ±0.1 units or if the titration exceeds a predefined number of steps, the episode is terminated.
+pH adjustments with diluted solutions. The titration was initially performed usingfirst employed  0.1 M HCl and NaOH solutions. If repeated overshooting of the target pH occurred even with 0.01 mL precision dosing (indicating the impossibility of achieving target pH using 0.1 M solutions), subsequent titrations switched to 0.01 M HCl and NaOH.
+This rule-based controller produces chemically interpretable behavior and provides expert-like demonstrations for training the next stage.
+To decouple the control logic from computationally intensive inference, we trained a neural policy to imitate the Bayesian controller. We generated 8,000 titration trajectories using the rule-based controller in the simulation environment, capturing the state-action pairs at each step. Each state consisted of the current pH, ∆pH from the previous step, the cumulative acid/base added, and the pH target. The output action was the selected volume and titrant type (acid or base). A fully connected neural network with two hidden layers (64 units each, ReLU activations) was trained using supervised learning to minimize the mean squared error between predicted and expert actions. This neural policy replicates the behavior of the Bayesian controller while offering fast inference suitable for real-time deployment.
+Although the imitation-learned policy generalizes well, it lacked adaptability under ambiguous or previously unseen conditions and could not exceed the performance of the rule-based method. To overcome this, we used reinforcement learning to fine-tune the policy in the same simulation environment. We modeled the titration process as a sequential decision-making problem where the state included the same inputs as the imitation model, and the action space was discrete, covering a range of titrant volumes and directions. The reward was defined as the negative absolute error from the target pH after each step, with a bonus for reaching the goal within a minimal number of additions, as well as a penalty for overshooting or requiring back-correction. We used proximal policy optimization (PPO) as the learning algorithm, initializing the policy from the imitation-trained network and training it on 50,000 episodes. The refined agent demonstrated improved precision, faster convergence, and greater robustness to unusual buffering conditions.
+Performance in Simulated Titration Benchmarks
+To evaluate the effectiveness of our framework, we benchmarked its performance across 3,000 simulated titration tasks drawn from a chemically diverse set of virtual buffer systems. Each task required the agent to reach a randomly assigned target pH (between 2.0 and 11.0) through sequential additions of acid or base. The complexity of the buffer compositions ranged from single monoprotic species to mixtures of up to three polyprotic acids, mimicking realistic and often ambiguous titration scenarios encountered in laboratory practice.
+We assessed three control strategies: the Bayesian rule-based controller, the imitation-learned neural policy, and the policy further refined via reinforcement learning. Success was defined as reaching within ±0.1 of the target pH within 50 titration steps. Table 1 presents a comparison of the performance of different algorithms.
+The Bayesian controller, grounded in online inference and chemically informed rules, achieved a 94.2% success rate with an average of 12.73 steps per titration. This established a strong baseline, highlighting the effectiveness of real-time model updates and principled volume selection.
+The neural policy trained via imitation learning closely replicated expert behavior without performing any inference during execution. It achieved a 93.77% success rate with an average of 10.22 steps, demonstrating that the network successfully internalized the decision-making strategy despite its simpler architecture and faster runtime. After reinforcement learning–based fine-tuning, the policy further improved to a 94.27% success rate and reduced the average number of steps to 10.21.  Notably, the incidence of pH overshoot requiring corrective steps dropped by over 15.15% compared to the Bayesian Rule-Based model, indicating better anticipatory control near endpoints and improved robustness under uncertain conditions.
+These results confirm that our hybrid framework not only reproduces expert-like control with high fidelity but also benefits from data-driven refinement to outperform rule-based strategies. In the following section, we validate its applicability in physical experiments using a robotic titration platform.
+
+
+Controller Type
+Success Rate
+Avg. Steps
+Overshoot Incidence
+Bayesian Rule-Based
+94.2%
+12.73
+41.84%
+Imitation Learning
+93.77%
+10.22
+34.41%
+Reinforcement Learning
+94.27%
+10.21
+30.55%
+Table.1 Comparison of the performance of three algorithms under the same simulated experiment: the reinforcement learning algorithm performed best across three metrics.
+Real-World Experimental Validation
+To validate the controllers beyond simulation, we implemented them on a fully automated titration platform. The system comprised a programmable robotic workstation equipped with: a syringe pump for precise liquid handling (50 µL resolution), a high-accuracy pH electrode (calibrated before each experiment), a microcontroller for real-time sensor reading and actuation, a software interface that allowed each control policy to autonomously dictate titrant direction and volume.
+The platform was capable of executing stepwise titrations in both acid and base directions, logging pH response after each addition. All experimental runs began with 11 mL of test solution and were conducted at room temperature in constant stirring conditions to ensure homogeneity. Controllers interacted with the system through a standardized command protocol, enabling direct performance comparison across identical physical conditions.
+Experiment1. Benchmarking Three Control Policies in a Robotic pH Adjustment Task
+To evaluate the practical utility of our framework, we deployed three controllers—Bayesian rule-based, reinforcement learning, and human judgementjudgment—on an automated titration platform. We tested their ability to adjust the pH of real buffer mixtures to a target value under identical physical conditions.
+right16262350Each experiment began with 11 mL of a mixed-buffer solution containing three weak acids (p-hydroxybenzoic acid, terephthalic acid, acetic acid, and sulfosalicylic acid), selected to introduce overlapping buffering zones and a nontrivial titration curve. We tested four solutions, each containing two of the acids (Mixtures 1-4, Figure 2), and the target pH was set to 6.0 ± 0.1 using only 0.1 M HCl or 0.1 M NaOH as the titrant. The platform executed acid or base additions in 50 µL increments, with each controller dictating volume and direction in real time.
+Despite facing a system with unknown and nonlinear buffering behavior, all three controllers successfully reached the target pH within a margin of ±0.1. However, clear differences emerged in efficiency and control behavior.
+The Bayesian rule-based controller reached the target pH in 12, 2, 7, 8 steps for Mixtures 1-4, respectively. Its decisions reflected a cautious, model-updating strategy, especially as it approached the target zone. However, inference overhead led to slower overall operation. In comparison, the reinforcement learning–tuned policy achieved comparable trajectories (9, 3, 10, 8 steps for Mixtures 1-4, respectively) and negligible overhead time for decision-making. A little bit surprising is that the human intuition can still beat these algorithms giving 4, 8, 5, 6 steps for Mixtures 1-4, respectively, although it cannot be installed into automatic systems. The human judgement wins when pH approaching the target. While human decision can use 1-2 steps to reach the target, the algorithms use multiple small steps.
+These results confirm that the performance gains observed in simulation translate directly to physical experiments. The reinforcement-learned policy not only retains the expert-like behavior encoded by chemical rules but also adapts more flexibly to the unmodeled nuances of real-world systems. This experiment underscores the value of our staged learning pipeline in bridging rule-based design with empirical optimization.
+Fig.2 the pH adjustment process of three different control policies. Four weak acid solutions were prepared: Titration volumes in were determined by (a) the Bayesian inference parameter updating algorithm, (b) the reinforcement learning policy network, (c) manual judgment. The x-axis represents the cumulative volume of titrant added at the end of each step, and the y-axis corresponds to the pH measured after each addition. Green downward-pointing triangles denote steps involving acid addition, red upward-pointing triangles indicate steps with base addition, and the blue dashed line marks the target pH.
+Experiment 2. Waste Water Neutralization
+Neutralizing laboratory wastewater is an essential safety and compliance step in chemical operations, preventing damage to infrastructure and reducing the risk of environmental contamination. Beyond pH regulation, neutralization also improves the efficiency of downstream treatments such as precipitation and flocculation by reducing the solubility of harmful species.
+In this experiment, we applied our autonomous pH adjustment system to a real-world task involving the neutralization of three distinct laboratory wastewater samples. Each 3 mL sample, labeled (1), (2), and (3), was first diluted with 12 mL of deionized water to bring the system within the workable range of the pH sensor. The initial pH values varied significantly across the samples, reflecting the heterogeneity of chemical residues. The control objective was to adjust each solution to pH 7.0 ± 0.1 using automated additions of 0.1 M HCl or 0.1 M NaOH.
+We deployed the reinforcement learning–based policy for this task, given its superior performance in simulation and earlier physical experiments. Figure 3 shows the titration trajectories, where red upward-pointing triangles indicate base additions, green downward-pointing triangles denote acid additions, and the blue dashed line marks the neutral target.
+The results demonstrate the model’s ability to generalize to chemically complex, previously unseen real samples without prior information about buffering species. The consistent and efficient convergence further highlights the robustness of the policy under noisy and variable conditions.
+
+Figure 3 The pH adjustment in waste water neutralization. The x-axis represents the cumulative volume of titrant added at the end of each step, and the y-axis corresponds to the pH measured after each addition. Green downward-pointing triangles denote steps involving acid addition, red upward-pointing triangles indicate steps with base addition, and the blue dashed line marks the target pH.
+Experiment 3. Isoelectric Precipitation of Casein from Milk
+The isoelectric point (pI) of a protein corresponds to the pH at which its net charge is zero, leading to minimal solubility and enhanced aggregation. Exploiting this principle, proteins such as casein can be selectively precipitated by adjusting the pH of the solution. Casein, the predominant milk protein (~80%), has a pI in the range of 4.6–5.2, which underpins its extraction in dairy processing and protein purification protocols.
+In this experiment, our autonomous pH adjustment system was used to precipitate casein from fresh milk by titrating the pH to 4.6 ± 0.1. A 12 mL aliquot of milk was introduced into a three-necked flask, and the reinforcement learning policy guided the sequential addition of 0.1 M HCl or 0.1 M NaOH. The titration proceeded smoothly, requiring only 4 steps to reach the target with no overshooting, as shown in Figure 4.
+Following pH adjustment, the precipitated casein was isolated via centrifugation, washed with a 1:1 ethanol–ether mixture to remove lipids, and oven-dried at 80 °C to constant weight. The yield was 171 mg from 12 mL of milk. Protein identity was confirmed by redissolving the casein in 3% NaOH and observing a violet color change upon addition of Biuret reagent, indicating the presence of peptide bonds.
+This experiment demonstrates the ability of the system to handle real-world, nonideal media such as milk, and perform functional biochemical separations with high accuracy and reproducibility.
+
+Fig. 4 As the pH decreases, casein micelles begin to aggregate, and at the isoelectric point, casein solubility is lowest, resulting in the maximum amount of precipitation. We adjusted the pH of the milk to around 4.6 to separate and collect the casein.
+Experiment 4. Determination of Protease Activity under Varying pH Conditions
+Proteases can catalyze protein hydrolysis and exhibit strong pH dependence, with catalytic activity modulated by changes in the ionization states of both the enzyme and the substrate, altering their conformation, charges around the active site, and binding capacity. To investigate this effect systematically, we used papain—a well-characterized cysteine protease—as a model enzyme to study hydrolysis of whey protein across a range of pH environments.
+Whey protein powder (300 mg) was dissolved in 15 mL of ultrapure water and adjusted to four target pH values: 2.0, 4.0, 7.0, and 11.0 (±0.1). pH adjustment was conducted autonomously using our Bayesian inference–guided titration controller. Upon reaching the target pH, 12 mg of papain was added to each solution. A neutral control group was prepared by dissolving the same amount of protein in water without pH adjustment, diluted to a final volume of 50 mL.
+At 12 h and 16.5 h intervals, 1 mL aliquots were sampled from each reaction mixture, mixed with 4 mL of Biuret reagent, and analyzed using UV-Vis spectroscopy. Absorbance at 540 nm was recorded as a measure of peptide bond concentration, with higher values indicating lower hydrolysis efficiency due to fewer bonds being cleaved.
+
+
+Fig. 5 In this experiment, we used the biuret reagent to detect the residual peptide bond content in the solution to compare the hydrolytic activity of papain at different pH levels. The solution pH was adjusted to 2, 4, and 11 using an automated pH adjustment device, with a neutral control group established. Samples were taken after 12 hours and 16.5 hours of reaction for UV-Vis testing.
+Experiment 5. Determination of Composition and Stability Constant of the Copper- Sulfosalicylic Acid Complex
+This experiment applies the classical method of continuous variation (Job’s method) to determine the stoichiometry and conditional stability constant of the complex formed between Cu²⁺ and 5-sulfosalicylic acid (SSA). This approach involves varying the molar ratio of the two components while keeping their total concentration constant, and measuring a physical property—here, the UV-Vis absorbance at the complex’s characteristic wavelength—that reflects the extent of complexation. The maximum in the Job’s plot indicates the dominant stoichiometric ratio. 
+To proceed, we prepared ten mixed solutions of Cu(NO₃)₂·3H₂O and SSA·2H₂O at total concentrations of 14.7 mM. Table 1 summarizes the preparation of stock solutions, and Table 2 details the mixing ratios. The pH of each mixture was adjusted to 4.2 ± 0.1 using either 0.1 M nitric acid or 0.05 M NaOH, under conditions where the 1:1 copper–SSA complex is known to dominate. Figure 6 shows the pH adjustment profiles of the ten solutions, demonstrating stable and reproducible titration performance using our automated system.
+UV-Vis absorption spectra for each solution are shown in Figure 6. A distinct absorption band centered around 400 nm emerges in the mixtures, corresponding to the formation of the copper–SSA complex. Importantly, neither free SSA nor Cu²⁺ exhibits appreciable absorbance at this wavelength, confirming its suitability as a marker for complexation.
+To determine the complex stoichiometry, the absorbance at 400 nm was plotted as a function of the SSA mole fraction in the mixture (Figure 6). The maximum absorbance occurs at a molar fraction of ~0.5, indicating a 1:1 complex formation between Cu²⁺ and SSA under these conditions. 
+To calculate the stability constant, we first estimated the degree of dissociation (α) of the complex at the stoichiometric point using the absorbance data. Specifically, we identified the absorbance at the intersection of the two linear segments in the Job’s plot as A′, corresponding to the maximum complex concentration. The experimental absorbance for each solution was then compared to A′, and α was determined using the relation:
+α=A'-AA  (1)
+where A is the measured absorbance of the solution at a given mole ratio. This approach assumes that deviations from the maximum absorbance result from incomplete complex formation, allowing α to reflect the fraction of uncomplexed species. Using this ratio, we calculated the conditional stability constant of the complex according to the equilibrium expression:
+
+MRn=M+nR
+c1-α  cα  ncα
+K_stab=c(1-α)cα(ncα)n=(1-α)(nc)nαn+1  (2)
+Based on the absorbance at the intersection point and a derived dissociation degree (α), the estimated stability constant was Kₛₜₐᵦ ≈ 9655, reflecting strong complex stability under mildly acidic conditions.
+Methods:
+Bayesian parameter updating
+The process of Bayesian parameter updating consists of five steps: sampling, prediction, evaluation, resampling, and statistical updating.
+1.Sampling: We establish an initial guess for the chemical system in the form of a probability distribution as the prior (i.e., specifying the mean, variance, and type of probability distribution). Then, we sample from this distribution to obtain several parameter combinations. Each combination contains sampled values of the pKa and molar amounts of each buffer pair.
+2.prediction：Next, we use these parameter combinations to perform calculations based on chemical equilibrium. Given the current conditions (solution volume, amount of acid or base added) and each experimental operation, we calculate the pH after the operation, with each combination independently computing and predicting the outcome. First, we calculate the effective pKa using Equation (3).
+wi=w-tanhkimaxpKaieff=pKairef+wipKai-pKairef  (3)
+Wi: The "trust weight" assigned to the i-th buffer pair in this update.
+
+
+
+Fig. 6 (a) illustrates the possible chemical reactions occurring in this solution, the potential structures of the formed complexes, and the UV-Vis spectra of the solution at different molar ratios, along with the Job’s plot. Fig. 6 (b) depicts the automated pH adjustment process in this experiment, where each solution was automatically adjusted to within ±0.1 of the target pH value.
+
+Wmax: The maximum possible value of the weight .
+σi: The current uncertainty measure of the i-th buffer pair (standard deviation).
+tanh: The hyperbolic tangent function maps uncertainty to the [0,1) interval.
+pKaref: The pKa value of the i-th buffer pair, sampled and fixed during environment initialization.
+pKa: The current latest sampled or updated pKa of the i-th buffer pair.
+pKaeff: The effective pKa used for pH calculation.
+Then, based on Equation (4), we set up charge conservation equation and numerically solve for the pH.
+fpH=10-pH+cNa-Kw10-pH-cAi=1ni*Hn-iAi--cHCl=0 (4)
+3.Evaluation: Subsequently, we calculate the likelihood to assess the agreement between each combination's predicted pH and the actual observed pH. Combinations with better agreement are assigned higher weights. Assuming the experimental measurement error follows a normal distribution with a standard deviation of 0.01, the likelihood is calculated using Equation (5).
+wiraw=NpHobs丨pHi,σ2                =12πσexp⁡(-(pHobs-pHi)22σ2)
+wi=wiraw+ε
+wi=wij=1Nwj       (5)
+4.Resampling: Based on these weights, we resample the combinations (sampling with replacement according to the weights). This process tends to retain parameter combinations that better match the observations, thereby constructing a new sample set that approximates the posterior distribution.
+5.Statistical Updating: Using the resampled set, we calculate statistical descriptors (mean and standard deviation) for each buffer pair's parameters (pKa and molar concentration). These statistics are used to construct a new normal distribution as the posterior estimate, updating the prior. Through this process, our understanding of the chemical system becomes increasingly accurate, enabling more precise titration strategies.
+Determining Titration Volume Using Bayesian Parameter Updates and Control Logic
+Based on the above considerations, we designed a volume calculation formula to provide titration volume. To better align with pipette operations, we constructed a discrete volume space (in mL) and selected the value within the range [0.01, 9.99] that is closest to the volume given by the formula, rounded to two decimal places. The volume calculation consists of the following components:
+1. ΔpH: This term calculates the absolute difference between the current pH and the target pH, indicating the degree of deviation of the current pH.
+2.pH Change: This term computes the difference between the current pH and the previously measured pH, reflecting the system's response to the pH change caused by the last operation.
+3. Rate Adjustment Term: This term adjusts based on the rate of pH change. If the current pH change is small, this term is higher, encouraging an increase in the titration volume.
+4. Uncertainty Factor: If the pKa uncertainty of the buffer pair is large, indicating high system uncertainty, the addition volume should be appropriately reduced to avoid drastic pH fluctuations caused by large additions.
+5. Buffer Factor: This term estimates the buffering capacity based on the amount of buffer and adjusts the titration volume accordingly—strong buffering capacity allows for larger additions of acid or base, while weak buffering capacity requires smaller additions.
+6. Theoretical Volume from Posterior Calculation: This represents the reagent volume required, under ideal conditions (i.e., when the posterior perfectly matches reality), to precisely achieve the target pH.
+Integrating and smoothing these components yields the titration volume. equation (6) provides the volume calculation formula.     
+Vadd=Vmin+(Vmax-Vmin)tanh[α|ΔpH|+0.1Vreq]  (6)
+In equation (6) Vmin=0.01 mL,Vmax=9.99 mL α is given by equations (7)
+α=Φ1+r1-0.1uB  (7)
+Parameter Φis a scaling coefficient used to adjust the magnitude of α. Φ was set to 0.2
+Parameter r is a factor that promotes rapid approaching to the target pH. When the pH change rate is smaller, r is larger; when the pH change is significant, r approaches zero, thereby encouraging larger titration volumes when the pH change is slow.
+r=pH_rate_bonus_factor(1-min(pH_ratepH_rate_threshold,1))  (8)
+pH_rate_bonus_factor is 0.5, pH_rate is ΔpH/V
+pH_rate_threshold is 1.0
+Parameter u utilizes variance to reflect the average uncertainty of the posterior pKa of the current buffer system. The greater the uncertainty u, the smaller α becomes, resulting in smaller titration volumes and more conservative operations.
+u=min⁡(σσmax,1)
+σpKai=1Nj=1N(pKai,j-pKai)2
+σ=1ni=1nσpKai  (9)
+Parameter B measures the deviation of the total concentration of buffer substance relative to a reference value. The greater the buffer concentration, the stronger the buffering capacity, resulting in less pH changes during acid or base addition. In such cases, the parameter B comes into play, appropriately amplifying α. Mbuffer is the average posterior total buffer concentrations across all combinations, with Mref set to 0.5. After calculation, the value is clipped to the range [0.95, 1.05].
+B=clip(1+0.1Mbuffer-Mref,0.95,1.05)  (10)
+Vreq is the theoretical volume required to adjust the solution to the target pH. 
+Vreq:F(Vreq)=0,F(V)=pH(V)-pHtarget  (11)
+The pH(V) function represents the theoretical pH of the solution after adding a volume V of acid or base. This theoretical value is calculated using the posterior pKa and its associated uncertainty. The computational method involves the following steps:
+First we calculate the effective pKa
+wi=weight_max(1-tanh(kσi))
+pKaeff=ref_pKai+wi(pKai-ref_pKai)  (12)
+Weight_max is set to 0.2, where σ is variance of the posterior pKa distribution for each particle, and ref_pKa is the prior pKa determined during the initial sampling.
+Then we calculate the solution pH after adding volume V based on the effective pKa. The value of V that satisfies F(V) = 0 corresponds to the theoretical volume required to adjust the pH to the target value.
+imitation learning
+First, we simulated the generation of 8,000 successful experimental trajectories using code based on a Bayesian inference parameter updating algorithm. Each experiment consists of multiple state-action pairs. The states used for imitation learning training include: current pH, target pH, the difference between the current and previous measured pH values, current error, and the previous titration volume. The action for training is the current titration volume. All successful experiments were split into individual state-action pairs, shuffled to eliminate their original sequential relationships, and then randomly partitioned into a 70% training set, 15% test set, and 15% validation set.
+The model is a multilayer perceptron (MLP) with a 5-dimensional input, two hidden layers each containing 256 neurons (both using ReLU activation functions), and a 1000-dimensional output layer that predicts logits for 1000 discrete titration volume categories (ranging from 0.01 to 10.00 mL with a step size of 0.01 mL). During inference, the volume corresponding to the highest logit value is selected as the predicted titration volume. The cross-entropy loss was chosen as the loss function, and the Adam optimizer was employed with a learning rate of 1e-3, batch size of 64, and 80 training epochs. This 5→256→256→1000 architecture not only captures nonlinear combinations of input features but also ensures sufficient expressive power to fit the mapping from states to discrete titration volumes.
+The model demonstrated excellent performance in forward prediction on the test set, with Test MSE Loss: 0.0062, Test MAE Loss: 0.0335, and Test R² Score: 0.9992. These results indicate that the model has successfully imitated the Bayesian inference parameter updating algorithm.
+Optimizing Neural Network Parameters via Reinforcement Learning
+Based on the imitation model, we employ the REINFORCE algorithm (a Monte Carlo policy gradient algorithm) for reinforcement learning. By guiding the model through a well-designed reward function to continuously update toward achieving higher cumulative returns, we enhance the performance of the imitation model by updating its parameters. The parameter update process proceeds as follows:
+Sample a complete trajectory (i.e., successfully complete an experiment online).
+Calculate the discounted return using the formula (13), where rt denotes the reward at step t, with the discount factor γ set to 0.99 in practice.
+GT=0Gt=rt+γGt+1Gt=rt+γGt+1+γ2Gt+2+…（13）
+The cumulative discounted return is composed of step-wise rewards. We also clip the rewards to avoid adverse effects from excessively large or small values. After multiple rounds of online training, we obtain an updated policy network capable of generating experimental actions based on the current state. The specific calculation formulas for the reward components are as follows:
+1.Dense Reward Calculation. Dense Reward directly rewards actions that reduce the difference between the current pH and target pH.
+dense_reward=λ(|et-1|-|et|)(1+M-tM)(14)
+In equation (14): λ is fixed scaling parameter set to -0.03. t is current step index (ranges from 1 to M). et: pH error at step t. M: Maximum allowed steps in the experiment (fixed to 50 in practice). The dense reward incentivizes early reduction of the pH deviation from the target, thereby steering the experiment toward progressive advancement.
+2. Step Penalty Calculation. A fixed penalty is applied for each action taken, encouraging the agent to accomplish the experimental objective in fewer steps.
+3. Overshoot Penalty Calculation. The overshoot penalty is triggered when the pH deviation overshoots the target pH by a threshold of 0.1 (either above or below). This penalty is applied to reduce scenarios where adding acid after overshooting with base, or vice versa.
+overshoot_penalty=-wσ(|et|-δ),if (et-1•et<0)∧|et| (15)
+In Equation (15):  w is a fixed constant weighting factor set to 0.2, δ is a fixed constant overshoot boundary, set to 0.1, et is pH deviation from the target at step t.
+4. Incorrect Reagent Penalty Calculation. A fixed penalty is applied if an acid is added when attempting to increase pH or a base is added when attempting to decrease pH.
+5.Calculation of Overshoot Volume Penalty and Reward.Equation (15) provides the specific calculation formula for volume penalty and volume bonus. If overshoot occurs in the previous step, an overshoot volume penalty will be triggered, with the penalty amount related to the added volume causing the overshoot, where vt is the volume of the current step and pvol is a fixed constant set to 0.1. If overshoot occurred in the previous step and the titration volume in the next step is less than the overshoot step, an overshoot volume reward will be triggered, where bvol is a fixed constant also set to 0.1and Vover is the added volume causing the overshoot step.
+volume-penalty=-pvol×vt
+volumebonus=bvolVover-vt,if     vt<Vover  (17)
+6.Terminal Reward A reward is given at the end of the experiment. If the number of steps used is less than half of the maximum steps, a higher reward is granted, where B is a fixed constant set to 3.9. 
+terminal_bouns=B×2.0,    if  t<M2terminal_bouns=B×1.0,    if  t>=M2  (18)
+After completing one sampling (a set of experiments) under the optimal parameter combination, the cumulative policy loss can be calculated for backpropagation, using an optimizer to update the model parameters. This process was repeated 1000 times, completing model parameter updates after 1000 simulated experiments. These 1000 experiments were randomly generated, including a monoprotic acid with a pKa randomly selected between (2, 6), a diprotic acid with pKa values randomly chosen between (2, 4) and (4, 7), or a triprotic acid with pKa values randomly selected between (2, 4), (4, 6), and (6, 8), all at a concentration of 0.1 M, with a target pH randomly chosen between (2, 11). Testing was conducted on 3000 experiments generated with the same random seed as used in the Bayesian parameter update method, achieving a success rate of 87.27% and an average of 7.88 steps for successful experiments (When using only 0.1M hydrochloric acid and sodium hydroxide, the Bayesian inference parameter update method achieves an average success rate of just 77.63%, requiring an average of 10.20 steps.). 
+Automated Titration Setup 
+As shown in Figure 7, the liquid to be titrated was contained in a three-necked flask. The left neck was connected to a nitrogen gas inlet, which generated bubbles in the liquid to enable stirring. The central neck was fitted with a pH probe to monitor the solution's pH value. The right neck was connected to the reagent delivery tubing.
+The experimental procedure was as follows. The strategy network determined the titration volume, and a syringe pump delivered the required reagent. After each addition, the system waited 20 seconds to allow thorough mixing and reaction completion. The pH value was recorded, and the algorithm generated a state vector to calculate the next reagent volume. If consecutive reagent additions involved different chemicals, the syringe pump was cleaned by flushing three times with 10 mL of water, with the waste liquid discharged into a waste collection bottle, followed by a single rinse with 5 mL of the subsequent reagent to prevent cross-contamination. This process ensured precise pH control and minimized unwanted interactions between reagents
+
+
+
+Fig. 7 Three-neck flask automatic titration device Left neck: Connected to a nitrogen gas inlet for stirring via bubble generation. Central neck: Equipped with a pH probe for real-time pH monitoring. Right neck: Attached to a reagent delivery tube for controlled titrant addition.
+conclusionsConclusions
+We have developed and validated a three-stage hybrid framework for autonomous pH adjustment that synergistically combines real-time Bayesian inference, imitation learning, and reinforcement learning. First, explicit acid–base chemistry is captured via Bayesian parameter updates to estimate solution buffer properties—achieving a 94.20% success rate, an average of 12.73 titration steps, and a 41.84% overshoot rate under pure Bayesian control. Next, that chemically informed control logic is distilled into a feed-forward neural policy through imitation learning, cutting the average steps by \~20% (93.77% success, 10.22 steps, 34.41% overshoot) and enabling rapid, low-overhead inference. Finally, the policy is fine-tuned with reinforcement learning using a tailored reward structure, yielding the highest success rate (94.27%), the fewest steps (10.21), and the lowest overshoot frequency (30.55%) without per-step computation. In 3,000 virtual titrations, this staged approach reached target pH values within ±0.1 with over 94% success, and on a robotic titration platform it maintained precision across diverse real-world mixtures while demonstrating rapid convergence and minimal computational overhead. By replicating expert heuristics, accelerating decision-making, and optimizing performance, our framework outperforms traditional rule-based strategies in both efficiency and robustness, offering a versatile solution for closed-loop chemical automation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Author contributions
+We strongly encourage authors to include author contributions and recommend using  HYPERLINK "https://credit.niso.org/" CRediT for standardised contribution descriptions. Please refer to our general  HYPERLINK "https://www.rsc.org/journals-books-databases/journal-authors-reviewers/author-responsibilities/" author guidelines for more information about authorship. Please remove the “Author Contributions” heading for articles submitted to Chemical Communications.
+Conflicts of interest
+In accordance with our policy on  HYPERLINK "http://www.rsc.org/journals-books-databases/journal-authors-reviewers/author-responsibilities/" \l "code-of-conduct" Conflicts of interest please ensure that a conflicts of interest statement is included in your manuscript here.  Please note that this statement is required for all submitted manuscripts.  If no conflicts exist, please state that “There are no conflicts to declare”. 
+Data availability
+A data availability statement (DAS) is required to be submitted alongside all articles. Please read our  HYPERLINK "https://www.rsc.org/journals-books-databases/author-and-reviewer-hub/authors-information/prepare-and-format/data-sharing/" \l "dataavailabilitystatements" full guidance on data availability statements for more details and examples of suitable statements you can use.
+Notes and references
+‡ Footnotes relating to the main text should appear here. These might include comments relevant to but not central to the matter under discussion, limited experimental and spectral data, and crystallographic data.
+§
+§§
+etc.
+
+Citations should appear here in the format A. Name, B. Name and C. Name, Journal Title, 2000, 35, 3523; A. Name, B. Name and C. Name, Journal Title, 2000, 35, 3523. 
+…
+We encourage the citation of primary research over review articles, where appropriate, in order to give credit to those who first reported a finding.  HYPERLINK "https://www.rsc.org/news-events/articles/2020/jun/rsc-signs-dora/" Find out more about our commitments to the principles of San Francisco Declaration on Research Assessment (DORA).
+

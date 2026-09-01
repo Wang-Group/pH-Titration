@@ -21,6 +21,19 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def matches_manifest_entry(path: Path, row: dict[str, str]) -> bool:
+    """Match exact bytes, allowing only Git's CRLF checkout conversion."""
+    data = path.read_bytes()
+    expected_size = int(row["bytes"])
+    expected_hash = row["sha256"].lower()
+    candidates = (data, data.replace(b"\r\n", b"\n"))
+    return any(
+        len(candidate) == expected_size
+        and hashlib.sha256(candidate).hexdigest() == expected_hash
+        for candidate in candidates
+    )
+
+
 def count_data_rows(path: Path) -> int:
     with path.open("r", encoding="utf-8-sig", newline="") as handle:
         return max(0, sum(1 for _ in handle) - 1)
@@ -323,7 +336,7 @@ def main() -> int:
             row = manifest_rows.get(relative)
             if row is None:
                 raise SystemExit(f"Timing file is absent from evidence manifest: {relative}")
-            if int(row["bytes"]) != path.stat().st_size or row["sha256"] != sha256(path):
+            if not matches_manifest_entry(path, row):
                 raise SystemExit(f"Timing manifest mismatch: {relative}")
 
     expected_recovery = {

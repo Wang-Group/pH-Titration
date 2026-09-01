@@ -1,0 +1,9 @@
+﻿acid_type,stage,transitions,mean_prediction_abs_error,median_prediction_abs_error,prediction_error_le_0p1_pct,prediction_error_le_0p2_pct
+diprotic,all_steps,59,3.3495,2.9015,3.39,8.47
+diprotic,within_8_steps,46,3.081,2.5704,4.35,10.87
+monoprotic,all_steps,36,3.4428,1.8917,8.33,16.67
+monoprotic,within_8_steps,27,3.0467,0.8644,11.11,22.22
+triprotic,all_steps,53,1.1228,1.0129,26.42,28.3
+triprotic,within_8_steps,46,1.0577,0.9173,26.09,26.09
+overall,all_steps,148,2.5748,1.8496,12.84,17.57
+overall,within_8_steps,119,2.2911,1.2215,14.29,19.33

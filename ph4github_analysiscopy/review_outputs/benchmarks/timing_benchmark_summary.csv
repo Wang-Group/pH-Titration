@@ -1,0 +1,4 @@
+﻿policy,benchmark_type,mean_latency_ms,median_latency_ms,test_calls,comparison_to_20s_cycle_pct,notes,python,platform
+Bayesian update+select,exact_local_numpy_port,53.5692,32.8419,60,0.267846,Measures one posterior-update plus next-action-selection cycle using the local Bayesian logic ported from main_code3.ipynb cell 19.,3.11.9,Windows-10-10.0.26200-SP0
+Imitation MLP forward pass,architecture_only_approximation,0.166,0.126,10000,0.00083,"Exact trained weights are not present locally and torch is unavailable in the active environment, so this is a numpy forward-pass approximation for the documented 5->256->256->1000 action head.",3.11.9,Windows-10-10.0.26200-SP0
+Reinforcement MLP forward pass,architecture_only_approximation,0.2111,0.1356,10000,0.001055,Same local architectural approximation as imitation learning because the RL policy reuses the same action head shape in code.,3.11.9,Windows-10-10.0.26200-SP0

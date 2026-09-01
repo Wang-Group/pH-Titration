@@ -1,0 +1,58 @@
+﻿{
+    "training_seed":  202,
+    "elapsed_seconds":  473.25620720000006,
+    "train_interactions":  100010,
+    "best_checkpoint":  "../../checkpoints/ppo_seed_202.pth",
+    "best_checkpoint_source":  "ppo",
+    "best_environment_steps":  100010,
+    "best_validation":  {
+                            "tasks":  500,
+                            "success_rate_percent":  87.4,
+                            "strict_success_rate_percent":  38.0,
+                            "severe_failure_rate_percent":  4.6,
+                            "false_stop_rate_percent":  1.0,
+                            "successful_steps_mean":  6.3478260869565215,
+                            "steps_mean":  11.322,
+                            "overshoots_mean":  3.52,
+                            "total_volume_mean_ml":  8.253779999999999,
+                            "final_abs_error_mean":  0.17031432421418055
+                        },
+    "locked_test":  {
+                        "tasks":  1000,
+                        "success_rate_percent":  88.8,
+                        "strict_success_rate_percent":  41.6,
+                        "severe_failure_rate_percent":  5.0,
+                        "false_stop_rate_percent":  1.5,
+                        "successful_steps_mean":  6.126126126126126,
+                        "steps_mean":  10.367,
+                        "overshoots_mean":  3.38,
+                        "total_volume_mean_ml":  8.21627,
+                        "final_abs_error_mean":  0.17020644748285377
+                    },
+    "actor_sha256":  "a79394a7474d80803c798514003abe063f5498fb5dbf9f6f41337277b4f2bb18",
+    "imitation_metadata":  {
+                               "training_seed":  22,
+                               "selected_epoch":  30,
+                               "selection_metrics":  {
+                                                         "seed":  22,
+                                                         "epoch":  30,
+                                                         "train_loss":  4.486306804056285,
+                                                         "top1_class_accuracy_percent":  4.357994854603571,
+                                                         "within_0p05ml_percent":  30.022608560068605,
+                                                         "within_0p10ml_percent":  44.30498167927029,
+                                                         "argmax_volume_mae_ml":  0.3461526467607391,
+                                                         "expected_volume_mae_ml":  0.31527666061057147,
+                                                         "closed_loop_tasks":  500,
+                                                         "closed_loop_success_rate_percent":  90.0,
+                                                         "closed_loop_strict_success_rate_percent":  36.0,
+                                                         "closed_loop_severe_failure_rate_percent":  1.2,
+                                                         "closed_loop_false_stop_rate_percent":  2.4,
+                                                         "closed_loop_successful_steps_mean":  7.611111111111111,
+                                                         "closed_loop_steps_mean":  11.062,
+                                                         "closed_loop_overshoots_mean":  2.42,
+                                                         "closed_loop_total_volume_mean_ml":  7.2565599999999995,
+                                                         "closed_loop_final_abs_error_mean":  0.08741066665347688
+                                                     },
+                               "teacher":  "pf_pka_conc_variable_k"
+                           }
+}

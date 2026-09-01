@@ -1,0 +1,13 @@
+﻿acid_type,stage,experiments,mean_matched_pka_mae,median_matched_pka_mae,mean_effective_pka_mae,mean_posterior_std,median_posterior_std,mean_abs_pH_error,all_true_pkas_within_0p5_pct,all_true_pkas_within_1p0_pct,matched_within_0p5_frac_pct,matched_within_1p0_frac_pct,mean_unused_slot_mole_fraction_if_true_count_lt3,unused_slot_fraction_lt_0p1_pct_if_true_count_lt3
+diprotic,final,7,0.7864,0.903,0.8186,0.2052,0.2146,0.0514,28.57,28.57,50.0,57.14,0.3493,0.0
+diprotic,initial,7,0.8248,0.9199,0.8248,0.2,0.2,4.7743,14.29,28.57,42.86,57.14,0.3536,0.0
+diprotic,up_to_8_steps,7,0.7884,0.903,0.8188,0.2045,0.2146,0.3829,28.57,28.57,50.0,57.14,0.3541,0.0
+monoprotic,final,5,0.2812,0.2289,0.2806,0.1788,0.1981,0.042,80.0,100.0,80.0,100.0,0.605,0.0
+monoprotic,initial,5,0.3113,0.2719,0.3113,0.2,0.2,3.054,80.0,100.0,80.0,100.0,0.531,0.0
+monoprotic,up_to_8_steps,5,0.2689,0.1927,0.2787,0.1829,0.1981,0.872,80.0,100.0,80.0,100.0,0.6056,0.0
+triprotic,final,8,1.5609,1.2689,1.5288,0.1764,0.1928,0.0612,0.0,0.0,12.5,45.83,,
+triprotic,initial,8,1.5194,1.2553,1.5194,0.2,0.2,3.845,0.0,0.0,12.5,50.0,,
+triprotic,up_to_8_steps,8,1.5612,1.2689,1.5289,0.1757,0.1928,0.2775,0.0,0.0,12.5,45.83,,
+overall,final,20,0.9699,0.959,0.9682,0.1871,0.197,0.053,30.0,35.0,42.5,63.33,0.4558,0.0
+overall,initial,20,0.9743,0.9307,0.9743,0.2,0.2,3.9725,25.0,35.0,40.0,65.0,0.4275,0.0
+overall,up_to_8_steps,20,0.9677,0.959,0.9678,0.1876,0.197,0.463,30.0,35.0,42.5,63.33,0.4589,0.0

@@ -1,0 +1,496 @@
+
+Supplementary Information
+Bayesian Inference and Reinforcement Learning for Autonomous pH Adjustment in Diverse Chemical Systems
+Hybrid Bayesian Inference and Reinforcement Learning for Autonomous pH Adjustment in Diverse Chemical Systems
+Siyuan Zhang1, Lin Huang1†, Tianci Shi1†, Yibo Xie1,4, Jing Yang2*, Yibin Jiang1,2,3*, Cheng Wang1,2,3,4*
+1iChem, State Key Laboratory of Physical Chemistry of Solid Surfaces, College of Chemistry and Chemical Engineering, Xiamen University, Xiamen 361005, P. R. China.
+2College of Chemistry and Chemical Engineering, Xiamen University, Xiamen 361005, P. R. China.
+3Innovation Laboratory for Sciences and Technologies of Energy Materials of Fujian Province (IKKEM), Xiamen 361005, P. R. China.
+4Institute of Artificial Intelligence, Xiamen University, Xiamen 361005, P. R. China.
+†These authors contributed equally. *Corresponding author email:
+HYPERLINK "mailto:j.yang@xmu.edu.cn"j.yang@xmu.edu.cn, HYPERLINK "mailto:yibinjiang@xmu.edu.cn"yibinjiang@xmu.edu.cn, HYPERLINK "mailto:wangchengxmu@xmu.edu.cn"wangchengxmu@xmu.edu.cn
+Table of Contents
+ TOC \o "1-3" \h \z \u  HYPERLINK \l "_Toc228955502" Section 1 Introduction to the Automatic pH-Adjustment Device PAGEREF _Toc228955502 \h 2
+ HYPERLINK \l "_Toc228955503" Section 2 Chemical Reagents PAGEREF _Toc228955503 \h 3
+ HYPERLINK \l "_Toc228955504" Section 3 Experiment Validation PAGEREF _Toc228955504 \h 4
+ HYPERLINK \l "_Toc228955505" Experiment 1 Benchmarking Three Control Policies in a Robotic pH Adjustment Task PAGEREF _Toc228955505 \h 4
+ HYPERLINK \l "_Toc228955506" Experiment 2 Wastewater Neutralization PAGEREF _Toc228955506 \h 7
+ HYPERLINK \l "_Toc228955507" Experiment 3 Isolation of Casein by Adjusting pH to the Isoelectric Point PAGEREF _Toc228955507 \h 8
+ HYPERLINK \l "_Toc228955508" Experiment 4 Determination of the Stability Constant for the SSA–Cu(II) Complex PAGEREF _Toc228955508 \h 9
+ HYPERLINK \l "_Toc228955509" Section 4 Adaptive PID baseline, Bayesian Updating and Reinforcement Learning PAGEREF _Toc228955509 \h 13
+ HYPERLINK \l "_Toc228955510" Adaptive PID baseline PAGEREF _Toc228955510 \h 13
+ HYPERLINK \l "_Toc228955511" Bayesian Parameter Updating PAGEREF _Toc228955511 \h 14
+ HYPERLINK \l "_Toc228955512" 1. Sampling PAGEREF _Toc228955512 \h 14
+ HYPERLINK \l "_Toc228955513" 2. Equilibrium prediction PAGEREF _Toc228955513 \h 15
+ HYPERLINK \l "_Toc228955514" 3. Likelihood calculation PAGEREF _Toc228955514 \h 16
+ HYPERLINK \l "_Toc228955515" 4. Resampling PAGEREF _Toc228955515 \h 16
+ HYPERLINK \l "_Toc228955516" 5. Posterior updating PAGEREF _Toc228955516 \h 17
+ HYPERLINK \l "_Toc228955517" Determining pH-Adjustment Volume Using Bayesian Parameter Updates and Control Logic PAGEREF _Toc228955517 \h 17
+ HYPERLINK \l "_Toc228955518" 1. Current pH error magnitude (ΔpHerr) PAGEREF _Toc228955518 \h 18
+ HYPERLINK \l "_Toc228955519" 2. Observed pH response to the previous addition (r) PAGEREF _Toc228955519 \h 19
+ HYPERLINK \l "_Toc228955520" 3. Posterior uncertainty (u) PAGEREF _Toc228955520 \h 19
+ HYPERLINK \l "_Toc228955521" 4. Effective buffering level (B) PAGEREF _Toc228955521 \h 20
+ HYPERLINK \l "_Toc228955522" 5. Theoretical required volume (Vreq) PAGEREF _Toc228955522 \h 20
+ HYPERLINK \l "_Toc228955523" Imitation Learning PAGEREF _Toc228955523 \h 22
+ HYPERLINK \l "_Toc228955524" Optimizing Neural Network Parameters via Reinforcement Learning PAGEREF _Toc228955524 \h 24
+ HYPERLINK \l "_Toc228955525" Parameter update process PAGEREF _Toc228955525 \h 24
+ HYPERLINK \l "_Toc228955526" Reward Function Design PAGEREF _Toc228955526 \h 26
+ HYPERLINK \l "_Toc228955527" 1. Dense reward PAGEREF _Toc228955527 \h 26
+ HYPERLINK \l "_Toc228955528" 2. Step penalty PAGEREF _Toc228955528 \h 27
+ HYPERLINK \l "_Toc228955529" 3. Overshoot penalty PAGEREF _Toc228955529 \h 27
+ HYPERLINK \l "_Toc228955530" 4. Incorrect reagent penalty PAGEREF _Toc228955530 \h 27
+ HYPERLINK \l "_Toc228955531" 5. Overshoot-related volume penalty and bonus PAGEREF _Toc228955531 \h 28
+ HYPERLINK \l "_Toc228955532" 6. Terminal reward PAGEREF _Toc228955532 \h 28
+ HYPERLINK \l "_Toc228955533" Training Procedure PAGEREF _Toc228955533 \h 29
+Section 1 Introduction to the Automatic pH-Adjustment Device2
+Section 2 Chemical Reagents3
+Section 3 Experiment Validation4
+Experiment 1 Benchmarking Three Control Policies in a Robotic pH Adjustment Task4
+Experiment 2 Wastewater Neutralization7
+Experiment 3 Isolation of Casein by Adjusting pH to the Isoelectric Point8
+Experiment 4 Determination of the Stability Constant for the SSA–Cu(II) Complex10
+Section 4 Bayesian Updating and Reinforcement Learning13
+Bayesian Parameter Updating13
+1. Sampling13
+2. Equilibrium prediction14
+3. Likelihood calculation15
+4. Resampling15
+5. Posterior updating16
+Determining pH-Adjustment Volume Using Bayesian Parameter Updates and Control Logic16
+1. Current pH error magnitude (ΔpHerr)17
+2. Observed pH response to the previous addition (r)18
+3. Posterior uncertainty (u)18
+4. Effective buffering level (B)19
+5. Theoretical required volume (Vreq)19
+Imitation Learning21
+Optimizing Neural Network Parameters via Reinforcement Learning23
+Parameter update process23
+Reward Function Design25
+1. Dense reward25
+2. Step penalty26
+3. Overshoot penalty26
+4. Incorrect reagent penalty26
+5. Overshoot-related volume penalty and bonus27
+6. Terminal reward27
+Training Procedure28
+Section 1 Introduction to the Automatic Titration Device2
+Section 2 Chemical Reagents3
+Section 3 experiment validation4
+Experiment 1 Benchmarking Three Control Policies in a Robotic pH Adjustment4
+Experiment 2 Wastewater Neutralization7
+Experiment 3 Isolation of Casein by Adjusting pH to the Isoelectric Point8
+Experiment 4 Determination of the Stability Constant for the SSA–Cu(II) Complex9
+Section 4 Bayesian Updating and Reinforcement Learning13
+Bayesian Parameter Updating13
+1.Sampling13
+2. Equilibrium prediction14
+3. Likelihood calculation15
+4. Resampling15
+5. Posterior updating16
+Determining Titration Volume Using Bayesian Parameter Updates and Control Logic16
+1. Current pH error magnitude (ΔpHerr)17
+2. Observed pH response to the previous addition (r)18
+3. Posterior uncertainty (u)18
+4. Effective buffering level (B)19
+5. Theoretical required volume (Vreq)19
+Imitation Learning21
+Optimizing Neural Network Parameters via Reinforcement Learning23
+Parameter update process23
+Reward Function Design25
+1. Dense reward25
+2. Step penalty26
+3. Overshoot penalty26
+4. Incorrect reagent penalty26
+5. Overshoot-related volume penalty and bonus27
+6. Terminal reward27
+Training Procedure28
+Introduction to the Automatic Titration Device2
+Chemical Reagents3
+Experiment 1 Benchmarking Three Control Policies in a Robotic pH Adjustment4
+Experiment 2 Wastewater Neutralization8
+Experiment 3 Isolation of Casein by Adjusting pH to the Isoelectric Point9
+Experiment 4 Determination of the Stability Constant for the SSA–Cu(II) Complex11
+Bayesian Updating and Reinforcement Learning15
+Bayesian Parameter Updating15
+1.Sampling15
+2. Equilibrium prediction16
+3. Likelihood calculation17
+4. Resampling17
+5. Posterior updating18
+Determining Titration Volume Using Bayesian Parameter Updates and Control Logic18
+1. Current pH error magnitude (ΔpHerr)19
+2. Observed pH response to the previous addition (r)20
+3. Posterior uncertainty (u)20
+4. Effective buffering level (B)21
+5. Theoretical required volume (Vreq)22
+Imitation Learning23
+Optimizing Neural Network Parameters via Reinforcement Learning25
+Parameter update process25
+Reward Function Design27
+1. Dense reward (rtdense)27
+2. Step penalty28
+3. Overshoot penalty28
+4. Incorrect reagent penalty28
+5. Overshoot-related volume penalty and bonus29
+6. Terminal reward29
+Training Procedure30
+
+Section 1 Introduction to the Automatic Titration pH-Adjustment Device
+As shown in HYPERLINK \l "FigS1"Figure S1, the solution to be titrated adjusted was contained in a three-necked flask. The left neck was connected to a nitrogen gas inlet, which generated bubbles in the solution to facilitate stirring. The central neck was fitted with a pH probe to monitor the solution’s pH value. The right neck was connected to the reagent delivery tubing.
+During the titrationpH-adjustment, the control algorithm determined the titration reagent volume/type, and a syringe pump delivered the required reagent. After each addition, the system waited until thorough mixing and reaction completion. The pH value was recorded, and the algorithm generated a state vector to calculate the next reagent volume. When consecutive reagent additions involved different chemicals, the syringe pump was cleaned by flushing three times with 10 mL of water, with the waste solution discharged into a waste collection bottle, followed by a single rinse with 5 mL of the subsequent reagent to prevent cross-contamination. This procedure ensured precise pH control and minimized unwanted interactions between reagents.
+
+Figure S1. Photographs of the automatic titration pH-adjustment device and its cleaning strategy during the dispensing of different reagents.
+Section 2 Chemical Reagents
+All aqueous stock solutions were made using Type I ultrapure water (18.2 MΩ•cm)
+Base & and acid Acid used for pH Adjustment
+Hydrochloric acid, 36~38%, Sinopharm Chemical Reagent Co., HCl
+Nitric acid 68%, Sinopharm Chemical Reagent Co., HNO3
+Sodium hydroxide ≥99%, Sinopharm Chemical Reagent Co., NaOH
+Buffer solution Solution for calibrationCalibration
+Potassium acid phthalate, ≥99%, Shanghai Lei-Ci SA Scientific instrument Co., Ltd, KHC8H4O4
+Mixed phosphate, ≥99%, Shanghai Lei-Ci SA Scientific instrument Co., Ltd, Na2HPO4 & KH2PO4
+Sodium Tetraborate Decahydrate, ≥99%, Shanghai Lei-Ci SA Scientific instrument Co., Ltd, Na2B4O7⋅10H2O
+Organic Solvent 
+Ethanol, ≥ 99.7%, Sinopharm Chemical Reagent Co., Ltd, C2H5OH
+Diethyl Ether, ≥ 99.7%, Sinopharm Chemical Reagent Co., Ltd, (C₂H₅)₂O
+Used for mixed Mixed acidAcid
+p-Hydroxybenzoic acid ≥99%, Sinopharm Chemical Reagent Co., C₇H₆O₃
+Terephthalic acid ≥99%, Sinopharm Chemical Reagent Co., C₈H₆O₄ Acetic acid ≥99%, Sinopharm Chemical Reagent Co., CH₃COOH 
+5-Sulfosalicylic acid dihydrate ≥99%, Sinopharm Chemical Reagent Co., C₇H₆O₆S·2H₂O
+
+Section 3 eExperiment vValidation
+Experiment 1 Benchmarking Three Control Policies in a Robotic pH Adjustment tTask 
+To evaluate the practical utility of three controllers in real buffer systems, we conducted a head‑to‑head comparison on an automated pH-adjustment titration platform under identical experimental conditions. At 25 ± 0.1 °C, the pH electrode was calibrated using a threepoint calibration procedure with certified standard buffer solutions of pH 4.01, 6.86, and 9.18. Titrants Reagents for pH adjustment were prepared at the 250 mL scale: 0.1 M HCl by diluting ≈2.08 mL of ~12 M concentrated HCl to 250 mL with water; and 0.1 M NaOH by dissolving 1.00 g NaOH pellets in water and diluting to a final volume of 250 mL. Test buffers were also made at 250 mL: 0.05 M p‑hydroxybenzoic acid (pHBA; M = 138.12 g·mol⁻¹) by dissolving 1.73 g and making up to 250 mL (the clear supernatant was used during experiments due to limited solubility); 0.05 M terephthalic acid (TPA; M = 166.13 g·mol⁻¹) by dissolving 2.08 g to 250 mL (limited solubility—use the clear supernatant during experiments); 0.10 M acetic acid by adding 1.43 mL glacial acetic acid to water and diluting to 250 mL; and 14.7 mM 5‑sulfosalicylic acid dihydrate (SSA·2H₂O; M = 254.215 g·mol⁻¹) by dissolving 0.934 g and making up to 250 mL. 
+Mixtures were prepared according to the experimental labels: 
+Mixture 1 = : 0.05 M pHBA 6 mL + 0.05 M TPA 6 mL; 
+Mixture 2:  = 0.05 M pHBA 6 mL + 0.10 M acetic acid 6 mL; 
+Mixture 3: =  0.05 M pHBA 6 mL + 14.7 mM SSA 6 mL; 
+Mixture 4:  = 0.05 M TPA 6 mL + 0.10 M acetic acid 6 mL. 
+Each mixture (12 mL) was combined in a three‑neck flask and mixed by gentle N₂ bubbling, then connected to the platform with the target set to pH 6.0 ± 0.1. Under strictly identical conditions, we ran three control modes in separate trials—rule‑based Bayesian algorithm, reinforcement learning (RL), and human judgement. The platform decided acid/base additions in real time and, after each dose, waited for the pH to stabilize before proceeding until the target criterion was met. We logged time, pH, dose type/volume, cumulative volume, step count, total duration, and overshoot for fair comparison of efficiency.
+In parallel, to evaluate all of these pH adjustment algorithms, we conducted 3000 independent simulation experiments. All random processes were seeded with the same value (seed = 555) for reproducibility.
+Each experiment was generated as follows:
+1.1. The initial solution consisted of 11.0 mL of a 0.1 M polyprotic acid (monoprotic, diprotic, or triprotic).
+2.2. The acid type was uniformly selected at random from {monoprotic, diprotic, triprotic}.
+2.1 .For monoprotic acids: a single pKa ~ U[2, 6].
+2.2 .For diprotic acids: pKa1 ~ U[2, 4], pKa2 ~ U[4, 7].
+2.3 . For triprotic acids: pKa1 ~ U[2, 4], pKa2 ~ U[4, 7], pKa3 ~ U[6, 8].
+U[x1,x2] means uniform sampling from x1 to x2.
+3.3. The initial pH was computed exactly by solving the charge balance equation for the pure acid solution at the given concentration and pKa values.
+4. The target pH was uniformly sampled from [2, 11] and rounded to two decimal places.
+5. To introduce realistic uncertainty and buffering effects unknown to the controller, three additional buffer species were present in the solution with:
+5.1. pKa values independently drawn from U[2, 6],
+5.2. The total molar amounts independently drawn from U[10-6, 0.5] mol.
+Two sets of reagents were employed for pH adjustment: 0.1 M HCl/NaOH as the primary pair for coarse adjustment and 0.01 M HCl/NaOH as the secondary pair for fine adjustment. The system automatically switched to the secondary (dilute) reagents when pH oscillation occurs (three consecutive minimum-volume additions i.e. 0.01mL that crossed the target), thereby enabling finer control when needed. The maximum number of pH-adjustment steps was limited to 50, and success was defined as achieving a final pH within ±0.1 of the target. This procedure ensured broad coverage of adjustment curve shapes, buffering regimes, and adjustment directions (acidification or basification), providing a challenging and diverse benchmark for the algorithm.
+Two sets of titrants reagents were employed for pH adjustment: 0.1 M HCl/NaOH as the primary pair for coarse adjustment, and 0.01 M HCl/NaOH as the secondary pair for fine adjustment. The maximum number of pH-adjustment titration steps was limited to 50, and success was defined as achieving a final pH within ±0.1 of the target. This procedure ensured broad coverage of titration adjustment curve shapes, buffering regimes, and adjustment directions (acidification or basification), providing a challenging and diverse benchmark for the algorithm.
+Then we evaluated models in the simulation environment using three metrics: (1) experimental success rate, (2) average number of steps among successful experiments ± standard deviationaverage number of steps ± standard deviation, and (3) overshoot rate.
+In 3,000 diverse simulated pH-adjustment tasks, the Bayesian algorithm achieved a 90.3% success rate, with 9 ± 6 steps among successful runs and an overshoot rate of 44.3%. The imitation-learning and reinforcement-learning controllers improved the success rate to 93.9% and 94.3%, respectively, while maintaining similar step counts of 10 ± 7 and substantially lower overshoot rates of 31.3% and 31.4%. For comparison, the adaptive PID controller achieved a 76.2% success rate with 24 ± 11 steps and an overshoot rate of 29.9%. Thus, although the Bayesian controller remained relatively step-efficient when successful, its lower success rate and higher overshoot rate made it less competitive than the learning-based policies. The adaptive PID baseline showed the lowest overshoot rate, but its markedly lower success rate and much larger number of adjustment steps indicate inferior overall performance. Overall, reinforcement learning provided the best comprehensive performance, closely followed by imitation learning, whereas the Bayesian controller ranked next and adaptive PID remained less effective for nonlinear titration tasks with uncertain buffering behavior.
+In the 3000 diverse simulated pH titration adjustment tasks, the Bayesian algorithm (success rate 94.2%, average steps ± standard deviation 1373 ± 81, overshoot rate 39.99%), imitation learning (success rate 93.97%, average steps ± standard deviation 102 ± 709, overshoot rate 28.44%), and reinforcement learning (success rate 94.327%, average steps ± standard deviation 101 ± 71, overshoot rate 28.67%) all demonstrated excellent performance, far surpassing the traditional proportional-integral-derivative (PID) controller (success rate 29.703%, average steps ± standard deviation 44.19 ± 145.95, overshoot rate 24.4%).
+Imitation learning and reinforcement learning led to efficiency, requiring only approximately 10.2 steps to complete the adjustment, while maintaining overshoot rates around 28.5%, achieving the best balance among success rate, efficiency, and safety. The Bayesian algorithm exhibited comparable success rates but slightly higher average steps (12.7) and a higher overshoot rate (39.99%). Although the PID controller had the lowest overshoot rate, its extremely low success rate and highly unstable step counts (standard deviation as high as 145.95) rendered it the poorest performer in this complex and variable titration environment.
+Overall, imitation learning and reinforcement learning delivered the best comprehensive performance in this benchmark, followed by the Bayesian algorithm, while traditional PID control proved inadequate for handling polyprotic acid systems with unknown buffering interference.
+Experiment 2 Wastewater Neutralization
+In this experiment, we adopted a more flexible approach to pH adjustment through model guidance; the maximum reagent titration volume was capped at 5.0 mL, and any recommended value exceeding this limit was truncated. Before the experiment, the pH values of the acid and base used for adjustment were measured at 1.12 and 12.98, respectively. Consequently, a correction factor (approximately 1.26 in this experiment, indicating that theoretically 1.26 units of acid are required to neutralize 1 unit of base) was applied to the actual volume of the acid added to account for its impact on the final pH, based on the measured acid and base concentrations.
+In this experiment, three samples of laboratory wastewater were collected, and their pH was adjusted to 7.0 ± 0.1. In this experiment, inorganic wastewater containing multiple transition-metal ions was collected on May 12, 2025, from a teaching lab in Xiamen University (Lujiaxi Building, Room 225). The pH electrode was calibrated at 25 °C using standard pH 4.01, 6.86, and 9.18 buffer solutions. Stock solutions of 0.1 M HCl and 0.1 M NaOH were connected to the dosing pumps of the automatic pH-adjustment titration device. For each run, 3 mL of the wastewater sample was transferred into a three-neck flask and diluted with 12 mL of ultrapure water (a total volume of 15 mL, corresponding to 5× dilution). High-purity N₂ was gently bubbled through a gas-dispersion frit to ensure mixing. The pH electrode was immersed so that the sensing bulb was fully covered by the solution, and data logging was initiated. The controller was set to maintain the pH at 7.0 ± 0.1. The reinforcement learning policy then autonomously dosed 0.1 M NaOH (base) or 0.1 M HCl (acid) as needed, with a stabilization time (20 s) allowed after each addition before the next dosing decision. Throughout the process, the system continuously recorded time, pH, reagent type/volume, and cumulative volume. The titration task was regarded to be complete once the solution reached and stabilized at pH 7.0 ± 0.1, at which point the total acid/base consumption and number of dosing steps were documented. The neutralized solution was subsequently collected and disposed of according to standard laboratory waste management procedures. 
+
+Experiment 3 Isolation of Casein by Adjusting pH to the Isoelectric Point
+Yili Milk (date: 14 Feb 2025; batch B18 0103) was used in this experiment. From 12 mL of milk, the dry-mass yield of casein was typically 171 mg (14.25 mg·mL⁻¹). HYPERLINK \l "FigS2"Figure S2 shows photographs of the separated casein.
+Before pH-adjustmenttitration, the pH electrode was calibrated at 25 °C using standard pH 4.01, 6.86, and 9.18 buffer solutions. For each run, 12 mL of fresh milk was transferred into a three-neck flask and gently mixed either by low-flow N₂ bubbling through a gas-dispersion frit. The pH electrode was immersed so that the sensing bulb was fully covered, and the controller was set to maintain the pH at 4.6 ± 0.1. The reinforcement-learning routine was then initiated, allowing the system to autonomously dispense 0.1 M HCl (acid) or 0.1 M NaOH (base) as needed. After each dose, the system waited for stabilization before the next dosing decision, while continuously logging time, pH, reagent type/volume, and cumulative volume. Once the pH reached and stabilized within 4.6 ± 0.1, it was held at this value for 5 min to promote casein aggregation. The mixture was subsequently transferred to centrifuge tubes and centrifuged at 10,000 rpm for 12 min, after which the supernatant was discarded and the casein pellet collected. To remove residual fat, the pellet was washed with ethanol: diethyl ether (1:1, v/v), centrifuged again at 10,000 rpm for 12 min with the supernatant discarded; this defatting wash was repeated twice or until the supernatant appeared clear and non-opalescent. The pellet was then dried at 80 °C to constant weight, defined as two consecutive weighings at least 30 min apart with a mass difference < 1 mg. The dry mass was recorded to calculate the yield. As a reference, a typical run yielded 171 mg of casein from 12 mL of milk. Protein identity was confirmed by the Biuret test: dissolution of a small portion of the dried casein in 3% NaOH followed by addition of Biuret reagent produced a violet color, indicating the presence of peptide bonds. All ethanol/ether mixtures and acid/base wastes were disposed of in accordance with chemical-waste regulations.
+
+Figure S2. Isolated casein obtained by pH adjustment to the isoelectric point and centrifugation.
+Experiment 4 Determination of the Stability Constant for the SSA–Cu(II) Complex
+In this experiment, we adopted a more flexible approach to pH adjustment through model guidance, where the maximum titration reagent volume was capped at 5.0 mL; any recommended value exceeding this limit was truncated. Prior toBefore the experiment, the pH values of the acid and base used for adjustment were measured at 1.12 and 12.98, respectively. Consequently, a correction factor (approximately 1.26 in this experiment, indicating that theoretically, 1.26 units of acid are required to neutralize 1 unit of base) was applied to the actual volume of the acid added to account for its impact on the final pH, based on the measured acid and base concentrations.
+For the determination of the SSA–Cu(II) complex stability constant, 0.888 g of Cu(NO₃)₂·3H₂O and 0.934 g of SSA·2H₂O were each dissolved in water and diluted to 250 mL, yielding two 14.7 mM stock solutions according to Table S1. These solutions were mixed in different volume ratios according to Table S2, transferred sequentially into a three-neck flask, and subjected to automated pH adjustment. The pH electrode was calibrated at 25 °C with standard pH 4.01, 6.86, and 9.18 buffer solutions. The titratordevice, loaded with 0.1 M HNO₃ and 0.05 M NaOH, was set to maintain pH 4.2 ± 0.1, with stabilization after each dosing step. Once the target pH was reached, the solution was kept quiescent or gently stirred for 5–10 min; if no noticeable pH drift was observed, UV–Vis measurements were performed. Absorbance spectra were collected in 1 cm cuvettes from 300 to 800 nm. The absorption at 400 nm (A₄₀₀), corresponding to the Cu–SSA complex band, was recorded, and a Job’s plot of A₄₀₀ versus SSA mole fraction (X_SSA) was constructed. A maximum near X_SSA ≈ 0.5 confirmed a 1:1 stoichiometry for the Cu-:SSA complex. To determine the conditional stability constant, piece-wise linear regression of the Job’s plot provided the intersection absorbance A′, representing the maximum complex concentration. The degree of dissociation was then estimated as α = (A′ − A)/A, where α corresponds to the fraction of uncoordinated species. For a general equilibrium M + nR ⇌ MRₙ, the concentrations near the stoichiometric point can be expressed as [MRₙ] = c(1-α), [M] = cα, and [R] = ncα, with c as the total analytical concentration. The conditional stability constant is given by K′ = [MRₙ]/([M][R]ⁿ) = (1-α)/((nc)ⁿ αⁿ⁺¹). For the dominant 1:1 complex (n = 1), this reduces to K′ = (1-α)/(cα²). Using A′ and the derived α values, K′ was calculated to be approximately 6669 (mol/L)-1 at pH 4.2, indicating a strongly bound SSA–Cu(II) complex under mildly acidic conditions.
+Table S1 Solutions Used in the Copper-Sulfosalicylic Acid Complex Formation
+reagent
+mass
+volume
+concentration
+Cu(NO3)2·3H2O
+887.9 mg
+250 mL
+14.7 mM
+5-sulfosalicylic acid·2H2O
+934.2 mg 
+250 mL
+14.7 mM
+NaOH
+500 mg
+250 mL
+0.1M
+HYPERLINK "file:///C:\\Users\\ZSY\\AppData\\Local\\Programs\\baidu-translate-client\\resources\\app.asar\\app.html"nitric acid
+1.58 mL
+250mL
+0.1M 
+
+Table S2 Solution Formulation of Experiment 4
+Solution ID
+VCu
+(mL)
+Ccu
+(mM)
+VSSA
+(mL)
+CSSA
+(mM)
+(VSSA)/( VCu+ VSSA)
+Vtotal
+(mL)
+1
+10.10
+9.90
+0.92
+0.90
+0.08
+11.02
+2
+9.18
+9.00
+1.84
+1.80
+0.17
+11.02
+3
+8.27
+8.10
+2.76
+2.70
+0.25
+11.02
+4
+7.35
+7.20
+3.67
+3.60
+0.33
+11.02
+5
+6.43
+6.30
+4.59
+4.50
+0.42
+11.02
+6
+5.51
+5.4
+5.51
+5.4
+0.50
+11.02
+7
+4.59
+4.50
+6.43
+6.30
+0.58
+11.02
+8
+3.67
+3.60
+7.35
+7.20
+0.67
+11.02
+9
+2.76
+2.70
+8.27
+8.10
+0.75
+11.02
+10
+1.84
+1.80
+9.18
+9.00
+0.83
+11.02
+11
+0.92
+0.90
+10.10
+9.90
+0.92
+11.02
+
+
+
+Section 4 Adaptive PID baseline, Bayesian Updating and Reinforcement Learning
+Adaptive PID baseline
+To provide a classical feedback benchmark, we implemented an adaptive PID controller in the same simulated pH-adjustment environment. The controller outputs only a positive dosing volume; the simulator determines the reagent identity from the current pH, i.e., base is added when the current pH is below the target pH, and acid is added when it is at or above the target pH.
+At step t, let pHt denote the current pH and pH* the target pH. The control error is defined as
+et= pH*- pHt
+To reduce overshoot, the integral memory is damped whenever the error changes sign. Specifically, the previous integral state is scaled by λ = 0.10 when et*et-1 < 0, and is otherwise left unchanged:
+It-1=λ It-1,  &et*et-1< 0It-1,  &et*et-1≥ 0   
+The integral term is then updated as
+It= clipIt-1+ et, min=-Imax,max= Imax
+with Imax= 12.0.
+The derivative term is defined as
+Dt=0,  & t = 1et- et-1,  &t ≥ 2
+The raw control signal is computed as
+ut= KPet+ KIIt+ KDDt
+where KP= 0.32, KI = 0.012, and KD = 0.08.
+The dosing volume is then taken as
+Vt= cliput, min=Vmin, max=Vmax
+with Vmin = 0.01 mL and Vmax= 3.00 mL. The final volume is rounded to three decimal places. 
+In this baseline, the proportional, integral, and derivative gains are fixed; the only adaptive component is the integral damping after a sign change. A run is counted as successful if the pH reaches within ±0.1 of the target within 50 dosing steps. An overshoot event is recorded when the pH crosses the target between two consecutive steps.
+
+Bayesian Parameter Updating
+To infer the acid-base composition of the solution during pH-adjustmenttitration, we use an iterative Bayesian updating procedure based on particleparameter vector filtering. The unknown chemical system is represented as a set of buffer pairs (a set of monoprotic acids). For the i-th buffer pair, the parameters to be inferred are:
+1. the The acid dissociation constant of the i-th buffer pair  pKa,ipKₐ,ᵢ (dimensionless), 
+2. the The total molar amount of the i-th buffer pair ntotal,intotal,i = nHA,inHA,i + nA-,i nA⁻,i (in mol).
+The Bayesian updating procedure contains five steps: sampling, equilibrium prediction, likelihood calculation, resampling, and posterior updating.
+1. Sampling
+At each titration step, the current prior distributions are defined for every buffer pair. For buffer pair i, independent Gaussian priors are maintained:
+pKa,i pKₐ,ᵢ~ N(upKₐ,ᵢ,σpKₐ,ᵢ)
+ntotal,intotal,i ~ N(untotal,i,σntotal,i)
+A set of M parameter vectorparticles, i.e., the complete parameter set to describe the system (indexed by j), is sampled 1000 times from these priors: 
+{θj}j=1M=(pKa,1j,ntotal,1j,…,pKa,ij,ntotal,ij)j=1M
+Each particleparameter vector θj represents one complete candidate description parameter set of the systemchemical state, defining the corresponding  (one pKₐ and one total buffer amount per for all buffer pairs). The ensemble of parameter vectorparticles collectively represents the current parameter uncertaidistributionnty  about of the unknown solution chemistry.
+2. Equilibrium prediction
+Each particleparameter vector is then propagated through the equilibrium model to predict the pH after the current titration operation. For particleparameter vector θj, the prediction is based on chemical equilibrium and charge balance.
+For the i-th buffer pair, an effective acidity constant pKa,ieff is first computed using Eq. S1. This quantity is obtained by combining the current inferred value pKa,i with a reference value pKa,iref.
+pKa,ieff=pKa,iref+ wipKa,i- pKa,iref   where wi= wmax(1- tanh(k*σi))   (S1)
+Where tanh is the hyperbolic tangent function, and the quantity pKa,iref is the reference acidity constant assigned to buffer pair i before online updating. pKa,iref   is set by the user and serves as the chemically reasonable anchor for that buffer pair, k is a Proportional coefficient and set to 1.0 in this work. In practice, pKa,iref is taken from the prior chemical model used to initialize the pH-adjustment titration problem, for example, from known or assumed acid-base chemistry of the solution, from literature values, or from the prior mean used at the beginning of the inference procedure. Its role is not to replace the inferred value, but to stabilize the prediction when the posterior for that buffer pair remains broad. wi∈0,wmax is the trust weight for buffer pair i. , wmax is the maximum allowable weight set to a constant depending on the reliability of the prior information(here set to 0.2), and σi is the current posterior standard deviation of pKa,i. Because pKa is dimensionless, σi is also dimensionless. When σi is small, the inferred pKa,i is trusted more strongly. When σi is large, the calculation is pulled closer to pKa,iref. This makes the equilibrium prediction more conservative when the inferred chemistry is still uncertain.
+Using the resulting pKa,ieff together with the particleparameter vector composition, the hydrogen-ion concentration H+ is obtained by numerically solving the charge-balance equation in Eq. S2:
+fpH=H++cNa+Na-KwH+-icA-,i-cCl-=cAk=1nk*j=1kKajH+k*D-cHCl=010-pH+cNa-Kw10-pH-cAi=1ni*Hn-iAi--cHCl=    (S2)
+Here, H+ and OH- areis expressed in mol/L, with OH-=Kw/H+, and Kw=10-14 at room temperature. The predicted pH for the particleparameter vector θj is then calculated as pHpredj=-log10H+.
+3. Likelihood calculation
+After the experimental pH value pHobs is measured, each particleparameter vector is assigned a likelihood according to how well its predicted pH matches the observation. Assuming normally distributed measurement noise with a standard deviation σ=0.01 pH units, the likelihood is computed using Eq. S3:
+L(θi)=NpHobs丨pHi, σ2=12πσexp-pHobs-pHi22σ2       (S3)
+Parameter vectorParticles whose predicted pH values are closer to the measured pH receive larger likelihood weights.
+4. Resampling
+The likelihood weights L(θi) are normalized among the parameter vectorsparticles and used for multinomial resampling. Specifically, new parameter vectorsparticles are drawn with replacement from the original particleparameter vector set, and the sampling probability of each particleparameter vector is proportional to its normalized likelihood weight. In this way, parameter vectorparticles that are more consistent with the measured pH are preferentially retained, whereas parameter vectorparticles that are inconsistent with the measured pH gradually disappear from the ensemble.
+The result of this step is an empirical approximation to the posterior distribution pθi∣pHobs. Importantly, the algorithm does not update parameters by moving one best-fit parameter vector directly. Instead, it updates the whole particleparameter vector population so that the particleparameter vector ensemble itself becomes a numerical representation of the posterior distribution.
+5. Posterior updating
+After resampling, the posterior statistics of each parameter are computed from the resampled particleparameter vector ensemble. For example, for buffer pair i, μpKaposti(the posterior mean of pKa,i) and σpKaposti (posterior standard deviation of pKa,i) are estimated using Eq. S4. 
+μpKaposti=1Mj=1MpKaij'; σpKaposti=1Mj=1M(pKa,ij'-μpKaposti)2  (S4)
+The same calculation is performed for ntotal,i. These posterior means and posterior standard deviations are then used as the prior means and prior standard deviations for the next titration step. Thus, parameter updating proceeds recursively from one titration step to the next.
+This point is important for interpretation. The Bayesian algorithm does not infer the chemical parameters only once at the beginning of the experiment. Rather, after every new pH measurement, the posterior distribution is updated, and the updated posterior becomes the starting prior for the next  titration step. As the pH-adjustment titration proceeds, the posterior distributions usually become narrower and more informative, so the model gains increasing confidence in the chemical state of the system. This progressive refinement improves both pH prediction and subsequent volume recommendation.
+Determining pH-Adjustment Titration Volume Using Bayesian Parameter Updates and Control Logic
+Once the posterior distributions have been updated at the current titration step, the controller converts the inferred chemical state into the next dosing command. In other words, the Bayesian module estimates the composition of the solution and its uncertainty, and the control module uses that information to decide how much titrant the reagent should be added next.
+The logic of this step is as follows. The controller first calculates the expected titrant reagent volume that would ideally bring the solution to the target pH according to the current posterior model. It then moderates that ideal correction using quantities that describe how far the system is from the target, how strongly the solution responded to the previous addition, how uncertain the inferred chemistry remains, and how strongly buffered the current solution is.  The final recommendation is therefore a chemically informed and uncertainty-aware dosing volume, rather than a purely empirical correction.
+To match the practical resolution of the liquid-handling system, the candidate addition volume is discretized in steps of 0.01 mL over the range 0.01-9.99 mL. The final recommended volume is reported in mL, but whenever concentrations must be recalculated in the equilibrium model, the corresponding volume is converted to L.
+The recommended titration reagent volume is determined from five quantities: 1. Current pH error magnitude (ΔpHerr); 2. Observed pH response to the previous addition  (calculated propagated within with the α through a separate term r); 3. Posterior uncertainty (propagated with calculated within the α through a separatea term u);  4. Effective buffering level (propagated with calculated within the α through a separate term B); and 5. Theoretical required volume (Vreq).
+The final recommended titrant reagent volume Vadd is obtained by combining the five quantities above through the nonlinear mapping defined in Eq. S5:
+Vadd=Vmin+Vmax-VmintanhαΔpHerr+0.1Vreq   (S5)
+where Vmin=0.01 mL and Vmax=9.99 mL are the lower and upper operating bounds. The specific calculation methods for ΔpHerr, α(r,u,B) and Vreq will be discussed below.
+1. Current pH error magnitude (ΔpHerr)
+The first quantity is the absolute deviation of the current pH from the target pH:
+ΔpHerr=pHcurrent-pHtarget.  (S6)
+This quantity is dimensionless. It measures how far the current solution state is from the target. A larger ΔpHerr means that a stronger correction is required.
+2. Observed pH response to the previous addition (r)
+The second quantity describes how strongly the solution responded to the previous titrant reagent addition. We define the previous-step pH response slope as
+SpH=ΔpHprevVprev  (S7)
+where ΔpHprev is the pH change caused by the previous pH-adjustment titration step and Vprev is the titrant reagent volume added in that step, expressed in mL. Therefore, SpH has units of pH mL​-1.
+A small value of SpH indicates that the solution responded weakly to the previous addition, so the next addition may be somewhat larger. A large value indicates that the solution is sensitive to titrant reagent addition, so the next addition should be made more cautiously.
+The response-related bonus term r is calculated from the previous-step pH response slope:
+r=rbonus1-minSpHSpH,thresh,1   (S8)
+where rbonus=0.5 is the maximum bonus and SpH,thresh=1.0 pH mL​-1 is the threshold above which no additional bonus is applied.
+3. Posterior uncertainty (u)
+The third quantity describes the current uncertainty in the inferred acid-base chemistry. We summarize this uncertainty by σpKa which is the average posterior standard deviation of the inferred pKa value. Because pKa is dimensionless, σpKa is also dimensionless. A larger value means that the inferred chemical model remains less certain, so the controller should behave more conservatively. The uncertainty factor is written as
+u=minσpKaσmax,1,  (S9)
+where σmax is a dimensionless normalization constant set to be  [X]1.0.
+4. Effective buffering level (B)
+The fourth quantity is a bounded correction related to buffering. In the present framework, the mean of the posterior molar amounts across all buffer pairs is computed directly:
+nbuffer=1Ni=1Nni,post    (S10)
+where ni,post​ is the posterior mean molar amount of the i-th buffer pair (in mol), and N is the number of buffer pairs. This mean molar amount is then converted into the buffering factor B through Eq. S11: 
+B=clip1+0.1nbuffer-nref,min= 0.95, max=1.05   (S11)
+where nref = 0.5 mol is the reference molar amount. The clipping in Eq. S11 constrains B to the range 0.95–1.05. 
+Here, B serves as a computationally efficient proxy for buffering strength. Rather than solving the full thermodynamic buffer capacity at each step, B captures the dominant physical trend: solutions with greater buffer content can typically absorb a larger titrant reagent addition while producing only a modest pH shift. The clipping to the range 0.95–1.05 ensures that this correction remains conservative and does not override the equilibrium-based dosing logic.
+
+5. Theoretical required volume (Vreq)
+The fifth quantity is the theoretically required volume, denoted Vreq. This is the estimated titrant reagent volume that would bring the solution exactly to the target pH according to the current posterior model. It is obtained by solving the nonlinear equation in Eq. S12:
+Vreq: FVreq=0, FV=pHV-pHtarget  (S12)
+Where pHV is the pH after adding liquid of volume V. The meaning of Eq. S12 is direct. For each trial volume V, the equilibrium model predicts the pH that would result after adding that amount of titrantreagent. The correct value Vreq is the one for which the predicted post-addition pH is equal to the target pH. In this sense, the controller solves a one-dimensional inverse equilibrium problem.
+The function pHV is evaluated in two steps.
+Step 1: effective acidity constants.
+For each buffer pair, an effective acidity constant is calculated from the posterior mean and the reference value using the uncertainty-weighted rule in Eq. S1.
+Step 2: post-addition equilibrium prediction.
+After a candidate titrant reagent volume V is specified, the amount of strong acid or strong base introduced by the titrant reagent is first calculated from the titrant concentration and the added volume. The molar amounts of the chemical species in solution are then updated to account for the titrant addition. At the same time, the total solution volume is increased to the post-addition volume. Because the concentrations change both through neutralization and through dilution, all updated molar amounts are converted to post-addition concentrations using the new total volume. The equilibrium calculation is then solved again using the updated composition and the effective acidity constants from Step 1. The resulting hydrogen-ion concentration gives the predicted post-addition pH, denoted pHV.
+Thus, Vreq is the model-based one-step correction implied by the current posterior chemical model.
+Recall the Eq. S5, where the volume added is:
+Vadd=Vmin+Vmax-VmintanhαΔpHerr+0.1Vreq   (S5)
+In Eq. S5, the scaling factor α is defined by Eq. S13:
+α=Φ1+r1-0.1uB  (S13)
+The role of α is to control how aggressively the controller follows follows against Vreq. When the chemical model is more reliable, and the solution response is mild, the controller can move more directly toward the target with larger α values. When the posterior remains uncertain, or the solution responds sharply to titrant reagent addition, the controller behaves more conservatively. 
+The baseline coefficient Φ is a dimensionless constant that sets the overall response scale of the controller, and we set . In this work, Φ=0.2.
+Taken together, these terms ensure that the final recommended volume is guided mainly by the equilibrium-based correction Vreq, but is reduced when the current chemistry is uncertain or when the solution has shown strong pH sensitivity.
+Imitation Learning
+To provide a strong initialization for reinforcement learning, we first trained a supervised imitation-learning policy using successful trajectories generated by the Bayesian controller. A total of 8,000 successful pH-adjustment titration trajectories were simulated. Each trajectory consists of a sequence of state-action pair st,at, where t denotes the index of pH-adjustment titration step index.
+At step t, the state vector is defined as
+st∈R5,
+and contains the following five features:
+the current measured pH, pHt (dimensionless);
+the target pH, pHtarget (dimensionless);
+the change in measured pH between the current and previous steps,
+ΔpHt=pHt-pHt-1,   (14)
+which is also dimensionless;
+the current pH difference toward the target,
+et=pHtarget-pHt,   (15)
+which is dimensionless; and
+the titrant reagent volume used in the previous step, Vt-1, expressed in mL.
+Thus, the state representation combines the current system status, the control objective, the recent pH response, and the most recent dosing magnitude.
+The action at corresponds to the titration decision taken at step t, including both the reagent type (acid or base) and the dispensing volume. In the implementation of imitation learning, the volume component is discretized into 1000 categories from 0.01 to 10.00 mL with a resolution of 0.01 mL. Therefore, the policy is trained as a classification model over a finite action set of candidate dosing volumes.
+All successful trajectories were decomposed into individual state-action pairs, randomly shuffled, and split into training (70%), validation (15%), and test (15%) subsets. This preprocessing removes temporal ordering during supervised fitting and allows the model to learn the mapping from local pH-adjustment titration state to dosing action.
+The imitation-learning policy is a multilayer perceptron (MLP) with a 5→256→256→1000 architecture. The input layer receives the 5-dimensional state vector st. Two hidden layers with 256 neurons each and Rectified Linear Unit (ReLU) ReLU activation are used to model nonlinear relationships between pH state variables and dosing decisions. The output layer produces a 1000-dimensional logit vector, whose components correspond to the discrete candidate volumes from 0.01 to 10.00 mL.
+During inference, the predicted titration reagent volume is selected as the category with the highest logit (equivalently, the highest predicted probability after softmax), and then mapped back to its corresponding physical dosing volume in mL. In this way, the network outputs a physically interpretable control action rather than an abstract latent quantity.
+The model was trained using cross-entropy loss and the Adam optimizer with a learning rate 1×10-3 for 80 epochs. On the held-out test set, the trained model achieved an MSE of 0.006, an MAE of 0.034, and an R2 value of 0.999, indicating that the network learned to reproduce the Bayesian controller with high fidelity. This imitation policy was then used as the initialization for subsequent reinforcement learning.
+Optimizing Neural Network Parameters via Reinforcement Learning
+Building on the imitation-learning initialization, we further optimized the policy using reinforcement learning. Specifically, we employed the REINFORCE algorithm, a Monte Carlo policy-gradient method, to improve decision-making through direct interaction with the titration environment. The objective is to maximize the expected cumulative reward by adjusting the policy parameters θ.
+In the reinforcement-learning stage, one episode corresponds to a complete pH-adjustment titration experiment, starting from an initial solution state and ending when either the target pH is successfully reached or the maximum allowed number of steps is exceeded. At each step t, the policy πθat∣st receives the current state st and outputs an action at, i.e., the reagent type and dispensing volume.At each step t, the policy πθat∣st receives the current state st and outputs a dispensing volume at. The reagent type (acid or base) is then determined by the current pH relative to the target pH.
+The trajectory collected in one episode is written as
+τ=s1,a1,r1,s2,a2,r2,…,sT,aT,rT,
+where rt is the reward obtained after taking action at in state st, and T is the terminal step of the episode.
+Parameter update process
+The REINFORCE [cite the paper1] ADDIN EN.CITE <EndNote><Cite><Author>Williams</Author><Year>1992</Year><RecNum>32</RecNum><DisplayText><style face="superscript">1</style></DisplayText><record><rec-number>32</rec-number><foreign-keys><key app="EN" db-id="a0ws0wr2pf2fr0ewepy5zsdcrvt90fwzvsw2" timestamp="1775027284">32</key></foreign-keys><ref-type name="Journal Article">17</ref-type><contributors><authors><author>Williams, Ronald J.</author></authors></contributors><titles><title>Simple statistical gradient-following algorithms for connectionist reinforcement learning</title><secondary-title>Machine Learning</secondary-title></titles><periodical><full-title>Machine Learning</full-title></periodical><pages>229-256</pages><volume>8</volume><number>3-4</number><section>229</section><dates><year>1992</year></dates><isbn>0885-6125&#xD;1573-0565</isbn><urls></urls><electronic-resource-num>10.1007/bf00992696</electronic-resource-num></record></Cite></EndNote>1 update consists of four steps.
+1. Trajectory sampling
+A complete trajectory τ is sampled by executing the current policy in the simulated pH-adjustment titration environment until successful completion or termination at the maximum step limit.
+2. Discounted return calculation
+For each step t, the discounted cumulative return Gt is computed according to Eq. S16:
+Gt=rt+γGt+1+γ2Gt+2+…      (S16)
+Here, rt denotes the reward received immediately after taking the action at step t. The return Gt includes not only the immediate reward rt, but also all future rewards obtained at subsequent steps t+1,t+2,…,T until the end of the trajectory, discounted geometrically by the factor γ. In this work, γ=0.99, so rewards received later in the episode still contribute strongly, but slightly less than immediate rewards. Since reward values are dimensionless by construction, Gt is also dimensionless. The large value of γ emphasizes successful completion of the full pH-adjustment titration trajectory while still weakly favoring earlier achievement of the target.
+3. Reward normalization/clipping
+Before computing the return, the instantaneous rewards are clipped to a predefined range ([-4.1, 4.1], see below for more details) to prevent unstable updates caused by excessively large positive or negative values. This step improves numerical stability during policy-gradient optimization.
+4. Policy-gradient update
+The network parameters θ are then updated using the REINFORCE gradient estimator to maximize the expected return Jθ. In practice, after each sampled episode, the cumulative policy loss is backpropagated, and the model parameters are updated using the Adam optimizer with a learning rate 1×10-3.
+After multiple rounds of online interaction and parameter updates, the policy is no longer constrained to imitate the Bayesian controller exactly. Instead, it can learn action patterns that improve task success and dosing efficiency under the reward design of the environment.
+Reward Function Design
+The reward at step t, denoted rt, is constructed from six components:
+rt=clip(rtdense+rtstep+rtovershoot+rtreagent+rtvolume)+rtterminal. (17)
+All reward terms are dimensionless. The purpose of this composite reward is to balance three control objectives simultaneously: (1) reaching the target pH accurately (rtdense, rtterminal), (2) doing so in as few steps as possible (rtstep), and (3) avoiding unstable or chemically unreasonable dosing behavior (rtovershoot, rtreagent, rtvolume). The clip part (rtdense+rtstep+rtovershoot+rtreagent+rtvolume)  is clipped to [-4.1, 4.1]
+1. Dense reward (rtdense)
+The dense reward (rtdense) encourages the policy to reduce the pH error at every step. It is defined in Eq. S18:
+rtdense=λet-1-et1+tM-ttM  (S18)
+In Eq. S11, et  denotes the pH error at step t, defined as
+et=pHtarget-pHt, (S19)
+which is dimensionless. The step index t ranges from 1 to tM, where tM is the maximum allowed number of titration steps and is fixed at 50 in this work. Accordingly, tM-t denotes the number of remaining titration steps after the current step tt, and the ratio tM-ttM provides a normalized weighting factor that assigns greater importance to reducing the pH error at earlier stages of the adjustment titration process. The scaling factor λ is set to -0.03. This term provides dense feedback throughout the episode and rewards gradual movement toward the target pH rather than only final success.
+2. Step penalty
+A fixed penalty(rtstep) is applied at every step to discourage unnecessarily long pH-adjustment titration sequences. This term encourages the controller to complete the task efficiently and reduces dithering near the target. After optimizing hyperparameters via grid search, it was found that setting this parameter to 0 yields the best results.
+3. Overshoot penalty
+An overshoot penalty(rtovershoot) is applied whenever the pH deviation exceeds the tolerance threshold of 0.1 pH units. The corresponding functional form is given in Eq. S20:
+rtovershoot=-w*σσet-δ,if et-1•*et<0 and et<>0.1 0,   otherwise   (S20)(S20)
+Here, σx=(1+e-x)-1 is the sigmoid function et is the pH deviation from the target, w is a fixed weighting coefficient set to 0.2, and δ=0.1 is the overshoot boundary. Since pH is dimensionless, both et and δ are dimensionless. This term penalizes aggressive actions that drive the system too far beyond the target and therefore promotes smoother, safer adjustment behavior.
+4. Incorrect reagent penalty
+A fixed penalty(rtreagent) is assigned when the selected reagent direction is chemically inconsistent with the control objective. Specifically, this occurs when acid is added while the controller should increase pH, or when base is added while it should decrease pH (defined as "wrong reagent used"). This term encodes a basic chemical prior into the reward and helps prevent obviously wrong dosing decisions. Here α is set to 1, and et is the pH deviation from the target.
+rtreagent-αet,    wrong reagent used0,   otherwise(S21)
+5. Overshoot-related volume penalty and bonus
+The reward also includes a volume-sensitive term associated with overshoot behavior (rtvolume). If the previous action caused overshoot, a penalty is applied based on the added volume. The detailed formulation is given in Eq. S22:
+rtvolume=-pvol×vt+bvol*maxVover-vt,0  (S22)
+In this expression, vt is the volume dispensed at step t, expressed in mL; pvol is a fixed penalty coefficient set to 0.1; bvol is a fixed bonus coefficient also set to 0.1; and Vover is the volume of the action that caused the overshoot, max refers to the maximum function. If overshoot occurred in the previous step and the next action uses a smaller volume than the overshooting action, the controller receives a positive bonus. This design encourages adaptive correction: once the policy detects that it has been too aggressive, it is rewarded for becoming more conservative in the following step.
+6. Terminal reward
+A terminal reward(rtterminal) is assigned when the episode ends successfully. The functional form is given in Eq. S23:
+rtterminal=2B,if  t<tM2B,if  t≥tM20,otherwise (S23)
+A larger terminal reward is granted when the task is completed in fewer than half of the maximum allowed steps. In Eq. S23, B is a fixed reward constant set to 3.9. This term explicitly values both success and efficiency, thereby encouraging the policy not only to reach the target pH but to do so promptly.
+Taken together, the reward function combines local shaping terms and final task-level incentives. The dense reward and overshoot terms guide short-term behavior, the step penalty promotes efficiency, the incorrect-reagent penalty imposes chemically meaningful directional constraints, and the terminal reward emphasizes overall task completion.
+Training Procedure
+For reinforcement learning, the policy network initialized by imitation learning was further optimized over 1000 500 training episodes. In each episode, a random pH-adjustment titration problem was generated from a family of monoprotic, diprotic, and triprotic acid systems. The acid concentration was fixed at 0.1 M, and target pH values were randomly sampled from 2 to 11. The maximum number of titration steps was 50.
+After training, the updated policy was evaluated on 3000 test experiments generated using the same random seed as the Bayesian-parameter-updating benchmark. In a more challenging setting using only 0.1 M HCl and 0.1 M NaOH, the reinforcement-learning policy achieved a success rate of 87.3% with an average of 7.9 steps among successful experiments, whereas the Bayesian baseline achieved a success rate of 77.6% and required an average of 10.2 steps. Thus, the learned policy improved the success rate by 9.6 percentage points and reduced the average number of steps by 22.7% relative to the Bayesian controller.
+In the broader 3000-task simulationthis benchmark, the reinforcement-learning controller achieved a success rate of 94.327%, an average step count of 10.21±7.21, and an overshoot rate of 28.6731.4%, performing comparably to imitation learning and better than the Bayesian controller in computational efficiency during deploymentefficiency. These results indicate that reinforcement learning preserves the strong baseline behavior learned from imitation while further improving control efficiency through direct optimization of task-level reward.
+The raw code for the machine learning process is available at GitHub https://github.com/Wang-Group/pH-Titrationhttps://github.com/SYLZ777/phB.git [XXX].
+Reference
+
+[1] Williams, R.J. Simple statistical gradient-following algorithms for connectionist reinforcement learning. Mach Learn 8, 229–256 (1992). https://doi.org/10.1007/BF00992696
+
+
+ ADDIN EN.REFLIST 1.R. J. Williams, Machine Learning, 1992, 8, 229–256.
+

@@ -1,0 +1,42 @@
+{
+  "mixture_1": {
+    "title": "Mixture 1",
+    "description": "pHBA saturated-solution clear supernatant (6 mL)\n+ TPA saturated-solution clear supernatant (6 mL)",
+    "model_basis": "solubility-limited effective dissolved concentrations for pHBA and TPA; nominal concentrations for acetic acid and SSA",
+    "initial_pH": 3.144877133868671,
+    "target_crossing_ml": 2.1111872932742908,
+    "slope_at_target_dpH_per_mL": 7.586604408976418,
+    "max_pH_on_grid": 12.618975889728418,
+    "min_pH_on_grid": 1.844124642050169
+  },
+  "mixture_2": {
+    "title": "Mixture 2",
+    "description": "pHBA saturated-solution clear supernatant (6 mL)\n+ 0.10 M acetic acid (6 mL)",
+    "model_basis": "solubility-limited effective dissolved concentrations for pHBA and TPA; nominal concentrations for acetic acid and SSA",
+    "initial_pH": 2.932337313609642,
+    "target_crossing_ml": 7.7735385747553,
+    "slope_at_target_dpH_per_mL": 1.1472225730787693,
+    "max_pH_on_grid": 12.305523599663413,
+    "min_pH_on_grid": 1.8425866723146052
+  },
+  "mixture_3": {
+    "title": "Mixture 3",
+    "description": "pHBA saturated-solution clear supernatant (6 mL)\n+ 14.7 mM SSA (6 mL)",
+    "model_basis": "solubility-limited effective dissolved concentrations for pHBA and TPA; nominal concentrations for acetic acid and SSA",
+    "initial_pH": 2.031390708180828,
+    "target_crossing_ml": 3.8628519395041234,
+    "slope_at_target_dpH_per_mL": 7.371515656679141,
+    "max_pH_on_grid": 12.51139091330803,
+    "min_pH_on_grid": 1.6689219009092917
+  },
+  "mixture_4": {
+    "title": "Mixture 4",
+    "description": "TPA saturated-solution clear supernatant (6 mL)\n+ 0.10 M acetic acid (6 mL)",
+    "model_basis": "solubility-limited effective dissolved concentrations for pHBA and TPA; nominal concentrations for acetic acid and SSA",
+    "initial_pH": 3.0315118424107492,
+    "target_crossing_ml": 5.685195384639726,
+    "slope_at_target_dpH_per_mL": 1.4700805673971882,
+    "max_pH_on_grid": 12.552310070835794,
+    "min_pH_on_grid": 1.843497499612997
+  }
+}

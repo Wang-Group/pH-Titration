@@ -1,0 +1,18 @@
+# Minimal environment for the reproducibility helper scripts and data/plot smoke tests.
+# Exact historical versions from the original study were not preserved, so packages are
+# intentionally left unpinned here. See reproducibility_notes.md for the tested local setup.
+
+numpy
+pandas
+scipy
+matplotlib
+openpyxl
+PyYAML
+
+# Additional notebook imports observed during the audit.
+# These were not fully smoke-tested end to end in this reproducibility pass.
+torch
+scikit-learn
+seaborn
+shap
+jupyter

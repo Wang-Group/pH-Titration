@@ -1,0 +1,11 @@
+{
+  "total_experiments": 20,
+  "successful_experiments": 19,
+  "success_rate": 95.0,
+  "avg_success_steps": 26.42105263157895,
+  "std_success_steps": 13.680138845436085,
+  "total_steps": 552,
+  "total_overshoots": 51,
+  "overshoot_rate": 9.23913043478261,
+  "mean_controller_decision_ms": 0.059552490740777106
+}

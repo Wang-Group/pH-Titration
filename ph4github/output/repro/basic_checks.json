@@ -1,0 +1,443 @@
+{
+  "repo_root": "E:\\GitHub\\ph4git\\pH-Titration\\ph4github",
+  "python": {
+    "executable": "C:\\Users\\Admin\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+    "version": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]"
+  },
+  "packages": {
+    "numpy": "2.4.4",
+    "pandas": "2.3.3",
+    "scipy": "1.17.1",
+    "matplotlib": "3.10.9",
+    "openpyxl": "3.1.5",
+    "PyYAML": "6.0.3",
+    "torch": "2.12.1+cpu",
+    "scikit-learn": "missing",
+    "seaborn": "missing",
+    "shap": "missing"
+  },
+  "missing_required_paths": [],
+  "tables": [
+    {
+      "path": "experiment_summary.csv",
+      "rows": 3000,
+      "columns": [
+        "Experiment",
+        "Acid_Type",
+        "Acid_Params",
+        "Initial_pH",
+        "Target_pH",
+        "Final_pH",
+        "Steps_Taken",
+        "Success"
+      ],
+      "preview": [
+        {
+          "Experiment": 1,
+          "Acid_Type": "triprotic",
+          "Acid_Params": "[3.8396645651282366, 4.306794378987306, 6.82352172124341]",
+          "Initial_pH": 1.79,
+          "Target_pH": 3.74,
+          "Final_pH": 3.64,
+          "Steps_Taken": 6,
+          "Success": "Yes"
+        },
+        {
+          "Experiment": 2,
+          "Acid_Type": "monoprotic",
+          "Acid_Params": "4.33",
+          "Initial_pH": 2.11,
+          "Target_pH": 6.93,
+          "Final_pH": 6.92,
+          "Steps_Taken": 16,
+          "Success": "Yes"
+        },
+        {
+          "Experiment": 3,
+          "Acid_Type": "monoprotic",
+          "Acid_Params": "2.34",
+          "Initial_pH": 1.6,
+          "Target_pH": 9.97,
+          "Final_pH": 9.88,
+          "Steps_Taken": 14,
+          "Success": "Yes"
+        }
+      ]
+    },
+    {
+      "path": "data\\all_data\\wastewater\\WasteWater1.csv",
+      "rows": 13,
+      "columns": [
+        "step",
+        "reagent",
+        "recommended_volume",
+        "actual_volume",
+        "pH_before",
+        "pH_after",
+        "pH_change",
+        "neutralization_factor"
+      ],
+      "preview": [
+        {
+          "step": 1,
+          "reagent": "base",
+          "recommended_volume": 9.079999923706056,
+          "actual_volume": 5.0,
+          "pH_before": 1.31,
+          "pH_after": 10.33,
+          "pH_change": 9.02,
+          "neutralization_factor": 1.2589254117941688
+        },
+        {
+          "step": 2,
+          "reagent": "acid",
+          "recommended_volume": 2.400000095367432,
+          "actual_volume": 3.0214211083664884,
+          "pH_before": 10.33,
+          "pH_after": 5.25,
+          "pH_change": -5.08,
+          "neutralization_factor": 1.2589254117941688
+        },
+        {
+          "step": 3,
+          "reagent": "base",
+          "recommended_volume": 1.159999966621399,
+          "actual_volume": 1.159999966621399,
+          "pH_before": 5.25,
+          "pH_after": 10.97,
+          "pH_change": 5.720000000000001,
+          "neutralization_factor": 1.2589254117941688
+        }
+      ]
+    },
+    {
+      "path": "data\\all_data\\SSA\\SSA1.csv",
+      "rows": 18,
+      "columns": [
+        "step",
+        "reagent",
+        "recommended_volume",
+        "actual_volume",
+        "pH_before",
+        "pH_after",
+        "pH_change",
+        "neutralization_factor"
+      ],
+      "preview": [
+        {
+          "step": 1,
+          "reagent": "base",
+          "recommended_volume": 5.93,
+          "actual_volume": 5.0,
+          "pH_before": 1.67,
+          "pH_after": 5.27,
+          "pH_change": 5.27,
+          "neutralization_factor": 1.2589
+        },
+        {
+          "step": 2,
+          "reagent": "acid",
+          "recommended_volume": 1.88,
+          "actual_volume": 2.37,
+          "pH_before": 5.27,
+          "pH_after": 5.31,
+          "pH_change": 0.04,
+          "neutralization_factor": 1.2589
+        },
+        {
+          "step": 3,
+          "reagent": "acid",
+          "recommended_volume": 1.29,
+          "actual_volume": 1.62,
+          "pH_before": 5.31,
+          "pH_after": 5.31,
+          "pH_change": 0.0,
+          "neutralization_factor": 1.2589
+        }
+      ]
+    },
+    {
+      "path": "data\\all_data\\mixed_acid\\1-1.xlsx",
+      "rows": 12,
+      "columns": [
+        "step",
+        "reagent",
+        "volume",
+        "pH_before",
+        "pH_after",
+        "pH_change"
+      ],
+      "preview": [
+        {
+          "step": 1,
+          "reagent": "base",
+          "volume": 6.44,
+          "pH_before": 3.16,
+          "pH_after": 11.5,
+          "pH_change": 8.34
+        },
+        {
+          "step": 2,
+          "reagent": "acid",
+          "volume": 3.11,
+          "pH_before": 11.5,
+          "pH_after": 8.58,
+          "pH_change": -2.92
+        },
+        {
+          "step": 3,
+          "reagent": "acid",
+          "volume": 2.4,
+          "pH_before": 8.58,
+          "pH_after": 4.11,
+          "pH_change": -4.47
+        }
+      ]
+    },
+    {
+      "path": "data\\all_data\\milk\\milk.xlsx",
+      "rows": 4,
+      "columns": [
+        "step",
+        "reagent",
+        "volume",
+        "pH_before",
+        "pH_after",
+        "pH_change"
+      ],
+      "preview": [
+        {
+          "step": 1,
+          "reagent": "acid",
+          "volume": 5.21,
+          "pH_before": 6.69,
+          "pH_after": 5.1,
+          "pH_change": -1.5900000000000007
+        },
+        {
+          "step": 2,
+          "reagent": "acid",
+          "volume": 0.93,
+          "pH_before": 5.1,
+          "pH_after": 4.93,
+          "pH_change": -0.16999999999999993
+        },
+        {
+          "step": 3,
+          "reagent": "acid",
+          "volume": 0.87,
+          "pH_before": 4.93,
+          "pH_after": 4.76,
+          "pH_change": -0.16999999999999993
+        }
+      ]
+    }
+  ],
+  "text_logs": [
+    {
+      "path": "data\\bayesian.txt",
+      "bytes": 3567442,
+      "lines": 49027,
+      "experiment_like_lines": 3002,
+      "preview": [
+        "==== Experiment 1 Start ====",
+        "Initial state: [ 1.79  3.74  0.   -1.95  0.  ]",
+        "Acid type: triprotic, parameters: [3.8396645651282366, 4.306794378987306, 6.82352172124341], target pH: 3.74",
+        "Status Action Reagent Pair:",
+        "  Step 1: State = [ 3.59  3.74  1.8  -0.15  5.07], Action = 5.0700, Reagent = Dilute base 1"
+      ]
+    },
+    {
+      "path": "data\\m_network.txt",
+      "bytes": 6168944,
+      "lines": 94221,
+      "experiment_like_lines": 2,
+      "preview": [
+        "",
+        "==== \u5b9e\u9a8c 1 \u5f00\u59cb ====",
+        "\u521d\u59cb\u72b6\u6001: [ 1.79  3.74  0.   -1.95  0.  ]",
+        "\u9178\u7c7b\u578b: triprotic, \u53c2\u6570: [3.8396645651282366, 4.306794378987306, 6.82352172124341], \u76ee\u6807 pH: 3.74",
+        "\u5f53\u524d\u72b6\u6001\u5411\u91cf: [ 1.79  3.74  0.   -1.95  0.  ]"
+      ]
+    },
+    {
+      "path": "data\\PIDexperiment.txt",
+      "bytes": 5248618,
+      "lines": 104930,
+      "experiment_like_lines": 3003,
+      "preview": [
+        "Titration experiment detailed report (revised PID)",
+        "============================================================",
+        "",
+        "Experiment ID: 1 | Acid type: triprotic | Target pH: 3.74",
+        "Initial pH: 2.42"
+      ]
+    },
+    {
+      "path": "data\\reinforced_network.txt",
+      "bytes": 6083174,
+      "lines": 92949,
+      "experiment_like_lines": 2,
+      "preview": [
+        "",
+        "==== \u5b9e\u9a8c 1 \u5f00\u59cb ====",
+        "\u521d\u59cb\u72b6\u6001: [ 1.79  3.74  0.   -1.95  0.  ]",
+        "\u9178\u7c7b\u578b: triprotic, \u53c2\u6570: [3.8396645651282366, 4.306794378987306, 6.82352172124341], \u76ee\u6807 pH: 3.74",
+        "\u5f53\u524d\u72b6\u6001\u5411\u91cf: [ 1.79  3.74  0.   -1.95  0.  ]"
+      ]
+    }
+  ],
+  "notebooks": {
+    "main_code3": {
+      "path": "main_code3.ipynb",
+      "total_cells": 34,
+      "code_cells": 34,
+      "markdown_cells": 0,
+      "first_code_lines": [
+        {
+          "cell_index": 1,
+          "first_line": "#bayesianfinal"
+        },
+        {
+          "cell_index": 2,
+          "first_line": "import numpy as np"
+        },
+        {
+          "cell_index": 3,
+          "first_line": "# Generate data"
+        },
+        {
+          "cell_index": 4,
+          "first_line": "import numpy as np"
+        },
+        {
+          "cell_index": 5,
+          "first_line": "# Train a discrete regression model"
+        },
+        {
+          "cell_index": 6,
+          "first_line": "import torch"
+        },
+        {
+          "cell_index": 7,
+          "first_line": "# Test a discrete regression model on the test set"
+        },
+        {
+          "cell_index": 8,
+          "first_line": "import torch"
+        },
+        {
+          "cell_index": 9,
+          "first_line": "# Reinforcement currently in use"
+        },
+        {
+          "cell_index": 10,
+          "first_line": "import torch"
+        },
+        {
+          "cell_index": 11,
+          "first_line": "# Save while training"
+        },
+        {
+          "cell_index": 12,
+          "first_line": "import torch"
+        }
+      ]
+    },
+    "plot": {
+      "path": "plot.ipynb",
+      "total_cells": 24,
+      "code_cells": 24,
+      "markdown_cells": 0,
+      "first_code_lines": [
+        {
+          "cell_index": 1,
+          "first_line": "import pandas as pd"
+        },
+        {
+          "cell_index": 2,
+          "first_line": "print(plt.rcParams[\"font.family\"])"
+        },
+        {
+          "cell_index": 3,
+          "first_line": "\"\"\""
+        },
+        {
+          "cell_index": 4,
+          "first_line": "if __name__ == \"__main__\":"
+        },
+        {
+          "cell_index": 5,
+          "first_line": "from __future__ import annotations"
+        },
+        {
+          "cell_index": 6,
+          "first_line": "if __name__ == \"__main__\":"
+        },
+        {
+          "cell_index": 7,
+          "first_line": "if __name__ == \"__main__\":"
+        },
+        {
+          "cell_index": 8,
+          "first_line": "plot_ph_files("
+        },
+        {
+          "cell_index": 9,
+          "first_line": "import pandas as pd"
+        },
+        {
+          "cell_index": 10,
+          "first_line": "from __future__ import annotations"
+        },
+        {
+          "cell_index": 11,
+          "first_line": "if __name__ == \"__main__\":"
+        },
+        {
+          "cell_index": 12,
+          "first_line": "from __future__ import annotations"
+        }
+      ]
+    }
+  },
+  "path_audit": {
+    "absolute_path_occurrences": 103,
+    "unique_absolute_paths": 75,
+    "missing_unique_absolute_paths": 61,
+    "example_paths": [
+      "C:\\Users\\Admin\\Desktop",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA1.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA10.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA11.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA2.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA3.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA4.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA5.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA6.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA7.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA8.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA9.csv"
+    ],
+    "example_missing_paths": [
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA1.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA10.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA11.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA2.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA3.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA4.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA5.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA6.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA7.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA8.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\SSA\\SSA9.csv",
+      "C:\\Users\\SYLZ\\Documents\\GitHub\\phB\\ph4github\\data\\all_data\\milk\\milk.xlsx"
+    ]
+  },
+  "portability_flags": {
+    "uppercase_open_modes": 17,
+    "capitalized_cpu_device": 10,
+    "incorrect_main_guard": 15,
+    "hard_coded_ph4github_relative_paths": 5
+  }
+}
