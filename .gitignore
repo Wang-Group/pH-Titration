@@ -9,6 +9,7 @@ venv/
 build/
 dist/
 /runs/
+evidence/simulation_numerical_evidence_20260823/05_RL_ALGORITHM_SCREEN/direction_assisted_release/**/runs/
 .release_staging/
 *_unpack/
 physical_experiments/cu_ssa/job_plot_reproduced_reported_method.png
