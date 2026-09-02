@@ -181,7 +181,7 @@ release block:
 | `05_RL_ALGORITHM_SCREEN` | Matched PPO/A2C/REINFORCE screen, manifests and tests |
 | `06_POSTERIOR_RECOVERY` | Posterior recovery and natural-endpoint analysis |
 | `07_PRIOR_SENSITIVITY` | Prior and likelihood sensitivity |
-| `08_SENSOR_STRESS` | Sensor nonideality stress tests |
+| `08_SENSOR_STRESS` | Sensor nonideality stress tests, including source and raw task-level results |
 | `09_PF_RULE_ABLATIONS` | PF rule/reward/dose ablations |
 | `10_PARTICLE_SCALING` | Particle-count timing and scaling |
 | `11_PYMC_COMPARISON` | Earlier 15-task PyMC/PF comparison retained for provenance |
@@ -196,6 +196,13 @@ The evidence directory also contains the study index and statistical-unit
 definitions under `00_INDEX_AND_PROTOCOLS`. Results from different blocks are
 kept separate because their task generators, sample sizes, action interfaces,
 training budgets, and timing definitions differ.
+
+The direction-only random-initialization ablation in block `04` uses the same
+frozen imitation checkpoint as the primary benchmark but a separate evaluation
+protocol and separate locked task sets (evaluation seeds `901`--`905`). The
+checkpoint achieved `87.82%` pooled success in block `04`, compared with
+`89.17 +/- 0.51%` on the primary benchmark. These values describe different
+evaluation protocols and should not be merged.
 
 Timing values must be read with their protocol labels. Block
 [`16_MATCHED_TIMING_RECOVERY_100TASKS`](evidence/simulation_numerical_evidence_20260823/16_MATCHED_TIMING_RECOVERY_100TASKS/PROTOCOL_AND_RESULTS.md)
@@ -224,6 +231,14 @@ source/checkpoints, posterior and sensor-stress analyses, particle-scaling
 timing, PyMC timing, and neural-policy timing. The teacher, imitation, and PPO
 training source is retained in block `02` separately from the deployable
 controller API.
+
+Block [`08_SENSOR_STRESS`](evidence/simulation_numerical_evidence_20260823/08_SENSOR_STRESS/)
+retains the compact publication summaries under `current_pf_noise_stress` and
+the complete reproducibility package under
+[`reproduction_package_20260902`](evidence/simulation_numerical_evidence_20260823/08_SENSOR_STRESS/reproduction_package_20260902/README.md).
+The latter contains the benchmark runner, exact controller snapshots and model
+weights, 75 locked task manifests, 75 resumable result shards, and all 150,000
+PF/PPO task-level outcomes across the 15 stress regimes.
 
 The current PyMC timing and one-observation posterior comparison is archived in
 block `16` with task-level raw outputs, run configurations, paired tests, and
@@ -279,10 +294,10 @@ make the stochastic training dependence explicit. This is a one-retraining-run
 per coefficient sensitivity screen, not a causal hyperparameter comparison.
 
 The archive also includes the PID tuning source and selected parameters,
-paired statistical tests, posterior-recovery and prior-sensitivity source,
-sensor-stress source/results, historical timing protocols, the matched
-single-step PyMC/PF/neural benchmark, and the current PF complete-trajectory
-timing benchmark. Run
+paired statistical tests, posterior-recovery source/results,
+prior-sensitivity results, sensor-stress source/results, historical timing
+protocols, the matched single-step PyMC/PF/neural benchmark, and the current PF
+complete-trajectory timing benchmark. Run
 `python scripts/verify_source.py` to compile the package and verify these
 required files, the 5 x 3,000 manifests, the 15,000 matched task keys, and all
 teacher/imitation/principal-PPO hashes.

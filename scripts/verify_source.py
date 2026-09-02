@@ -34,6 +34,13 @@ def matches_manifest_entry(path: Path, row: dict[str, str]) -> bool:
     )
 
 
+def matches_sha256_allowing_crlf(path: Path, expected_hash: str) -> bool:
+    """Match original archive bytes while tolerating Git CRLF checkout conversion."""
+    data = path.read_bytes()
+    candidates = (data, data.replace(b"\r\n", b"\n"))
+    return any(hashlib.sha256(candidate).hexdigest() == expected_hash for candidate in candidates)
+
+
 def count_data_rows(path: Path) -> int:
     with path.open("r", encoding="utf-8-sig", newline="") as handle:
         return max(0, sum(1 for _ in handle) - 1)
@@ -71,6 +78,12 @@ def main() -> int:
     importlib.import_module("training.task_distribution")
 
     evidence_root = root / "evidence" / "simulation_numerical_evidence_20260823"
+    sensor_repro_root = (
+        evidence_root
+        / "08_SENSOR_STRESS"
+        / "reproduction_package_20260902"
+    )
+    sensor_repro_results = sensor_repro_root / "results" / "fixed_pf_ppo_stress"
     matched_timing_root = evidence_root / "16_MATCHED_TIMING_RECOVERY_100TASKS"
     matched_timing_results = matched_timing_root / "results"
     pf_closed_loop_root = evidence_root / "17_PF_CLOSED_LOOP_TIMING_100TASKS"
@@ -121,6 +134,22 @@ def main() -> int:
         evidence_root / "05_RL_ALGORITHM_SCREEN" / "direction_assisted_release" / "results_full" / "aggregate_summary.csv",
         evidence_root / "06_POSTERIOR_RECOVERY" / "current_complete_study" / "aggregate_posterior_summary.csv",
         evidence_root / "08_SENSOR_STRESS" / "current_pf_noise_stress" / "aggregate_summary.csv",
+        sensor_repro_root / "README.md",
+        sensor_repro_root / "source_archive_SHA256SUMS.txt",
+        sensor_repro_root / "runner" / "fixed_controller_stress_benchmark.py",
+        sensor_repro_root / "runner" / "RUN_FIXED_CONTROLLER_STRESS.cmd",
+        sensor_repro_root / "runner" / "study_source" / "task_distribution.py",
+        sensor_repro_root / "runner" / "controllers_release" / "new_pf_controller.py",
+        sensor_repro_root / "runner" / "controllers_release" / "new_rl_numpy_controller.py",
+        sensor_repro_root / "runner" / "controllers_release" / "models" / "ppo_seed_303.pth",
+        sensor_repro_root / "runner" / "controllers_release" / "models" / "ppo_seed_303_numpy.npz",
+        sensor_repro_results / "all_task_results.csv",
+        sensor_repro_results / "aggregate_summary.csv",
+        sensor_repro_results / "per_seed_summary.csv",
+        sensor_repro_results / "paired_success_tests.csv",
+        sensor_repro_results / "paired_continuous_tests.csv",
+        sensor_repro_results / "RUN_CONFIG.json",
+        sensor_repro_results / "BENCHMARK_COMPLETE.json",
         evidence_root / "10_PARTICLE_SCALING" / "particle_scaling_summary" / "summary.csv",
         evidence_root / "11_PYMC_COMPARISON" / "pymc_pf_comparison" / "pymc_pf_summary.csv",
         evidence_root / "12_ONLINE_TIMING" / "online_single_step_timing_20260820" / "FINAL_SINGLE_STEP_TIMING_SUMMARY.csv",
@@ -177,6 +206,29 @@ def main() -> int:
         required_files.append(primary_task_root / f"seed_{seed}_tasks.jsonl")
         required_files.append(formal_root / f"seed_{seed}_task_results.csv")
         required_files.append(formal_root / "pf_reference" / f"seed_{seed}_task_results.csv")
+    sensor_regimes = (
+        "nominal",
+        "close_pka",
+        "wide_concentration",
+        "observation_noise_0p01",
+        "observation_noise_0p03",
+        "observation_noise_0p05",
+        "observation_noise_0p10",
+        "episode_bias_0p10",
+        "random_walk_drift_0p01",
+        "response_fraction_0p60",
+        "response_fraction_0p70",
+        "actuator_log_sd_0p10",
+        "titrant_scale_0p90",
+        "titrant_scale_1p10",
+        "combined_unseen",
+    )
+    for regime in sensor_regimes:
+        for seed in primary_seeds:
+            required_files.append(sensor_repro_results / f"{regime}_seed_{seed}_tasks.jsonl")
+            required_files.append(
+                sensor_repro_results / "completed_shards" / f"{regime}_seed_{seed}.csv"
+            )
     stability_root = evidence_root / "03_PPO_TRAINING_STABILITY"
     for seed in primary_seeds:
         required_files.append(stability_root / "checkpoints" / f"ppo_seed_{seed}.pth")
@@ -216,6 +268,56 @@ def main() -> int:
     missing = [str(path.relative_to(root)) for path in required_files if not path.is_file()]
     if missing:
         raise SystemExit("Missing evidence files:\n" + "\n".join(missing))
+
+    sensor_task_files = sorted(sensor_repro_results.glob("*_tasks.jsonl"))
+    sensor_shard_files = sorted((sensor_repro_results / "completed_shards").glob("*.csv"))
+    if len(sensor_task_files) != 75 or len(sensor_shard_files) != 75:
+        raise SystemExit("Sensor-stress reproduction package has an incomplete task/shard set")
+    if any(count_jsonl(path) != 1000 for path in sensor_task_files):
+        raise SystemExit("Sensor-stress task manifest row count mismatch")
+    if any(count_data_rows(path) != 2000 for path in sensor_shard_files):
+        raise SystemExit("Sensor-stress result shard row count mismatch")
+    if count_data_rows(sensor_repro_results / "all_task_results.csv") != 150000:
+        raise SystemExit("Sensor-stress combined task-result row count mismatch")
+
+    sensor_manifest = {}
+    with (sensor_repro_root / "source_archive_SHA256SUMS.txt").open(
+        "r", encoding="utf-8-sig"
+    ) as handle:
+        for line in handle:
+            if line.strip():
+                digest, archive_path = line.rstrip("\r\n").split("  ", 1)
+                sensor_manifest[archive_path] = digest.lower()
+
+    def sensor_manifest_key(path: Path) -> str | None:
+        relative = path.relative_to(sensor_repro_root).as_posix()
+        if relative.startswith("controller_source/"):
+            return relative.removeprefix("controller_source/")
+        if relative.startswith("runner/controllers_release/"):
+            return relative.removeprefix("runner/")
+        if relative.startswith("runner/study_source/"):
+            return relative.removeprefix("runner/")
+        if relative.startswith("runner/"):
+            return relative.removeprefix("runner/")
+        if relative.startswith("results/fixed_pf_ppo_stress/"):
+            return "formal_results/" + relative.removeprefix("results/")
+        return None
+
+    sensor_hashed_files = 0
+    for path in sensor_repro_root.rglob("*"):
+        if not path.is_file() or path.name in {"README.md", "source_archive_SHA256SUMS.txt"}:
+            continue
+        manifest_key = sensor_manifest_key(path)
+        expected_hash = sensor_manifest.get(manifest_key or "")
+        if expected_hash is None:
+            raise SystemExit(f"Sensor-stress file is absent from the source manifest: {path}")
+        if not matches_sha256_allowing_crlf(path, expected_hash):
+            raise SystemExit(f"Sensor-stress source/result hash mismatch: {path}")
+        sensor_hashed_files += 1
+    if sensor_hashed_files != 246:
+        raise SystemExit(
+            f"Sensor-stress source/result manifest coverage mismatch: {sensor_hashed_files}"
+        )
 
     index_path = evidence_root / "00_INDEX_AND_PROTOCOLS" / "SIMULATION_STUDY_INDEX.csv"
     if index_path.stat().st_size < 100:
@@ -555,6 +657,12 @@ def main() -> int:
         "teacher_and_principal_checkpoints_verified": True,
         "ppo_stability_audit": "PASS",
         "controller_representation_factorial_audit": "PASS",
+        "sensor_stress_reproduction": {
+            "task_manifests": len(sensor_task_files),
+            "result_shards": len(sensor_shard_files),
+            "task_results": 150000,
+            "manifest_files_verified": sensor_hashed_files,
+        },
     }
     print(json.dumps(report, indent=2))
     return 0

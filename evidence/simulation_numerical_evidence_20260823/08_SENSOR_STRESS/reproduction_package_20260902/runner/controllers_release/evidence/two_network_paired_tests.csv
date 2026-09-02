@@ -1,0 +1,16 @@
+suite,metric,comparison,selected_ppo_seed,paired_tasks,imitation_only_success,ppo_only_success,difference,difference_unit,test,p_value,statistic
+close_pka,true_success,ppo_minus_imitation,303,300,12,31,6.333333333333336,percentage_points,exact_mcnemar,0.005401572654591291,
+close_pka,steps,ppo_minus_imitation,303,300,,,-5.46,raw_metric_units,paired_wilcoxon,3.8671200777803444e-11,6626.0
+close_pka,overshoots,ppo_minus_imitation,303,300,,,-0.68,raw_metric_units,paired_wilcoxon,0.7452371404193019,6489.5
+close_pka,total_volume_ml,ppo_minus_imitation,303,300,,,1.0562666666666665,raw_metric_units,paired_wilcoxon,5.5062194854039825e-08,14077.0
+close_pka,final_abs_error,ppo_minus_imitation,303,300,,,-0.03595800866782922,raw_metric_units,paired_wilcoxon,0.0002263155242128111,16664.0
+nominal_locked,true_success,ppo_minus_imitation,303,1000,17,60,4.300000000000004,percentage_points,exact_mcnemar,8.909847968334875e-07,
+nominal_locked,steps,ppo_minus_imitation,303,1000,,,-4.286,raw_metric_units,paired_wilcoxon,1.809023919723308e-23,83604.5
+nominal_locked,overshoots,ppo_minus_imitation,303,1000,,,-0.091,raw_metric_units,paired_wilcoxon,0.007293944128726871,73317.5
+nominal_locked,total_volume_ml,ppo_minus_imitation,303,1000,,,0.6755099999999999,raw_metric_units,paired_wilcoxon,4.437851511301714e-15,175871.0
+nominal_locked,final_abs_error,ppo_minus_imitation,303,1000,,,-0.021907162433295446,raw_metric_units,paired_wilcoxon,4.209751665460977e-12,184920.0
+wide_concentration,true_success,ppo_minus_imitation,303,300,9,23,4.666666666666663,percentage_points,exact_mcnemar,0.020061607006937265,
+wide_concentration,steps,ppo_minus_imitation,303,300,,,-3.6666666666666665,raw_metric_units,paired_wilcoxon,7.839650867956828e-06,9303.0
+wide_concentration,overshoots,ppo_minus_imitation,303,300,,,-0.58,raw_metric_units,paired_wilcoxon,0.6287173984321077,8433.5
+wide_concentration,total_volume_ml,ppo_minus_imitation,303,300,,,0.9213000000000001,raw_metric_units,paired_wilcoxon,0.00011160312633684006,16403.0
+wide_concentration,final_abs_error,ppo_minus_imitation,303,300,,,0.005546892358869381,raw_metric_units,paired_wilcoxon,0.0076545892287443185,18176.0
