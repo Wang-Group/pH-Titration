@@ -1,0 +1,70 @@
+{
+  "name": "explicit_two_independent_monoprotic_acid_benchmark",
+  "benchmark_seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "tasks_per_seed": 3000,
+  "truth_model": "two independent monoprotic acids with separate concentrations",
+  "total_concentration_m": "log-uniform[0.03,0.18]",
+  "component_mole_fraction": "uniform[0.20,0.80]",
+  "pka_families": "50% overlapping (gap 0.20-0.70), 50% separated (gap 0.90-2.50)",
+  "initial_volume_ml": "uniform[8,16]",
+  "direction": "exactly 50% acid and 50% base per seed",
+  "difficulty": {
+    "near": 0.3,
+    "medium": 0.45,
+    "far": 0.25
+  },
+  "titrant_m": 0.1,
+  "manifest_records": [
+    {
+      "benchmark_seed": 101,
+      "tasks": 3000,
+      "sha256": "a24227e33facea2d2e76852137294a871f59a00e612551c0cb1ce395925ed1aa",
+      "acid_direction_tasks": 1500,
+      "base_direction_tasks": 1500,
+      "overlapping_tasks": 1500,
+      "separated_tasks": 1500
+    },
+    {
+      "benchmark_seed": 202,
+      "tasks": 3000,
+      "sha256": "5db0554f3fba0785e6e6deceac7eea2a8cdb7f24b54a057b8926361232f52108",
+      "acid_direction_tasks": 1500,
+      "base_direction_tasks": 1500,
+      "overlapping_tasks": 1500,
+      "separated_tasks": 1500
+    },
+    {
+      "benchmark_seed": 303,
+      "tasks": 3000,
+      "sha256": "d94601f6ae6cc6d0c4ff9ce7117c23374b5b1dbc902c796d7fa546745e9c8e8f",
+      "acid_direction_tasks": 1500,
+      "base_direction_tasks": 1500,
+      "overlapping_tasks": 1500,
+      "separated_tasks": 1500
+    },
+    {
+      "benchmark_seed": 404,
+      "tasks": 3000,
+      "sha256": "562e8a27e6b3c4693f472d213211f92556cc342b54add1152cd4ac1bd1fa91ed",
+      "acid_direction_tasks": 1500,
+      "base_direction_tasks": 1500,
+      "overlapping_tasks": 1500,
+      "separated_tasks": 1500
+    },
+    {
+      "benchmark_seed": 555,
+      "tasks": 3000,
+      "sha256": "53570a179d19dc84792b74a66d264969022d31931704a37536801a5f3a5380ec",
+      "acid_direction_tasks": 1500,
+      "base_direction_tasks": 1500,
+      "overlapping_tasks": 1500,
+      "separated_tasks": 1500
+    }
+  ]
+}

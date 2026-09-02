@@ -1,0 +1,4 @@
+ground_truth_domain,effective_k_protic_pf_success_percent,independent_component_pf_success_percent,effective_k_protic_curve_rmse_ph,independent_component_curve_rmse_ph
+effective_k_protic_k1_3,95.36,95.23,1.814,2.057
+two_independent_monoacids,95.69,95.70,1.715,1.443
+independent_components_j1_3,95.01,94.91,1.797,1.495

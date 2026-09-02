@@ -23,6 +23,7 @@ The controllers are importable as packages:
 python -m pip install -e .
 python scripts/verify_source.py
 python scripts/audit_primary_benchmark.py
+python scripts/audit_controller_representation_factorial.py
 python scripts/generate_publication_tables.py
 python -m controllers.controller_package_self_test
 python -m unittest discover -s tests -v
@@ -189,6 +190,7 @@ release block:
 | `15_PPO_STEP_COST_TUNING` | Local PPO step-cost sensitivity from 0 to 0.01, including the independent 0.005 retraining |
 | `16_MATCHED_TIMING_RECOVERY_100TASKS` | Matched single-step PyMC/PF/neural timing and one-observation recovery benchmark |
 | `17_PF_CLOSED_LOOP_TIMING_100TASKS` | Current PF complete-trajectory timing and outcome benchmark on the same 100-task cohort |
+| `18_CONTROLLER_REPRESENTATION_FACTORIAL` | Posterior-to-control, PF-representation, model-mismatch, and exploratory imitation/PPO factorials reported in SI Section 5.6 |
 
 The evidence directory also contains the study index and statistical-unit
 definitions under `00_INDEX_AND_PROTOCOLS`. Results from different blocks are
@@ -235,6 +237,15 @@ The current complete-trajectory PF timing and outcome records are archived in
 block `17`. Task-level outcomes, every recorded decision cycle, and complete
 trajectories are retained, and the derived tables can be regenerated with
 `python scripts/finalize_pf_closed_loop_timing_100tasks.py`.
+
+The expanded controller and representation analyses are archived in block
+[`18_CONTROLLER_REPRESENTATION_FACTORIAL`](evidence/simulation_numerical_evidence_20260823/18_CONTROLLER_REPRESENTATION_FACTORIAL/README.md).
+This block contains all 15 locked 3,000-task manifests, the exact additional
+source, publication Tables S14-S16 in machine-readable form, unrounded
+policy-factorial summaries, completion metadata, and checkpoint fingerprints.
+Run `python scripts/audit_controller_representation_factorial.py` to verify the
+manifests, source, table values, and the reported 12-of-15 and 45-of-75 PPO
+comparisons.
 
 The embedded `controllers/models/ppo_seed_303.pth` is the validation-selected
 deployment checkpoint. Its metadata describes a 500-task validation run; the

@@ -108,6 +108,12 @@ def build() -> None:
             / "RELEASE_VALIDATION.json"
         ).read_text(encoding="utf-8")
     )
+    expanded_factorial = staged_evidence / "18_CONTROLLER_REPRESENTATION_FACTORIAL"
+    expanded_completion = json.loads(
+        (expanded_factorial / "results" / "RUN_COMPLETE.json").read_text(
+            encoding="utf-8"
+        )
+    )
     validation = {
         "status": "PASS",
         "created_utc": datetime.now(timezone.utc).isoformat(),
@@ -171,6 +177,26 @@ def build() -> None:
             ],
             "step_measurements": pf_closed_loop_validation["step_measurements"],
             "success_rate_percent": pf_closed_loop_validation["success_rate_percent"],
+        },
+        "controller_representation_factorial": {
+            "status": expanded_completion["status"],
+            "locked_manifests": count_csv_rows(
+                expanded_factorial / "MANIFEST_SHA256.csv"
+            ),
+            "tasks_per_manifest": 3000,
+            "publication_table_rows": {
+                "S14": count_csv_rows(
+                    expanded_factorial / "results" / "table_s14_posterior_to_control.csv"
+                ),
+                "S15": count_csv_rows(
+                    expanded_factorial / "results" / "table_s15_pf_representation.csv"
+                ),
+                "S16": count_csv_rows(
+                    expanded_factorial / "results" / "table_s16_policy_families.csv"
+                ),
+            },
+            "policy_evaluation_cells": expanded_completion["evaluation_cells"],
+            "policy_task_outcomes": expanded_completion["task_policy_outcomes"],
         },
         "manifest_entries": len(manifest_rows),
         "forbidden_documents_included": False,

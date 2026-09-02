@@ -1,0 +1,4 @@
+posterior_to_control_strategy,success_percent_mean,success_percent_sample_sd,successful_additions_mean,successful_additions_sample_sd,curve_rmse_ph_mean,curve_rmse_ph_sample_sd,median_decision_time_ms_mean,median_decision_time_ms_sample_sd
+weighted_parameters_primary,95.4,0.6,4.84,0.09,1.81,0.03,52.9,0.6
+map_k_posterior_predictive,95.4,0.5,4.84,0.09,1.68,0.04,101,2
+full_posterior_predictive,95.3,0.5,4.8,0.1,1.64,0.03,269,5

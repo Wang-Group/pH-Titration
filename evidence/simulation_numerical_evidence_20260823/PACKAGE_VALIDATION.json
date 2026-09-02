@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "created_utc": "2026-09-01T04:32:17.032052+00:00",
+  "created_utc": "2026-09-02T01:24:10.981733+00:00",
   "simulation_only": true,
   "protocol_family": "pH-control",
   "protocol_version": "2026.08",
@@ -59,6 +59,18 @@
       "pf_100000": 97.0
     }
   },
-  "manifest_entries": 1054,
+  "controller_representation_factorial": {
+    "status": "PASS",
+    "locked_manifests": 15,
+    "tasks_per_manifest": 3000,
+    "publication_table_rows": {
+      "S14": 3,
+      "S15": 3,
+      "S16": 15
+    },
+    "policy_evaluation_cells": 450,
+    "policy_task_outcomes": 1350000
+  },
+  "manifest_entries": 1090,
   "forbidden_documents_included": false
 }

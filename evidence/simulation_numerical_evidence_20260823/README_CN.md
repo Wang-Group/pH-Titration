@@ -37,3 +37,14 @@ full-trajectory timing pools all recorded decision cycles and did not use the
 CPU-affinity control of the block-16 single-step calls, so cross-block values
 are practical matched-cohort comparisons rather than identical-call timing.
 Blocks `10`, `11`, and `12` retain earlier protocols for provenance.
+
+The expanded controller and representation analyses are in
+`18_CONTROLLER_REPRESENTATION_FACTORIAL`. This block contains the three
+posterior-to-control strategies, the effective-*K*-protic-acid and
+independent-component PF representations, two model-mismatch benchmarks, and
+the F2-F6 exploratory imitation/PPO factorial reported in SI Section 5.6. It
+includes all 15 locked 3,000-task manifests, the exact additional source,
+machine-readable Tables S14-S16, unrounded policy summaries, completion
+metadata, and checkpoint fingerprints. Run
+`python scripts/audit_controller_representation_factorial.py` from the
+repository root to verify the block.

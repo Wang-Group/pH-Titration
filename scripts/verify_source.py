@@ -141,6 +141,17 @@ def main() -> int:
         evidence_root / "15_PPO_STEP_COST_TUNING" / "candidate_validation_summary.csv",
         evidence_root / "15_PPO_STEP_COST_TUNING" / "evaluation_full_5x3000" / "RESULT_SUMMARY.md",
         evidence_root / "15_PPO_STEP_COST_TUNING" / "evaluation_full_5x3000" / "benchmark_seed_mean_sd_summary.csv",
+        evidence_root / "18_CONTROLLER_REPRESENTATION_FACTORIAL" / "README.md",
+        evidence_root / "18_CONTROLLER_REPRESENTATION_FACTORIAL" / "MANIFEST_SHA256.csv",
+        evidence_root / "18_CONTROLLER_REPRESENTATION_FACTORIAL" / "SOURCE_SHA256.csv",
+        evidence_root / "18_CONTROLLER_REPRESENTATION_FACTORIAL" / "CHECKPOINT_SHA256.csv",
+        evidence_root / "18_CONTROLLER_REPRESENTATION_FACTORIAL" / "results" / "table_s14_posterior_to_control.csv",
+        evidence_root / "18_CONTROLLER_REPRESENTATION_FACTORIAL" / "results" / "table_s15_pf_representation.csv",
+        evidence_root / "18_CONTROLLER_REPRESENTATION_FACTORIAL" / "results" / "table_s16_policy_families.csv",
+        evidence_root / "18_CONTROLLER_REPRESENTATION_FACTORIAL" / "results" / "family_method_summary.csv",
+        evidence_root / "18_CONTROLLER_REPRESENTATION_FACTORIAL" / "results" / "per_policy_summary.csv",
+        evidence_root / "18_CONTROLLER_REPRESENTATION_FACTORIAL" / "results" / "per_evaluation_cell_summary.csv",
+        evidence_root / "18_CONTROLLER_REPRESENTATION_FACTORIAL" / "results" / "RUN_COMPLETE.json",
         evidence_root / "01_PRIMARY_5x3000_BENCHMARK" / "formal_matched_evaluation" / "rule_baseline_replay" / "aggregate_summary.csv",
         evidence_root / "01_PRIMARY_5x3000_BENCHMARK" / "formal_matched_evaluation" / "rule_baseline_replay" / "REPLAY_PROVENANCE.json",
         root / "scripts" / "replay_primary_rule_baselines.py",
@@ -149,6 +160,7 @@ def main() -> int:
         root / "scripts" / "generate_publication_tables.py",
         root / "scripts" / "sanitize_checkpoint_metadata.py",
         root / "scripts" / "audit_ppo_stability.py",
+        root / "scripts" / "audit_controller_representation_factorial.py",
         root / "scripts" / "run_ppo_step_cost_tuning.py",
         root / "scripts" / "evaluate_ppo_step_cost_tuning_full_benchmark.py",
         root / "scripts" / "benchmark_controlled_observation_to_action_100tasks.py",
@@ -274,6 +286,22 @@ def main() -> int:
             "pf_100000": 97.0,
         },
     }
+
+    expected_controller_representation_validation = {
+        "status": "PASS",
+        "locked_manifests": 15,
+        "tasks_per_manifest": 3000,
+        "publication_table_rows": {"S14": 3, "S15": 3, "S16": 15},
+        "policy_evaluation_cells": 450,
+        "policy_task_outcomes": 1_350_000,
+    }
+    if (
+        package_validation.get("controller_representation_factorial")
+        != expected_controller_representation_validation
+    ):
+        raise SystemExit(
+            "Package validation does not describe the controller/representation factorial"
+        )
     released_pf_validation = json.loads(
         (pf_closed_loop_results / "RELEASE_VALIDATION.json").read_text(encoding="utf-8")
     )
@@ -505,6 +533,11 @@ def main() -> int:
     stability_audit = importlib.import_module("scripts.audit_ppo_stability")
     stability_audit.main()
 
+    controller_representation_audit = importlib.import_module(
+        "scripts.audit_controller_representation_factorial"
+    )
+    controller_representation_audit.main()
+
     if not args.skip_self_test:
         module = importlib.import_module("controllers.controller_package_self_test")
         module.main()
@@ -521,6 +554,7 @@ def main() -> int:
         "primary_methods": sorted(methods),
         "teacher_and_principal_checkpoints_verified": True,
         "ppo_stability_audit": "PASS",
+        "controller_representation_factorial_audit": "PASS",
     }
     print(json.dumps(report, indent=2))
     return 0

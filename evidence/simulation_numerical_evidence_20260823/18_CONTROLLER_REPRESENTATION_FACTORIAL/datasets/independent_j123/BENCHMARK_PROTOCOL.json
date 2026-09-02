@@ -1,0 +1,90 @@
+{
+  "name": "independent_monoprotic_J123_benchmark",
+  "benchmark_seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "tasks_per_seed": 3000,
+  "truth_model": "J=1,2,3 independent monoprotic components",
+  "component_count_probabilities": {
+    "1": 0.4,
+    "2": 0.35,
+    "3": 0.25
+  },
+  "total_concentration_m": "log-uniform[0.03,0.18]",
+  "component_fractions": "J=1 fixed; J=2 uniform[0.20,0.80]; J=3 Dirichlet(2,2,2) restricted to min fraction >=0.10",
+  "pka_families": "single for J=1; otherwise overlapping consecutive gaps 0.20-0.70 or separated gaps 0.90-2.00",
+  "initial_volume_ml": "uniform[8,16]",
+  "direction": "exactly 50% acid and 50% base per seed",
+  "difficulty": {
+    "near": 0.3,
+    "medium": 0.45,
+    "far": 0.25
+  },
+  "titrant_m": 0.1,
+  "manifest_records": [
+    {
+      "benchmark_seed": 101,
+      "tasks": 3000,
+      "sha256": "dea6af97ae3ea25d6dc3076bb77febfb807e6a091947eef7aecf00d2f2115eee",
+      "acid_direction_tasks": 1500,
+      "base_direction_tasks": 1500,
+      "component_count_tasks": {
+        "1": 1200,
+        "2": 1050,
+        "3": 750
+      }
+    },
+    {
+      "benchmark_seed": 202,
+      "tasks": 3000,
+      "sha256": "637441ed1722b02b4d2ffa6076dd32ad3b99f36b310e1cd098cc13605d4ccc6b",
+      "acid_direction_tasks": 1500,
+      "base_direction_tasks": 1500,
+      "component_count_tasks": {
+        "1": 1200,
+        "2": 1050,
+        "3": 750
+      }
+    },
+    {
+      "benchmark_seed": 303,
+      "tasks": 3000,
+      "sha256": "819a7230ff4878b972661bd142c5b7ad76f98403e63156680556adc7a19f5df1",
+      "acid_direction_tasks": 1500,
+      "base_direction_tasks": 1500,
+      "component_count_tasks": {
+        "1": 1200,
+        "2": 1050,
+        "3": 750
+      }
+    },
+    {
+      "benchmark_seed": 404,
+      "tasks": 3000,
+      "sha256": "2279bf6383ae9444b2892a9dd8b71f5e1baf847523b8c7b7c2a32120db07fabe",
+      "acid_direction_tasks": 1500,
+      "base_direction_tasks": 1500,
+      "component_count_tasks": {
+        "1": 1200,
+        "2": 1050,
+        "3": 750
+      }
+    },
+    {
+      "benchmark_seed": 555,
+      "tasks": 3000,
+      "sha256": "3b505cde27287aaa950ae2124febb3ffae59b11d500b91fdd9a006db03124b7b",
+      "acid_direction_tasks": 1500,
+      "base_direction_tasks": 1500,
+      "component_count_tasks": {
+        "1": 1200,
+        "2": 1050,
+        "3": 750
+      }
+    }
+  ]
+}
