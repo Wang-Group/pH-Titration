@@ -1,0 +1,6 @@
+comparison,paired_tasks,full_only_success,variant_only_success,success_difference_pp,raw_p,holm_adjusted_p
+no_ph_rate_bonus_minus_full,1500,25,18,-0.4666666666666597,0.3603776529357674,1.0
+no_uncertainty_factor_minus_full,1500,20,18,-0.13333333333332975,0.8714146793645341,1.0
+no_buffering_factor_minus_full,1500,17,18,0.06666666666667043,1.0,1.0
+no_required_volume_term_minus_full,1500,12,9,-0.20000000000000018,0.6636238098144531,1.0
+linear_clip_instead_of_tanh_minus_full,1500,16,18,0.13333333333334085,0.8641662404406816,1.0

@@ -1,0 +1,19 @@
+{
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "tasks_per_seed": 300,
+  "particles": 1000,
+  "variants": [
+    "full",
+    "no_ph_rate_bonus",
+    "no_uncertainty_factor",
+    "no_buffering_factor",
+    "no_required_volume_term",
+    "linear_clip_instead_of_tanh"
+  ]
+}

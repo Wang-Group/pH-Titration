@@ -24,6 +24,7 @@ python -m pip install -e .
 python scripts/verify_source.py
 python scripts/audit_primary_benchmark.py
 python scripts/audit_controller_representation_factorial.py
+python scripts/audit_pf_internal_rule_ablation.py
 python scripts/generate_publication_tables.py
 python -m controllers.controller_package_self_test
 python -m unittest discover -s tests -v
@@ -182,7 +183,7 @@ release block:
 | `06_POSTERIOR_RECOVERY` | Posterior recovery and natural-endpoint analysis |
 | `07_PRIOR_SENSITIVITY` | Prior and likelihood sensitivity |
 | `08_SENSOR_STRESS` | Sensor nonideality stress tests, including source and raw task-level results |
-| `09_PF_RULE_ABLATIONS` | PF rule/reward/dose ablations |
+| `09_PF_RULE_ABLATIONS` | Current S6 dose-rule source, manifests and 9,000 task outcomes, plus separate historical rule/reward ablations |
 | `10_PARTICLE_SCALING` | Particle-count timing and scaling |
 | `11_PYMC_COMPARISON` | Earlier 15-task PyMC/PF comparison retained for provenance |
 | `12_ONLINE_TIMING` | Earlier separate PyMC and neural timing protocols retained for provenance |
@@ -247,6 +248,14 @@ computational path from a new rounded pH observation to the returned next
 action. It excludes liquid delivery, mixing, electrode stabilization, and pH
 acquisition and therefore must not be described as timing collected during a
 physical experiment.
+
+The current SI Table S6 and Response Table R7 are supported by
+[`09_PF_RULE_ABLATIONS/internal_rule_reproduction_20260905`](evidence/simulation_numerical_evidence_20260823/09_PF_RULE_ABLATIONS/internal_rule_reproduction_20260905/README.md).
+This block contains the exact runner and controller snapshot, five 300-task
+manifests, all 9,000 outcomes, unrounded summaries, and paired tests.
+`python scripts/audit_pf_internal_rule_ablation.py` independently recalculates
+the reported statistics. The older `eq_s5_*` files elsewhere in block `09`
+belong to a different study and are not the source for the current S6 table.
 
 The current complete-trajectory PF timing and outcome records are archived in
 block `17`. Task-level outcomes, every recorded decision cycle, and complete
