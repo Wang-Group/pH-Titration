@@ -25,6 +25,7 @@ python scripts/verify_source.py
 python scripts/audit_primary_benchmark.py
 python scripts/audit_controller_representation_factorial.py
 python scripts/audit_pf_internal_rule_ablation.py
+python scripts/audit_primary_ppo_five_seeds.py
 python scripts/generate_publication_tables.py
 python -m controllers.controller_package_self_test
 python -m unittest discover -s tests -v
@@ -192,6 +193,7 @@ release block:
 | `16_MATCHED_TIMING_RECOVERY_100TASKS` | Matched single-step PyMC/PF/neural timing and one-observation recovery benchmark |
 | `17_PF_CLOSED_LOOP_TIMING_100TASKS` | Current PF complete-trajectory timing and outcome benchmark on the same 100-task cohort |
 | `18_CONTROLLER_REPRESENTATION_FACTORIAL` | Posterior-to-control, PF-representation, model-mismatch, and exploratory imitation/PPO factorials reported in SI Section 5.6 |
+| `19_PRIMARY_PPO_FIVE_SEED_REEVALUATION` | Independent evaluation of all five primary PPO checkpoints: 75,000 task outcomes, unrounded summaries, audit and re-evaluation entry points |
 
 The evidence directory also contains the study index and statistical-unit
 definitions under `00_INDEX_AND_PROTOCOLS`. Results from different blocks are
@@ -288,7 +290,17 @@ documents the common 1,000-task comparison of the PF-distilled imitation policy
 (`89.10%`), the five PPO checkpoints (`89.54 +/- 2.23%`), and the PF teacher
 (`95.10%`). This archived comparison is not the current primary
 five-training-seed x five-benchmark analysis (`91.79 +/- 1.53%`).
-The same block includes the common 1,000-task manifest, each seed's training
+The independently reproduced primary analysis is now archived in
+[`19_PRIMARY_PPO_FIVE_SEED_REEVALUATION`](evidence/simulation_numerical_evidence_20260823/19_PRIMARY_PPO_FIVE_SEED_REEVALUATION/README.md):
+all 75,000 evaluations, cell/seed summaries, and comparisons with imitation.
+The five checkpoint files in block `02` and locked manifests in block `01`
+are reused without retraining or checkpoint selection. The selected model's
+15,000 results match the original formal evaluation. Run
+`python scripts/audit_primary_ppo_five_seeds.py` for a read-only arithmetic
+audit, or reproduce all five models with
+`python scripts/reevaluate_primary_ppo_five_seeds.py --workers 4 --output runs/primary_ppo_reevaluation`.
+
+Block `03` also includes the common 1,000-task manifest, each seed's training
 and validation manifests, task-level locked-test outcomes, per-run completion
 metadata, and the combined task-level evaluation table. Run
 `python scripts/audit_ppo_stability.py` to validate those materials and

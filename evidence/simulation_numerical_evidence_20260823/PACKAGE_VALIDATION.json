@@ -71,6 +71,13 @@
     "policy_evaluation_cells": 450,
     "policy_task_outcomes": 1350000
   },
-  "manifest_entries": 1090,
-  "forbidden_documents_included": false
+  "manifest_entries": 1152,
+  "forbidden_documents_included": false,
+  "primary_ppo_five_seed_reevaluation": {
+    "status": "PASS",
+    "training_seeds": 5,
+    "benchmark_sets": 5,
+    "task_level_rows": 75000,
+    "audit_command": "python scripts/audit_primary_ppo_five_seeds.py"
+  }
 }

@@ -1,0 +1,54 @@
+{
+  "task_manifests": {
+    "seed_101_tasks.jsonl": "e17c32fddbf41b74a756b1337d02ac449bdba707fe03f9edb004cc2ad39dcfbb",
+    "seed_202_tasks.jsonl": "c6a85f29c40d4afc3cf091506cbde4438cb16fbb07ac6d49a3bed229c1e84ff2",
+    "seed_303_tasks.jsonl": "439eee351e7edde606df5e1fd19900c8c4541583f59a9f77c03fc7e44c346a35",
+    "seed_404_tasks.jsonl": "9081dd66d582919291efa6fb4df86de1368cfbadcddf4d5bd4730cce91156e7a",
+    "seed_555_tasks.jsonl": "717526d455a55967450ca4373dfe5ca5bf7b3b8b70592e6c8ac9164ada9ba790"
+  },
+  "checkpoints": {
+    "principal_ppo_seed_101.pth": "9fedcafa84f4d3f8969bfae486a200a4ab8147d6af4e9a427f8c41e998b0caf3",
+    "principal_ppo_seed_202.pth": "b4e9864280f5902456cb0e4dacfdd24c7ee2fa1c4df0a28b2377273319f9df0c",
+    "principal_ppo_seed_303.pth": "4004d7a09768fc5ac3f448523f53cb22210ed919ca7e713f13d9aa693cc19de5",
+    "principal_ppo_seed_404.pth": "d7aef675e54121a7cb88fb6b7225b457d6609b2c142ed29cab641d34cf6a8264",
+    "principal_ppo_seed_555.pth": "098b65d844ad0b06f0a960520cea7e672739d9abcd30b2f1e931920561af3ec7"
+  },
+  "source_hashes": {
+    "evidence\\simulation_numerical_evidence_20260823\\13_SOURCE_ARCHIVES\\primary_locked_benchmark_source\\chemistry_model.py": "457b32f36efb31a2af4541fe8137b683a275d3d9cc554aaeb5176441e9fbe368",
+    "evidence\\simulation_numerical_evidence_20260823\\13_SOURCE_ARCHIVES\\primary_locked_benchmark_source\\control_environment.py": "4fd25d239b376234a535611dfb323b416ac8c1dabc87929669cb6d890b57639d",
+    "evidence\\simulation_numerical_evidence_20260823\\13_SOURCE_ARCHIVES\\primary_locked_benchmark_source\\models.py": "ed2a60abed27826bcc8e2a9f661d33da75eb59ec85407b39408498a3bef32b67",
+    "evidence\\simulation_numerical_evidence_20260823\\13_SOURCE_ARCHIVES\\primary_locked_benchmark_source\\run_matched_evaluation.py": "4e0a30d021ac99eb53c6b04687a450ec2a258163f741621c46a49ec231cf4ea8",
+    "evidence\\simulation_numerical_evidence_20260823\\13_SOURCE_ARCHIVES\\primary_locked_benchmark_source\\task_distribution.py": "f0eb76cc170a2fd586931382de2c1d0a5eb7d0e495ae2145ae4c58a39a4d9e20",
+    "controllers\\controller_api.py": "6d67e3b50a33b1ab8c543b04cd76f696d9fd89186d0fa590627740477dd3b19c"
+  },
+  "python": "3.11.15",
+  "torch": "2.13.0+cpu",
+  "numpy": "2.4.6",
+  "success_tolerance_ph": 0.1,
+  "max_additions": 50,
+  "max_total_dose_ml": 50,
+  "observation_rounding_ph": 0.01,
+  "action_range_ml": [
+    0.01,
+    10.0
+  ],
+  "persistent_overshoot_cap": true,
+  "evaluation": "argmax, no retraining",
+  "training_seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "benchmark_seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "tasks_per_cell": 3000,
+  "workers": 4,
+  "phase": "full"
+}

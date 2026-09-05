@@ -1,0 +1,101 @@
+{
+  "hash_convention": "Exact checkpoint bytes; CRLF-to-LF normalized text bytes",
+  "files": [
+    {
+      "kind": "source_hashes",
+      "path": "controllers/controller_api.py",
+      "sha256": "bd292dd7852777fd521c1e11ce964814c461a0da823a72ed4ea025b0163ab19b",
+      "original_run_sha256": "6d67e3b50a33b1ab8c543b04cd76f696d9fd89186d0fa590627740477dd3b19c"
+    },
+    {
+      "kind": "task_manifests",
+      "path": "evidence/simulation_numerical_evidence_20260823/01_PRIMARY_5x3000_BENCHMARK/formal_matched_evaluation/tasks/seed_101_tasks.jsonl",
+      "sha256": "06760378522cd9b6d4519df0e7e91495a646e63813c1add847c0ab8198dbab97",
+      "original_run_sha256": "e17c32fddbf41b74a756b1337d02ac449bdba707fe03f9edb004cc2ad39dcfbb"
+    },
+    {
+      "kind": "task_manifests",
+      "path": "evidence/simulation_numerical_evidence_20260823/01_PRIMARY_5x3000_BENCHMARK/formal_matched_evaluation/tasks/seed_202_tasks.jsonl",
+      "sha256": "3c0c3a872b5354a56d9d3caac91dbb78e87cf2e7adf17a31282a9da9b0154fa2",
+      "original_run_sha256": "c6a85f29c40d4afc3cf091506cbde4438cb16fbb07ac6d49a3bed229c1e84ff2"
+    },
+    {
+      "kind": "task_manifests",
+      "path": "evidence/simulation_numerical_evidence_20260823/01_PRIMARY_5x3000_BENCHMARK/formal_matched_evaluation/tasks/seed_303_tasks.jsonl",
+      "sha256": "6089ee80ca7406dd04a472d8be72bc105b9d7f5b3b4273d6b1c9c96423f6f8af",
+      "original_run_sha256": "439eee351e7edde606df5e1fd19900c8c4541583f59a9f77c03fc7e44c346a35"
+    },
+    {
+      "kind": "task_manifests",
+      "path": "evidence/simulation_numerical_evidence_20260823/01_PRIMARY_5x3000_BENCHMARK/formal_matched_evaluation/tasks/seed_404_tasks.jsonl",
+      "sha256": "b8752faa13c0d32c5b9ce390e33be2a8ecfbd328340869646a6c0225e5984cde",
+      "original_run_sha256": "9081dd66d582919291efa6fb4df86de1368cfbadcddf4d5bd4730cce91156e7a"
+    },
+    {
+      "kind": "task_manifests",
+      "path": "evidence/simulation_numerical_evidence_20260823/01_PRIMARY_5x3000_BENCHMARK/formal_matched_evaluation/tasks/seed_555_tasks.jsonl",
+      "sha256": "6f0e024654ad54c41ec1fa678b22ce3e5415f127d06c54d4f7f87cc33029e61f",
+      "original_run_sha256": "717526d455a55967450ca4373dfe5ca5bf7b3b8b70592e6c8ac9164ada9ba790"
+    },
+    {
+      "kind": "checkpoints",
+      "path": "evidence/simulation_numerical_evidence_20260823/02_TEACHER_AND_IMITATION/checkpoints/principal_ppo_seed_101.pth",
+      "sha256": "9fedcafa84f4d3f8969bfae486a200a4ab8147d6af4e9a427f8c41e998b0caf3",
+      "original_run_sha256": "9fedcafa84f4d3f8969bfae486a200a4ab8147d6af4e9a427f8c41e998b0caf3"
+    },
+    {
+      "kind": "checkpoints",
+      "path": "evidence/simulation_numerical_evidence_20260823/02_TEACHER_AND_IMITATION/checkpoints/principal_ppo_seed_202.pth",
+      "sha256": "b4e9864280f5902456cb0e4dacfdd24c7ee2fa1c4df0a28b2377273319f9df0c",
+      "original_run_sha256": "b4e9864280f5902456cb0e4dacfdd24c7ee2fa1c4df0a28b2377273319f9df0c"
+    },
+    {
+      "kind": "checkpoints",
+      "path": "evidence/simulation_numerical_evidence_20260823/02_TEACHER_AND_IMITATION/checkpoints/principal_ppo_seed_303.pth",
+      "sha256": "4004d7a09768fc5ac3f448523f53cb22210ed919ca7e713f13d9aa693cc19de5",
+      "original_run_sha256": "4004d7a09768fc5ac3f448523f53cb22210ed919ca7e713f13d9aa693cc19de5"
+    },
+    {
+      "kind": "checkpoints",
+      "path": "evidence/simulation_numerical_evidence_20260823/02_TEACHER_AND_IMITATION/checkpoints/principal_ppo_seed_404.pth",
+      "sha256": "d7aef675e54121a7cb88fb6b7225b457d6609b2c142ed29cab641d34cf6a8264",
+      "original_run_sha256": "d7aef675e54121a7cb88fb6b7225b457d6609b2c142ed29cab641d34cf6a8264"
+    },
+    {
+      "kind": "checkpoints",
+      "path": "evidence/simulation_numerical_evidence_20260823/02_TEACHER_AND_IMITATION/checkpoints/principal_ppo_seed_555.pth",
+      "sha256": "098b65d844ad0b06f0a960520cea7e672739d9abcd30b2f1e931920561af3ec7",
+      "original_run_sha256": "098b65d844ad0b06f0a960520cea7e672739d9abcd30b2f1e931920561af3ec7"
+    },
+    {
+      "kind": "source_hashes",
+      "path": "evidence/simulation_numerical_evidence_20260823/13_SOURCE_ARCHIVES/primary_locked_benchmark_source/chemistry_model.py",
+      "sha256": "b1714a78a29006b29883d5aa73bde905fdf627ac4468ac7b71bd6168485516aa",
+      "original_run_sha256": "457b32f36efb31a2af4541fe8137b683a275d3d9cc554aaeb5176441e9fbe368"
+    },
+    {
+      "kind": "source_hashes",
+      "path": "evidence/simulation_numerical_evidence_20260823/13_SOURCE_ARCHIVES/primary_locked_benchmark_source/control_environment.py",
+      "sha256": "b139efa948f8342d71db6de0ec055f908975cd16e306f699df494bbd67f56d34",
+      "original_run_sha256": "4fd25d239b376234a535611dfb323b416ac8c1dabc87929669cb6d890b57639d"
+    },
+    {
+      "kind": "source_hashes",
+      "path": "evidence/simulation_numerical_evidence_20260823/13_SOURCE_ARCHIVES/primary_locked_benchmark_source/models.py",
+      "sha256": "c452df54aee36c5191c9f0bef7e12e546c0d12a2b4db41a3855563a2c3656626",
+      "original_run_sha256": "ed2a60abed27826bcc8e2a9f661d33da75eb59ec85407b39408498a3bef32b67"
+    },
+    {
+      "kind": "source_hashes",
+      "path": "evidence/simulation_numerical_evidence_20260823/13_SOURCE_ARCHIVES/primary_locked_benchmark_source/run_matched_evaluation.py",
+      "sha256": "d438f57047e7f6c5ab7108fbc622299dd6161d9d3b19677b3da928157adaf9eb",
+      "original_run_sha256": "4e0a30d021ac99eb53c6b04687a450ec2a258163f741621c46a49ec231cf4ea8"
+    },
+    {
+      "kind": "source_hashes",
+      "path": "evidence/simulation_numerical_evidence_20260823/13_SOURCE_ARCHIVES/primary_locked_benchmark_source/task_distribution.py",
+      "sha256": "2c7a5122821e6dd40942e6ee522fca7cf87f69beaa160b413972ed7e78a8d9db",
+      "original_run_sha256": "f0eb76cc170a2fd586931382de2c1d0a5eb7d0e495ae2145ae4c58a39a4d9e20"
+    }
+  ]
+}

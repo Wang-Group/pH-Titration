@@ -643,6 +643,9 @@ def main() -> int:
     internal_rule_audit = importlib.import_module('scripts.audit_pf_internal_rule_ablation')
     internal_rule_report = internal_rule_audit.audit()
 
+    primary_ppo_audit = importlib.import_module('scripts.audit_primary_ppo_five_seeds')
+    primary_ppo_report = primary_ppo_audit.audit()
+
     if not args.skip_self_test:
         module = importlib.import_module("controllers.controller_package_self_test")
         module.main()
@@ -662,6 +665,7 @@ def main() -> int:
         "controller_representation_factorial_audit": "PASS",
         "pf_internal_rule_ablation_audit": internal_rule_report['status'],
         "pf_internal_rule_ablation_task_results": internal_rule_report['task_results'],
+        "primary_ppo_five_seed_reevaluation": primary_ppo_report,
         "sensor_stress_reproduction": {
             "task_manifests": len(sensor_task_files),
             "result_shards": len(sensor_shard_files),

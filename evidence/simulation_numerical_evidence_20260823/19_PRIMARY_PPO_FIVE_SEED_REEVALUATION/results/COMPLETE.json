@@ -1,0 +1,39 @@
+{
+  "status": "COMPLETE",
+  "evaluations": 75000,
+  "training_seed_success_mean_percent": 91.79333333333332,
+  "training_seed_success_sd_percent": 1.525356060436748,
+  "training_seed_success_range_percent": [
+    90.29333333333334,
+    93.94666666666667
+  ],
+  "ppo_higher_than_imitation_cells": 25,
+  "cells": 25,
+  "selected_model_reference_checks": [
+    {
+      "tasks_compared": 3000,
+      "mismatched_fields": 0,
+      "examples": []
+    },
+    {
+      "tasks_compared": 3000,
+      "mismatched_fields": 0,
+      "examples": []
+    },
+    {
+      "tasks_compared": 3000,
+      "mismatched_fields": 0,
+      "examples": []
+    },
+    {
+      "tasks_compared": 3000,
+      "mismatched_fields": 0,
+      "examples": []
+    },
+    {
+      "tasks_compared": 3000,
+      "mismatched_fields": 0,
+      "examples": []
+    }
+  ]
+}

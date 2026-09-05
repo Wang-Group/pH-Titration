@@ -1,0 +1,16 @@
+{
+  "benchmark_seed": 202,
+  "method": "ppo",
+  "tasks": 3000,
+  "success_rate_percent": 92.16666666666666,
+  "strict_success_rate_percent": 43.233333333333334,
+  "severe_failure_rate_percent": 1.8333333333333333,
+  "false_stop_rate_percent": 1.9666666666666666,
+  "steps_mean": 9.057,
+  "successful_steps_mean": 6.362748643761302,
+  "overshoots_mean": 3.1306666666666665,
+  "total_volume_mean_ml": 7.34507,
+  "final_abs_error_mean": 0.08267059050501373,
+  "cap_activation_rate_percent": 59.86666666666667,
+  "training_seed": 404
+}

@@ -1,0 +1,21 @@
+{
+  "benchmark_seed": 202,
+  "method": "ppo",
+  "tasks": 3000,
+  "success_rate_percent": 93.73333333333333,
+  "strict_success_rate_percent": 46.6,
+  "severe_failure_rate_percent": 1.7666666666666668,
+  "false_stop_rate_percent": 1.4333333333333333,
+  "steps_mean": 7.256,
+  "successful_steps_mean": 5.027382645803699,
+  "overshoots_mean": 3.1976666666666667,
+  "total_volume_mean_ml": 7.3905199999999995,
+  "final_abs_error_mean": 0.08186417848741318,
+  "cap_activation_rate_percent": 66.93333333333334,
+  "training_seed": 303,
+  "selected_model_reference_check": {
+    "tasks_compared": 3000,
+    "mismatched_fields": 0,
+    "examples": []
+  }
+}

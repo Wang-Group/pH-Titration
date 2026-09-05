@@ -58,6 +58,9 @@ def count_csv_rows(path: Path) -> int:
 
 
 def build() -> None:
+    sys.path.insert(0, str(ROOT))
+    from scripts.audit_primary_ppo_five_seeds import audit as audit_primary_ppo
+    primary_ppo_report = audit_primary_ppo()
     if STAGING.exists():
         shutil.rmtree(STAGING)
     STAGING.mkdir()
@@ -199,6 +202,15 @@ def build() -> None:
             "policy_task_outcomes": expanded_completion["task_policy_outcomes"],
         },
         "manifest_entries": len(manifest_rows),
+        "primary_ppo_five_seed_reevaluation": {
+            "status": primary_ppo_report["status"],
+            "training_seeds": 5,
+            "benchmark_sets": 5,
+            "task_level_rows": sum(count_csv_rows(path) for path in
+                (staged_evidence / "19_PRIMARY_PPO_FIVE_SEED_REEVALUATION" / "results").glob(
+                    "ppo_*_benchmark_*.csv")),
+            "audit_command": "python scripts/audit_primary_ppo_five_seeds.py",
+        },
         "forbidden_documents_included": False,
     }
     validation_path.write_text(json.dumps(validation, indent=2), encoding="utf-8")

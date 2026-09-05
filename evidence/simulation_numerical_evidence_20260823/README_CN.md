@@ -6,6 +6,14 @@ The directory is organized by simulation protocol rather than by manuscript sect
 
 Start with `00_INDEX_AND_PROTOCOLS/SIMULATION_STUDY_INDEX.csv` and `00_INDEX_AND_PROTOCOLS/CURRENT_SIMULATION_CLAIMS.csv`.
 
+The independent re-evaluation of all five primary PPO checkpoints is in
+[`19_PRIMARY_PPO_FIVE_SEED_REEVALUATION`](19_PRIMARY_PPO_FIVE_SEED_REEVALUATION/README.md).
+It contains 75,000 model-task outcomes on the existing 15,000 locked tasks,
+with an across-training-seed success mean and sample SD of 91.79 ± 1.53%.
+No models were retrained. Read-only verification and portable re-evaluation
+commands are documented in that block; these results are separate from the
+1,000-task stability screen in block `03`.
+
 The analysis source is in `13_SOURCE_ARCHIVES`. The source folders
 are grouped by protocol. The primary locked benchmark source is in
 `primary_locked_benchmark_source`, and the original rule/PID runner is in
