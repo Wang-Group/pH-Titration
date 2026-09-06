@@ -1,0 +1,17 @@
+{
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "tasks_per_seed": 300,
+  "particles": 1000,
+  "windows_ml": [
+    0.1,
+    0.5,
+    1.0
+  ],
+  "anchoring": "truth and PF curves are anchored at the current decision point"
+}

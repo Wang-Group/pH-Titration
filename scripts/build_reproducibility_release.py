@@ -33,6 +33,10 @@ def excluded(path: Path) -> bool:
     internal_tokens = ("reviewer", "response", "draft", "manuscript")
     basename = path.name.lower()
     normalized = "/".join(path.parts).lower()
+    if ("local_response_reproduction_20260906" in path.parts and "local_response" in basename
+            and not any(token in basename for token in ("reviewer", "draft", "manuscript"))):
+        # Scientific response-curve code/data are not reviewer response letters.
+        return False
     if any(token in basename for token in internal_tokens):
         return True
     if "public_repository_snapshot" in normalized:
@@ -61,6 +65,8 @@ def build() -> None:
     sys.path.insert(0, str(ROOT))
     from scripts.audit_primary_ppo_five_seeds import audit as audit_primary_ppo
     primary_ppo_report = audit_primary_ppo()
+    from scripts.audit_pf_local_curves import audit as audit_local_curves
+    local_curve_report = audit_local_curves()
     if STAGING.exists():
         shutil.rmtree(STAGING)
     STAGING.mkdir()
@@ -212,6 +218,13 @@ def build() -> None:
             "audit_command": "python scripts/audit_primary_ppo_five_seeds.py",
         },
         "forbidden_documents_included": False,
+        "pf_local_response": {
+            "status": local_curve_report["status"],
+            "tasks": local_curve_report["unique_tasks"],
+            "snapshots": local_curve_report["snapshots"],
+            "terminal_horizon_fallbacks": local_curve_report["terminal_horizon_fallbacks"],
+            "audit_command": "python scripts/audit_pf_local_curves.py",
+        },
     }
     validation_path.write_text(json.dumps(validation, indent=2), encoding="utf-8")
     # Keep the working evidence directory synchronized with the exact files

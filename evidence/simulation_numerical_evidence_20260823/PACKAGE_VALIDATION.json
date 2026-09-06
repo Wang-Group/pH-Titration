@@ -71,7 +71,7 @@
     "policy_evaluation_cells": 450,
     "policy_task_outcomes": 1350000
   },
-  "manifest_entries": 1152,
+  "manifest_entries": 1181,
   "forbidden_documents_included": false,
   "primary_ppo_five_seed_reevaluation": {
     "status": "PASS",
@@ -79,5 +79,12 @@
     "benchmark_sets": 5,
     "task_level_rows": 75000,
     "audit_command": "python scripts/audit_primary_ppo_five_seeds.py"
+  },
+  "pf_local_response": {
+    "status": "PASS",
+    "tasks": 1500,
+    "snapshots": 12000,
+    "terminal_horizon_fallbacks": 96,
+    "audit_command": "python scripts/audit_pf_local_curves.py"
   }
 }

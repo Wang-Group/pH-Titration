@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "replayed_tasks": 1500,
+  "matched_snapshots": 12000,
+  "mismatched_fields": 0,
+  "state_columns_recorded": true,
+  "snapshots_with_observation_counter_different_from_delivered_steps": 0,
+  "scope": "full study"
+}

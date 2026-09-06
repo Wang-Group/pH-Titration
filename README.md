@@ -26,6 +26,7 @@ python scripts/audit_primary_benchmark.py
 python scripts/audit_controller_representation_factorial.py
 python scripts/audit_pf_internal_rule_ablation.py
 python scripts/audit_primary_ppo_five_seeds.py
+python scripts/audit_pf_local_curves.py
 python scripts/generate_publication_tables.py
 python -m controllers.controller_package_self_test
 python -m unittest discover -s tests -v
@@ -225,6 +226,16 @@ in blocks 10-12 remain available for provenance and are not interchangeable
 with either current scope.
 
 ## Reproducibility status
+
+The [local-response reconstruction package](evidence/simulation_numerical_evidence_20260823/06_POSTERIOR_RECOVERY/local_response_reproduction_20260906/README.md)
+now supplies the code, five locked 300-task manifests and 12,000 snapshots
+supporting RMSE values `0.0399`, `0.1280` and `0.2452` pH for the ±0.10,
+±0.50 and ±1.00 mL windows. These compare pH changes after anchoring both
+curves at zero additional dose. The archived terminal label includes 96
+12-iteration fallbacks among 1,500 tasks, not only successful stops.
+`python scripts/audit_pf_local_curves.py` recalculates all summaries;
+`python scripts/reproduce_pf_local_curves.py --workers 8 --output runs/pf_local_curves`
+replays the exact tasks with the recovered historical dependency.
 
 The release now contains the latest simulation-only evidence archive. It
 includes the current primary summary

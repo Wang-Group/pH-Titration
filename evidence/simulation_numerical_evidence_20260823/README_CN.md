@@ -6,6 +6,13 @@ The directory is organized by simulation protocol rather than by manuscript sect
 
 Start with `00_INDEX_AND_PROTOCOLS/SIMULATION_STUDY_INDEX.csv` and `00_INDEX_AND_PROTOCOLS/CURRENT_SIMULATION_CLAIMS.csv`.
 
+The local pH-response RMSE values 0.0399, 0.1280 and 0.2452 are supported by
+[`06_POSTERIOR_RECOVERY/local_response_reproduction_20260906`](06_POSTERIOR_RECOVERY/local_response_reproduction_20260906/README.md).
+This block contains the supplied source, five 300-task manifests and 12,000
+snapshots, with a recovered missing dependency and independent verification.
+Its terminal diagnostic includes 96 last-state fallbacks among 1,500 tasks;
+the README explains the anchoring and checkpoint definitions.
+
 The independent re-evaluation of all five primary PPO checkpoints is in
 [`19_PRIMARY_PPO_FIVE_SEED_REEVALUATION`](19_PRIMARY_PPO_FIVE_SEED_REEVALUATION/README.md).
 It contains 75,000 model-task outcomes on the existing 15,000 locked tasks,

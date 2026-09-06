@@ -1,0 +1,26 @@
+{
+  "status": "COMPLETE",
+  "tasks": 1500,
+  "snapshots": 12000,
+  "scope": "full study",
+  "tasks_per_seed": 300,
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    555
+  ],
+  "particles": 1000,
+  "workers": 8,
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "elapsed_seconds": 95.42199999999957,
+  "windows_ml": [
+    0.1,
+    0.5,
+    1.0
+  ],
+  "grid_points_per_window": 81,
+  "replay_source": "unchanged supplied run_task; additional state columns only"
+}

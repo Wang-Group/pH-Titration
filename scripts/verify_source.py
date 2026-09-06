@@ -646,6 +646,9 @@ def main() -> int:
     primary_ppo_audit = importlib.import_module('scripts.audit_primary_ppo_five_seeds')
     primary_ppo_report = primary_ppo_audit.audit()
 
+    local_curve_audit = importlib.import_module('scripts.audit_pf_local_curves')
+    local_curve_report = local_curve_audit.audit()
+
     if not args.skip_self_test:
         module = importlib.import_module("controllers.controller_package_self_test")
         module.main()
@@ -666,6 +669,7 @@ def main() -> int:
         "pf_internal_rule_ablation_audit": internal_rule_report['status'],
         "pf_internal_rule_ablation_task_results": internal_rule_report['task_results'],
         "primary_ppo_five_seed_reevaluation": primary_ppo_report,
+        "pf_local_response": local_curve_report,
         "sensor_stress_reproduction": {
             "task_manifests": len(sensor_task_files),
             "result_shards": len(sensor_shard_files),
