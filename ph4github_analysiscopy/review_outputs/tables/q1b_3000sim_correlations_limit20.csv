@@ -1,4 +1,0 @@
-﻿stage,corr_posterior_std_vs_pka_mae,corr_posterior_std_vs_abs_pH_error,corr_pka_mae_vs_abs_pH_error
-final,-0.075,-0.2843,0.1107
-initial,,,-0.1598
-up_to_8_steps,-0.0923,0.2205,-0.3731

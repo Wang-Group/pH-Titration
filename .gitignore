@@ -9,6 +9,7 @@ venv/
 build/
 dist/
 /runs/
+/ph4github_analysiscopy/
 evidence/simulation_numerical_evidence_20260823/05_RL_ALGORITHM_SCREEN/direction_assisted_release/**/runs/
 .release_staging/
 *_unpack/

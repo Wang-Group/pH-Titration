@@ -17,6 +17,22 @@ unpack an archive before running the verification commands.
 | `physical_experiments/` | Mixed-acid, wastewater, casein, and Cu–SSA experimental data |
 | `release_archives/` | Downloadable snapshots of the simulation and physical-data releases |
 
+## Obtain the actual model and data files
+
+A Git clone with Git LFS installed can retrieve all model/data objects with
+`git lfs pull`. GitHub's source ZIP may instead contain small LFS pointer files.
+For a source ZIP, download the missing assets before verification:
+
+```powershell
+python scripts/fetch_lfs_assets.py
+```
+
+For a ZIP of an older commit, add `--ref <commit>` using that archive's commit
+ID. Downloads come from this repository and must match each pointer's SHA-256
+and byte count before replacing the pointer. Existing actual data/model files
+are untouched. The optional ZIP snapshots in `release_archives/` are not
+needed for source verification and are not downloaded by default.
+
 The controllers are importable as packages:
 
 ```powershell
@@ -31,6 +47,14 @@ python scripts/generate_publication_tables.py
 python -m controllers.controller_package_self_test
 python -m unittest discover -s tests -v
 ```
+
+Verification accepts LF/CRLF conversion in UTF-8 source/data files in either
+direction, including historical manifests generated on Windows. Other content
+changes, whitespace changes and binary-file changes still fail integrity checks.
+Historical sensor-stress snapshots with mixed line endings are stored byte for
+byte, as required by their original manifests.
+It also rejects the internal `ph4github_analysiscopy/` working directory in the
+public Git index or an extracted source archive. Local ignored copies may remain.
 
 The downloadable snapshots can be rebuilt from the visible repository tree:
 

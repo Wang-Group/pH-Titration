@@ -1,7 +1,12 @@
 release_archives/*.zip filter=lfs diff=lfs merge=lfs -text
+/ph4github_analysiscopy export-ignore
 controllers/models/*.pth filter=lfs diff=lfs merge=lfs -text
 controllers/models/*.npz filter=lfs diff=lfs merge=lfs -text
 evidence/**/*.pth filter=lfs diff=lfs merge=lfs -text
 evidence/**/*.npz filter=lfs diff=lfs merge=lfs -text
 evidence/simulation_numerical_evidence_20260823/06_POSTERIOR_RECOVERY/prior_k_true_k_convergence/raw_data/all_prior_k_posterior_rows.csv filter=lfs diff=lfs merge=lfs -text
 evidence/simulation_numerical_evidence_20260823/12_ONLINE_TIMING/online_single_step_timing_20260820/neural_single_step_raw.csv filter=lfs diff=lfs merge=lfs -text
+# Preserve original sensor-stress snapshot bytes, including mixed LF/CRLF.
+evidence/simulation_numerical_evidence_20260823/08_SENSOR_STRESS/reproduction_package_20260902/**/RL_EFFECTIVENESS_AUDIT.md -text
+evidence/simulation_numerical_evidence_20260823/08_SENSOR_STRESS/reproduction_package_20260902/runner/study_source/BAYESIAN_RULE_ABLATION.ipynb -text
+evidence/simulation_numerical_evidence_20260823/08_SENSOR_STRESS/reproduction_package_20260902/runner/study_source/reference/original_bayesian_controller.py -text

@@ -1,4 +1,0 @@
-﻿experiment,policy_in_text,evidence
-Experiment 2 wastewater neutralization,Reinforcement learning policy,E:\GitHub\ph4git\pH-Titration\ph4github_analysiscopy\review_outputs\manuscript_text\si_analysiscopy.txt (line containing 'The reinforcement learning policy then autonomously dosed')
-Experiment 3 casein / milk,Reinforcement learning policy,E:\GitHub\ph4git\pH-Titration\ph4github_analysiscopy\review_outputs\manuscript_text\manuscript_analysiscopy.txt (line containing 'the reinforcement learning policy guided the sequential addition')
-Experiment 4 protein hydrolysis / later biochemical task,Bayesian inference-guided controller,E:\GitHub\ph4git\pH-Titration\ph4github_analysiscopy\review_outputs\manuscript_text\manuscript_analysiscopy.txt (line containing 'using our Bayesian inference-guided titration controller')

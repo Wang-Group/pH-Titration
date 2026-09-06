@@ -6,11 +6,58 @@ import hashlib
 import importlib
 import json
 import py_compile
+import subprocess
 import sys
 from pathlib import Path
 
 import numpy as np
 import torch
+
+
+PRIVATE_LOCAL_DIRECTORIES = {"ph4github_analysiscopy"}
+TEXT_SUFFIXES = {
+    ".py", ".md", ".txt", ".csv", ".tsv", ".json", ".jsonl", ".toml",
+    ".yaml", ".yml", ".xml", ".svg", ".sh", ".cmd", ".bat", ".ini", ".cfg",
+}
+
+
+def hash_byte_candidates(path: Path) -> tuple[bytes, ...]:
+    """Allow only LF/CRLF conversion in UTF-8 text, in either direction.
+
+    Supplied manifests may hash CRLF files while GitHub ZIPs contain LF blobs.
+    Conversely, Windows may check out CRLF for an LF manifest. Binary files,
+    whitespace, BOMs, final-newline presence and bare CR characters are not
+    normalized away.
+    """
+    data = path.read_bytes()
+    if path.suffix.lower() not in TEXT_SUFFIXES or b"\x00" in data:
+        return (data,)
+    try:
+        data.decode("utf-8")
+    except UnicodeDecodeError:
+        return (data,)
+    lf = data.replace(b"\r\n", b"\n")
+    crlf = lf.replace(b"\n", b"\r\n")
+    return tuple(dict.fromkeys((data, lf, crlf)))
+
+
+def validate_public_paths(paths) -> None:
+    for path in paths:
+        top = str(path).replace("\\", "/").split("/", 1)[0].casefold()
+        if top in PRIVATE_LOCAL_DIRECTORIES:
+            raise ValueError(f"Internal working-copy material must not be published: {path}")
+
+
+def verify_public_layout(root: Path) -> None:
+    if (root / ".git").exists():
+        # Ignored local drafts may remain: only Git's index is public input.
+        result = subprocess.run(["git", "ls-files", "-z"], cwd=root,
+                                check=True, capture_output=True)
+        paths = result.stdout.decode("utf-8").split("\0")
+    else:
+        # Source ZIPs have no index: each extracted top-level item is public.
+        paths = [path.name for path in root.iterdir()]
+    validate_public_paths(paths)
 
 
 def sha256(path: Path) -> str:
@@ -22,23 +69,20 @@ def sha256(path: Path) -> str:
 
 
 def matches_manifest_entry(path: Path, row: dict[str, str]) -> bool:
-    """Match exact bytes, allowing only Git's CRLF checkout conversion."""
-    data = path.read_bytes()
+    """Match digest and byte count in either permitted text newline style."""
     expected_size = int(row["bytes"])
     expected_hash = row["sha256"].lower()
-    candidates = (data, data.replace(b"\r\n", b"\n"))
     return any(
         len(candidate) == expected_size
         and hashlib.sha256(candidate).hexdigest() == expected_hash
-        for candidate in candidates
+        for candidate in hash_byte_candidates(path)
     )
 
 
 def matches_sha256_allowing_crlf(path: Path, expected_hash: str) -> bool:
-    """Match original archive bytes while tolerating Git CRLF checkout conversion."""
-    data = path.read_bytes()
-    candidates = (data, data.replace(b"\r\n", b"\n"))
-    return any(hashlib.sha256(candidate).hexdigest() == expected_hash for candidate in candidates)
+    """Match original bytes, allowing only LF/CRLF text conversion both ways."""
+    return any(hashlib.sha256(candidate).hexdigest() == expected_hash.lower()
+               for candidate in hash_byte_candidates(path))
 
 
 def count_data_rows(path: Path) -> int:
@@ -64,12 +108,23 @@ def main() -> int:
 
     root = Path(__file__).resolve().parents[1]
     sys.path.insert(0, str(root))
+    verify_public_layout(root)
+    from scripts.fetch_lfs_assets import find_lfs_pointers
+    missing_lfs = find_lfs_pointers(root)
+    if missing_lfs:
+        raise SystemExit(
+            f"Git LFS assets are still pointers ({len(missing_lfs)} files). "
+            "For a source ZIP, run python scripts/fetch_lfs_assets.py "
+            "(--ref COMMIT for an older archive); for a Git clone, run git lfs pull. "
+            "Then rerun this verifier. No result hashes were bypassed."
+        )
 
     python_files = sorted(
         path
         for path in root.rglob("*.py")
         if "__pycache__" not in path.parts
         and "evidence" not in path.parts
+        and path.relative_to(root).parts[0].casefold() not in PRIVATE_LOCAL_DIRECTORIES
     )
     for path in python_files:
         py_compile.compile(str(path), doraise=True)
@@ -656,6 +711,7 @@ def main() -> int:
     report = {
         "status": "pass",
         "compiled_python_files": len(python_files),
+        "public_layout_audit": "PASS",
         "evidence_required_files": len(required_files),
         "checkpoint_sha256": checkpoint_hash,
         "evidence_root": str(evidence_root),

@@ -39,11 +39,9 @@ These scripts are now placed under `ph4github/repro_support/`:
 
 They were added to make the released package easier to inspect and partially rerun without opening the full monolithic notebooks first.
 
-## Working-copy folders retained in this workspace
+## Current release
 
-- `ph4github_analysiscopy/`
-  Reviewer-analysis working copy with extracted text, review outputs, and intermediate analysis files.
-- `ph4github_reprocopy/`
-  Historical reproducibility-oriented working copy used during the audit.
-
-These are useful internally, but `ph4github/` is the cleaner folder to point external readers to as the main code/data package.
+This note describes historical helpers. The current controller, training,
+data and verification entry points are documented in the top-level
+[`README.md`](README.md). Internal peer-review working copies are not part
+of the public reproducibility package.
